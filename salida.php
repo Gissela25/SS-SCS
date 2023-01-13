@@ -20,12 +20,12 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button> -->
-            <a><img src="imgs/navicon.jpg" alt="" width="220" height="80"
-                class="d-inline-block align-text-top"></a>
+            <a><img src="imgs/navicon.jpg" alt="" width="220" height="80" class="d-inline-block align-text-top"></a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="inventario.php" style="color: black">Ingreso</a>
+                        <a class="nav-link active" aria-current="page" href="inventario.php"
+                            style="color: black">Ingreso</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" style="color: black">Salida</a>
@@ -38,53 +38,38 @@
         </div>
     </nav>
     <div class="row mx-5 mt-5">
+      
+        <h3>Centro de Sangre: William Portan</h3>
         <div class="col ml-5">
-            <a class="edit" href="ausuarios.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Usuario</a>
+            <a class="edit" href="aarticulo.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
+                Articulo</a>
+                <h5 style="text-align:center">Salida de Articulos</h5>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF0032">
                         <tr>
-                            <th>ID Usuario</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Correo Electronico</th>
+                            <th>Fecha</th>
+                            <th>Codigo</th>
+                            <th>Articulo</th>
+                            <th>Minimo</th>
+                            <th>Presentacion</th>
+                            <th>Departamento</th>
+                            <th>Existencias</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>0001</td>
-                            <td>Susan</td>
-                            <td>Flores</td>
-                            <td>susan15@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>     
-                            <i class="bi bi-trash"> Desactivar </i></td>
-                        </tr>
-                        <tr>
-                            <td>0002</td>
-                            <td>Gissela</td>
-                            <td>Serrano</td>
-                            <td>gisselaverenice@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>     
-                            <i class="bi bi-trash"> Desactivar </i></td>
-                        </tr>
-                        <tr>
-                            <td>0003</td>
-                            <td>Jony</td>
-                            <td>Morales</td>
-                            <td>morales2001@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>     
-                            <i class="bi bi-trash"> Desactivar </i></td>
-                        </tr>
-                        <tr>
-                            <td>0004</td>
-                            <td>William</td>
-                            <td>Portan</td>
-                            <td>portan22@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>     
-                            <i class="bi bi-trash"> Desactivar </i></td>
-                        </tr>
-                        <tr>
+                            <td>10/01/2023</td>
+                            <td>123456789</td>
+                            <td>Bandeja Plastica</td>
+                            <td>2</td>
+                            <td>Unidad</td>
+                            <td>Ambulancias</td>
+                            <td>100</td>
+                            <td><i class="bi bi-pencil-square"> Editar </i>
+                                <i class="bi bi-trash"> Desactivar </i>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

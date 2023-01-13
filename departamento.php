@@ -39,7 +39,7 @@
     </nav>
     <div class="row mx-5 mt-5">
         <div class="col ml-5">
-            <a class="edit" href="ausuarios.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Departamento</a>
+            <a class="edit" href="adepartamento.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Departamento</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF0032">
