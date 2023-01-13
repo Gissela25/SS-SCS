@@ -20,43 +20,51 @@
                         <h3 class="text" style="color:#FF0032">Agregar Usuario</h3>
                     </div>
                     <div class="">
-                        <label for="exampleInputPassword1" class="form-label">Codigo Producto</label>
+                        <label for="exampleInputPassword1" class="form-label">ID</label>
                     </div>
                     <div class="input-group mb-3 ">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-6-square-fill"></i></span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-square"></i></span>
+                        <input type="text" class="form-control" 001="Username" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
                     <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Codigo Producto</label>
+                        <label for="exampleInputPassword1" class="form-label">Usuario</label>
                     </div>
                     <div class="input-group mb-3 ">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                        <input type="text" class="form-control" placeholder="agregue usuario" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
                     <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Codigo Producto</label>
+                        <label for="exampleInputPassword1" class="form-label">Nombre</label>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                        <input type="text" class="form-control" placeholder="Agregue nombre" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
                     <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Codigo Producto</label>
+                        <label for="exampleInputPassword1" class="form-label">Apellido</label>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                        <input type="text" class="form-control" placeholder="Agregue apellido" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
                     <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Codigo Producto</label>
+                        <label for="exampleInputPassword1" class="form-label">E-mail</label>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">@</span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-envelope-at-fill"></i></span>
+                        <input type="text" class="form-control" placeholder="Agregue E-mail" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+                    <div class="mb-2">
+                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
+                        <input type="text" class="form-control" placeholder="Agregue Contraseña" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
