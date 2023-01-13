@@ -40,16 +40,18 @@
     <div class="row mx-5 mt-5">
         <h3>Centro de Sangre: William Portan</h3>
         <div class="col ml-5">
-            <a class="edit" href="ausuarios.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Articulo</a>
+            <a class="edit" href="aarticulo.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Articulo</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF0032">
                         <tr>
                             <th>Fecha</th>
                             <th>Codigo</th>
-                            <th></th>
-                            <th>Correo Electronico</th>
-                            <th>Acciones</th>
+                            <th>Articulo</th>
+                            <th>Minimo</th>
+                            <th>Saldo</th>
+                            <th>Presenta</th>
+                            <th>Departamento</th>
                         </tr>
                     </thead>
                     <tbody>
