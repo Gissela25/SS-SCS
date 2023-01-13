@@ -23,7 +23,7 @@
                         <label for="exampleInputPassword1" class="form-label">Codigo Producto</label>
                     </div>
                     <div class="input-group mb-3 ">
-                        <span class="input-group-text" id="basic-addon1">@</span>
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-6-square-fill"></i></span>
                         <input type="text" class="form-control" placeholder="Username" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>

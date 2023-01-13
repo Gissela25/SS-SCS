@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="inventario.php" style="color: black">Inventario</a>
+                        <a class="nav-link active" aria-current="page" href="#" style="color: black">Inventario</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" style="color: black">Entrada</a>
@@ -38,15 +38,16 @@
         </div>
     </nav>
     <div class="row mx-5 mt-5">
+        <h3>Centro de Sangre: William Portan</h3>
         <div class="col ml-5">
-            <a class="edit" href="ausuarios.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Usuario</a>
+            <a class="edit" href="ausuarios.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Articulo</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF0032">
                         <tr>
-                            <th>ID Usuario</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
+                            <th>Fecha</th>
+                            <th>Codigo</th>
+                            <th></th>
                             <th>Correo Electronico</th>
                             <th>Acciones</th>
                         </tr>
