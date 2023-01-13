@@ -43,7 +43,8 @@
                                     <input type="password" class="form-control" id="Password">
                                 </div>
                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button type="submit" class="btn btn-danger ">Submit</button>
+                                    <button type="submit" class="btn btn-danger"><a href="index.php" style="color: white"  >Enviar</a>
+                                    </button>
                                 </div>
                             </form>
                         </div>
