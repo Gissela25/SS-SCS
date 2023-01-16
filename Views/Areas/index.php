@@ -13,39 +13,18 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #EEEEEE;">
-        <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="#" style="color: white">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
-            <a><img src="imgs/navicon.jpg" alt="" width="220" height="80"
-                class="d-inline-block align-text-top"></a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="inventario.php" style="color: black">Inventario</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: black">Entrada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: black">Retirada</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<?php 
+ require_once "../NavbarScreen.php";
+?>
     <div class="row mx-5 mt-5">
         <div class="col ml-5">
-            <a class="edit" href="adepartamento.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Departamento</a>
+            <a class="edit" href="insert.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Area</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF0032">
                         <tr>
-                            <th>ID Departamento</th>
-                            <th>Departamento</th>
+                            <th>ID Area</th>
+                            <th>Area</th>
                             <th>Acciones</th>
                            
                         </tr>
@@ -53,8 +32,8 @@
                     <tbody>
                        
                         <tr>
-                            <td>0004</td>
-                            <td>Ambulancias</td>
+                            <td>A004</td>
+                            <td>Sangria</td>
                             <td><i class="bi bi-pencil-square"> Editar </i>     
                             <i class="bi bi-trash"> Desactivar </i></td>
                         </tr>

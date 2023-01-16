@@ -14,22 +14,22 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group text-center my-1">
-                        <h3 class="text" style="color:#FF0032">Agregar Departamento</h3>
+                        <h3 class="text" style="color:#FF0032">Agregar Area</h3>
                     </div>
                     <div class="">
-                        <label for="exampleInputPassword1" class="form-label">ID Departamento</label>
+                        <label for="exampleInputPassword1" class="form-label">ID Area</label>
                     </div>
                     <div class="input-group mb-3 ">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
-                        <input type="text" class="form-control" 001="Username" aria-label="Username"
-                            aria-describedby="basic-addon1">
+                        <input type="text" class="form-control"  placeholder="A001" aria-label="Username"
+                            aria-describedby="basic-addon1"  readonly>
                     </div>
                     <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Departamento</label>
+                        <label for="exampleInputPassword1" class="form-label">Area</label>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregue nombre" aria-label="Username"
+                        <input type="text" class="form-control" placeholder="Agregar Departamento" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">

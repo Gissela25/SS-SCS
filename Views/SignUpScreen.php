@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Iniciar Sesión</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="row justify-content-around my-2">
                         <div class="col-4 my-3">
-                            <img src="imgs/logo.png" class="img-thumbnail" alt="...">
+                            <img src="../Assets/imgs/logo.png" class="img-thumbnail" alt="...">
                         </div>
                         <div class="col-4 my-3">
                             <form>
@@ -43,7 +43,7 @@
                                     <input type="password" class="form-control" id="Password">
                                 </div>
                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button type="submit" class="btn btn-danger"><a href="index.php" style="color: white"  >Enviar</a>
+                                    <button type="submit" class="btn btn-danger"><a href="Users/index.php" style="color: white"  >Enviar</a>
                                     </button>
                                 </div>
                             </form>

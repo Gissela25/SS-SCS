@@ -13,35 +13,14 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #EEEEEE;">
-        <div class="container-fluid">
-            <!-- <a class="navbar-brand" href="#" style="color: white">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
-            <a><img src="imgs/navicon.jpg" alt="" width="220" height="80" class="d-inline-block align-text-top"></a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="inventario.php"
-                            style="color: black">Ingreso</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: black">Salida</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php" style="color: black"><i class="bi bi-box-arrow-left"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<?php 
+ require_once "../NavbarScreen.php";
+?>
     <div class="row mx-5 mt-5">
         <h5 style="text-align:center">Ingresar Articulos</h5>
         <h3>Centro de Sangre: William Portan</h3>
         <div class="col ml-5">
-            <a class="edit" href="aarticulo.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
+            <a class="edit" href="insert.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Articulo</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
@@ -50,7 +29,6 @@
                             <th>Fecha</th>
                             <th>Codigo</th>
                             <th>Articulo</th>
-                            <th>Minimo</th>
                             <th>Presentacion</th>
                             <th>Departamento</th>
                             <th>Existencias</th>
@@ -62,7 +40,6 @@
                             <td>10/01/2023</td>
                             <td>123456789</td>
                             <td>Bandeja Plastica</td>
-                            <td>2</td>
                             <td>Unidad</td>
                             <td>Ambulancias</td>
                             <td>100</td>
