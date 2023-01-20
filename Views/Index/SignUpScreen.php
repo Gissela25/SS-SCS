@@ -1,3 +1,4 @@
+<?php include_once "./Core/config.php";?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +21,7 @@
                     </div>
                     <div class="row justify-content-around my-2">
                         <div class="col-4 my-3">
-                            <img src="../Assets/imgs/logo.png" class="img-thumbnail" alt="...">
+                            <img src="<?=PATH?>Assets/imgs/logo.png" class="img-thumbnail" alt="...">
                         </div>
                         <div class="col-4 my-3">
                             <form>
@@ -43,7 +44,8 @@
                                     <input type="password" class="form-control" id="Password">
                                 </div>
                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button type="submit" class="btn btn-danger"><a href="Users/index.php" style="color: white"  >Enviar</a>
+                                    <button type="submit" class="btn btn-danger"><a href="Users/index.php"
+                                            style="color: white">Enviar</a>
                                     </button>
                                 </div>
                             </form>
