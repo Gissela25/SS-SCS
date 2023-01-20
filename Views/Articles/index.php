@@ -43,8 +43,8 @@
                             <td>Unidad</td>
                             <td>Ambulancias</td>
                             <td>100</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>
-                                <i class="bi bi-trash"> Desactivar </i>
+                            <td><i class="bi bi-pen-fill"> Editar </i>     
+                            <i class="bi bi-file-x-fill"> Desactivar </i>
                             </td>
                         </tr>
                     </tbody>

@@ -34,8 +34,8 @@
                         <tr>
                             <td>0004</td>
                             <td>Ambulancias</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>     
-                            <i class="bi bi-trash"> Desactivar </i></td>
+                            <td><i class="bi bi-pen-fill"> Editar </i>     
+                            <i class="bi bi-file-x-fill"> Desactivar </i></td>
                         </tr>
                         <tr>
                         </tr>

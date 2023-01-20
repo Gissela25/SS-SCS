@@ -37,17 +37,17 @@
                             <td>Susan</td>
                             <td>Flores</td>
                             <td>susan15@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>
-                                <i class="bi bi-trash"> Desactivar </i>
-                            </td>
+                            <td><i class="bi bi-pen-fill"> Editar </i>     
+                            <i class="bi bi-file-x-fill"> Desactivar </i></td>
+                            
                         </tr>
                         <tr>
                             <td>0002</td>
                             <td>Gissela</td>
                             <td>Serrano</td>
                             <td>gisselaverenice@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>
-                                <i class="bi bi-trash"> Desactivar </i>
+                            <td><i class="bi bi-pen-fill"> Editar </i>     
+                            <i class="bi bi-file-x-fill"> Desactivar </i>
                             </td>
                         </tr>
                         <tr>
@@ -55,8 +55,8 @@
                             <td>Jony</td>
                             <td>Morales</td>
                             <td>morales2001@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>
-                                <i class="bi bi-trash"> Desactivar </i>
+                            <td><i class="bi bi-pen-fill"> Editar </i>     
+                            <i class="bi bi-file-x-fill"> Desactivar </i>
                             </td>
                         </tr>
                         <tr>
@@ -64,8 +64,8 @@
                             <td>William</td>
                             <td>Portan</td>
                             <td>portan22@gmail.com</td>
-                            <td><i class="bi bi-pencil-square"> Editar </i>
-                                <i class="bi bi-trash"> Desactivar </i>
+                            <td><i class="bi bi-pen-fill"> Editar </i>     
+                            <i class="bi bi-file-x-fill"> Desactivar </i>
                             </td>
                         </tr>
                         <tr>
