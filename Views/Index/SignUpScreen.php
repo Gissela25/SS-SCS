@@ -24,9 +24,9 @@
                             <img src="<?=PATH?>Assets/imgs/logo.png" class="img-thumbnail" alt="...">
                         </div>
                         <div class="col-4 my-3">
-                            <form>
+                            <form action="<?=PATH?>Users/Index" method="POST" role="form">
                                 <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select class="form-select" name="area" aria-label="Default select example">
                                         <option selected>área</option>
                                         <option value="1">Sangria</option>
                                         <option value="2">Tamizaje</option>
@@ -44,8 +44,8 @@
                                     <input type="password" class="form-control" id="Password">
                                 </div>
                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                    <button type="submit" class="btn btn-danger"><a href="Users/index.php"
-                                            style="color: white">Enviar</a>
+                                    <button name="login" type="submit" id="login" class="btn btn-danger">
+                                        Enviar
                                     </button>
                                 </div>
                             </form>
