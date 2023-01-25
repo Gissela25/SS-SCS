@@ -1,7 +1,8 @@
 <?php
 include_once "./Controllers/Controller.php";
 include_once "./Core/config.php";
-class UsersController extends Controller{
+include_once "./Controllers/UsersController.php";
+class DeparmentsController extends Controller{
     public function __construct()
     {
         

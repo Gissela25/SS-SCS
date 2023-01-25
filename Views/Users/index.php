@@ -1,3 +1,6 @@
+<?php 
+include_once "./Core/config.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,12 +16,12 @@
 </head>
 
 <body>
-<?php 
- require_once "../NavbarScreen.php";
+    <?php 
+ require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
         <div class="col ml-5">
-            <a class="edit" href="insert.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
+            <a class="edit" href="<?=PATH?>Users/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Usuario</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
@@ -37,17 +40,18 @@
                             <td>Susan</td>
                             <td>Flores</td>
                             <td>susan15@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>     
-                            <i class="bi bi-file-x-fill"> Desactivar </i></td>
-                            
+                            <td><i class="bi bi-pen-fill"> Editar </i>
+                                <i class="bi bi-file-x-fill"> Desactivar </i>
+                            </td>
+
                         </tr>
                         <tr>
                             <td>0002</td>
                             <td>Gissela</td>
                             <td>Serrano</td>
                             <td>gisselaverenice@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>     
-                            <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><i class="bi bi-pen-fill"> Editar </i>
+                                <i class="bi bi-file-x-fill"> Desactivar </i>
                             </td>
                         </tr>
                         <tr>
@@ -55,8 +59,8 @@
                             <td>Jony</td>
                             <td>Morales</td>
                             <td>morales2001@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>     
-                            <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><i class="bi bi-pen-fill"> Editar </i>
+                                <i class="bi bi-file-x-fill"> Desactivar </i>
                             </td>
                         </tr>
                         <tr>
@@ -64,8 +68,8 @@
                             <td>William</td>
                             <td>Portan</td>
                             <td>portan22@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>     
-                            <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><i class="bi bi-pen-fill"> Editar </i>
+                                <i class="bi bi-file-x-fill"> Desactivar </i>
                             </td>
                         </tr>
                         <tr>

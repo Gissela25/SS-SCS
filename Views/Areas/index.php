@@ -13,12 +13,12 @@
 </head>
 
 <body>
-<?php 
- require_once "../NavbarScreen.php";
+    <?php 
+ require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
         <div class="col ml-5">
-            <a class="edit" href="insert.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Area</a>
+            <a class="edit" href="<?=PATH?>Areas/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Area</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF0032">
@@ -26,16 +26,17 @@
                             <th>ID Area</th>
                             <th>Area</th>
                             <th>Acciones</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
-                       
+
                         <tr>
                             <td>A004</td>
                             <td>Sangria</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>     
-                            <i class="bi bi-file-x-fill"> Desactivar </i></td>
+                            <td><i class="bi bi-pen-fill"> Editar </i>
+                                <i class="bi bi-file-x-fill"> Desactivar </i>
+                            </td>
                         </tr>
                         <tr>
                         </tr>

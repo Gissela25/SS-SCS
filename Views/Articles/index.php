@@ -14,13 +14,13 @@
 
 <body>
 <?php 
- require_once "../NavbarScreen.php";
+ require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
         <h5 style="text-align:center">Ingresar Articulos</h5>
         <h3>Centro de Sangre: William Portan</h3>
         <div class="col ml-5">
-            <a class="edit" href="insert.php" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
+            <a class="edit" href="<?=PATH?>Articles/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Articulo</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
