@@ -40,8 +40,8 @@ include_once "./Core/config.php"
                             <td>Susan</td>
                             <td>Flores</td>
                             <td>susan15@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>
-                                <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
                             </td>
 
                         </tr>
@@ -50,8 +50,8 @@ include_once "./Core/config.php"
                             <td>Gissela</td>
                             <td>Serrano</td>
                             <td>gisselaverenice@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>
-                                <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
                             </td>
                         </tr>
                         <tr>
@@ -59,8 +59,8 @@ include_once "./Core/config.php"
                             <td>Jony</td>
                             <td>Morales</td>
                             <td>morales2001@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>
-                                <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
                             </td>
                         </tr>
                         <tr>
@@ -68,8 +68,8 @@ include_once "./Core/config.php"
                             <td>William</td>
                             <td>Portan</td>
                             <td>portan22@gmail.com</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>
-                                <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
                             </td>
                         </tr>
                         <tr>

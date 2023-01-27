@@ -35,8 +35,8 @@
                         <tr>
                             <td>0004</td>
                             <td>Ambulancias</td>
-                            <td><i class="bi bi-pen-fill"> Editar </i>
-                                <i class="bi bi-file-x-fill"> Desactivar </i>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
                             </td>
                         </tr>
                         <tr>
