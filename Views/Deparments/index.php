@@ -22,7 +22,7 @@
                     class="bi bi-plus-circle"></i>Agregar Departamento</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
-                    <thead class="Te" style="background-color: #FF0032">
+                    <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
                             <th>ID Departamento</th>
                             <th>Departamento</th>

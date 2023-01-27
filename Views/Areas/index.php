@@ -21,7 +21,7 @@
             <a class="edit" href="<?=PATH?>Areas/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Area</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
-                    <thead class="Te" style="background-color: #FF0032">
+                    <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
                             <th>ID Area</th>
                             <th>Area</th>
