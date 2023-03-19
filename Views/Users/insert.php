@@ -40,14 +40,17 @@ include_once "./Core/config.php"
                         <!--
                         El name e id, y el for del label, deben ser nombrados igual que el campo al que asignaremos
                     -->
+
+                        <!--
                         <div class="">
                             <label class="form-label" for="Id_Usuario">ID</label>
                         </div>
                         <div class="input-group mb-3 ">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-square"></i></span>
                             <input type="text" class="form-control" placeholder="U00001" aria-label="Id" readonly
-                                aria-describedby="basic-addon1" name="Id_Usuario" id="Id_Usuario" value="U00001">
+                                aria-describedby="basic-addon1" name="Id_Usuario" id="Id_Usuario" value="U00004">
                         </div>
+                    -->
                         <!-- <div class="mb-2">
                         <label for="exampleInputPassword1" class="form-label">Usuario</label>
                     </div> -->
@@ -89,7 +92,7 @@ include_once "./Core/config.php"
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
-                            <input type="text" class="form-control" placeholder="Agregue Contraseña"
+                            <input type="password" class="form-control" placeholder="Agregue Contraseña"
                                 aria-label="Password" aria-describedby="basic-addon1" name="Clave" id="Clave">
                         </div>
 

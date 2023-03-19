@@ -58,6 +58,20 @@ abstract class ConnectionModel
         return $rows;
     }
 
+    public function generateCodeUsers(){
+        $generated_code = '';
+        do {
+            //Generamos un código aleatorio de 5 dígitos
+            $code = rand(10000, 99999);
+            //Añadimos la letra U al inicio
+            $generated_code = 'U' . $code;
+            //Verificamos si el código ya existe en la base de datos
+            $query = "SELECT COUNT(*) FROM usuarios WHERE Id_Usuario = ?";
+            $result = $this->get_query($query, [$generated_code]);
+        } while ($result[0]["COUNT(*)"] > 0); //Mientras el código exista, seguimos generando uno nuevo
+        return $generated_code;
+    }
+
     abstract public function get();
     abstract public function create();
     abstract public function delete();

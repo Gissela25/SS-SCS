@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 19-03-2023 a las 00:24:49
+-- Tiempo de generación: 19-03-2023 a las 01:40:40
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 8.0.13
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ss-scs`
 --
+
+DELIMITER $$
+--
+-- Funciones
+--
+DROP FUNCTION IF EXISTS `generar_codigo`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `generar_codigo` () RETURNS VARCHAR(6) CHARSET utf8 COLLATE utf8_unicode_ci BEGIN
+  DECLARE codigo VARCHAR(6);
+  SET codigo = CONCAT('U', LPAD(FLOOR(RAND() * 100000), 5, '0'));
+  WHILE EXISTS(SELECT 1 FROM tabla WHERE codigo = codigo) DO
+    SET codigo = CONCAT('U', LPAD(FLOOR(RAND() * 100000), 5, '0'));
+  END WHILE;
+  RETURN codigo;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -200,9 +216,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `Tipo_Usuario`, `Id_Estado`) VALUES
-('U00001', 'Jony', 'Morales', 'jony25lopezml@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
-('U00002', 'Gissela', 'Serrano', 'gissela25serrano@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
-('U00003', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1);
+('U56382', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
+('U74530', 'William', 'Portán', 'william20portanwp@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 2),
+('U87741', 'Gissela', 'Serrano', 'gissela25serrano@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
+('U94402', 'Jony', 'Morales', 'jony25lopezml@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1);
 
 --
 -- Restricciones para tablas volcadas

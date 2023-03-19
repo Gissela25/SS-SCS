@@ -30,7 +30,11 @@ include_once "./Core/config.php"
     <?php 
  require_once "./Views/NavbarScreen.php";
 ?>
+    <!--
+       Sección de usuarios activos
+    -->
     <div class="row mx-5 mt-5">
+        <h3 style="text-align:center">Usuarios Activos</h3>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Users/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Usuario</a>
@@ -51,6 +55,9 @@ include_once "./Core/config.php"
                             //Recorremos el arreglo alojado en ViewBag con nombre empleados
                     foreach($empleados as $empleado)
                     {
+                        //Para imprimir a los usarios inactivos
+                        if($empleado['Id_Estado']==1)
+                        {
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
                             <tr id="id_<?=$empleado['Id_Usuario']?>">
@@ -65,24 +72,92 @@ include_once "./Core/config.php"
                                 </td>
                             </tr>
                             <?php
+                        }
                     }
                     ?>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous">
-            </script>
-            <!--
+        </div>
+    </div>
+    <!--
+       Sección de usuarios inactivos
+    -->
+
+    <!--
+        Código php para evitar la impresión de la tabla Inactivos si el número de estas es cero
+    -->
+    <?php
+    if($inactivos>0)
+    {
+    ?>
+    <div class="row mx-5 mt-5">
+        <h3 style="text-align:center">Usuarios Inanctivos</h3>
+        <div class="col ml-5">
+            <div class="row mt-3">
+                <div class="table-responsive">
+                    <table class="table table-bordered " id="datatable2">
+                        <thead class="Te" style="background-color: #FF8B8B">
+                            <tr>
+                                <th>ID Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            //Recorremos el arreglo alojado en ViewBag con nombre empleados
+                    foreach($empleados as $empleado)
+                    {
+                        //Para imprimir a los usarios inactivos
+                        if($empleado['Id_Estado']!=1)
+                        {
+                        // con $empleado['campo'] entramos al campo o variable que queremos imprimir
+                        ?>
+                            <tr id="id_<?=$empleado['Id_Usuario']?>">
+                                <td><?=$empleado['Id_Usuario']?></td>
+                                <td><?=$empleado['Nombre']?></td>
+                                <td><?=$empleado['Apellido']?></td>
+                                <td><?=$empleado['Correo']?></td>
+                                <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
+                                            class="bi bi-pencil"> </button></i>
+
+                                    <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-check-square"> </button></i>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+    }
+    ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!--
                 Script para el datatable
             -->
-            <script>
-            $(document).ready(function() {
-                $('#datatable').DataTable();
-            });
-            </script>
+    <script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#datatable2').DataTable();
+    });
+    </script>
 </body>
 
 </html>

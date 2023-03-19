@@ -30,8 +30,9 @@ class UsersModel extends ConnectionModel{
     //Declaramos un arreglo en donde vendrán las variables que guardaremos
     public function create($arreglo = array())
     {
+       
         //Creamos la consulta para ingresar los datos
-        $query = "INSERT INTO usuarios(Id_Usuario, Nombre , Apellido, Correo, Clave ) VALUES( :Id_Usuario, :Nombre, :Apellido, :Correo  ,:Clave )";
+        $query = "INSERT INTO usuarios(Id_Usuario, Nombre , Apellido, Correo, Clave ) VALUES(  :Id_Usuario, :Nombre, :Apellido, :Correo  ,:Clave )";
         //Utilzamos el método set_query para realizar un registro
         return $this->set_query($query,$arreglo);
     }
@@ -48,6 +49,21 @@ class UsersModel extends ConnectionModel{
         $query = "UPDATE usuarios SET Id_Estado='2' WHERE Id_Usuario=:Id_Usuario";
         //Utilizamos set_query para eliminar el registro (actualizar a deshabilitado)
         return $this->set_query($query,[":Id_Usuario"=>$id]);
+    }
+    //Funcion pora contar la cantidad de usuarios inactivos
+    public function getInactive()
+    {
+        //Creamos una variable en donde almacenaremos la consulta que haremos, buscando todos los registro que su estado sea 2
+        $query='';
+            $query = "SELECT * FROM usuarios WHERE Id_Estado='2';";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query);
+    }
+
+    public function getCode()
+    {
+        $codigo = $this->generateCodeUsers();
+        return $codigo;
     }
 }
 

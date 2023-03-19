@@ -18,6 +18,8 @@ class UsersController extends Controller{
         $viewBag = [];
         //en la variable empleados pondremos los datos que obtengamos de la consulta get() de UsersModel
         $viewBag['empleados'] = $this->modelo->get();
+        //Obtenemos el numero de inactivos
+        $viewBag['inactivos'] = count($this->modelo->getInactive());
         $this->render("index.php",$viewBag);
     }
 
@@ -39,13 +41,6 @@ class UsersController extends Controller{
             $viewBag=array();
             //Procedemos a comprobar las validaciones isEmpty e !isset comprueban que no esté vacío o nulo
             //la validación en el elseif es una validación especial para el campo que utilice
-            if(!isset($Id_Usuario)||isEmpty($Id_Usuario))
-            {
-                array_push($errores,"Debes ingresar un codigo de usuario");
-            }elseif(!isUser($Id_Usuario))
-            {
-                array_push($errores,"El codigo no es válido");
-            }
             if(!isset($Nombre)||isEmpty($Nombre))
             {
                 array_push($errores,"Debes ingresar un nombre");
@@ -79,7 +74,7 @@ class UsersController extends Controller{
               array_push($errores,"Correo no válido");
             }
             // Guardamos las variables en un arreglo llamado usuario
-            $usuario['Id_Usuario']=$Id_Usuario;
+            $usuario['Id_Usuario']=$this->modelo->getCode();
             $usuario['Nombre']=$Nombre;
             $usuario['Apellido']=$Apellido;
             $usuario['Correo']=$Correo;
