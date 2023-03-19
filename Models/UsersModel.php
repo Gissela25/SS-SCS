@@ -22,7 +22,7 @@ class UsersModel extends ConnectionModel{
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT * FROM usuarios WHERE Id_Usuario =: Id_Usuario";
+            $query = "SELECT * FROM usuarios WHERE Id_Usuario=:Id_Usuario";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Usuario"=>$id]);
         }
@@ -64,6 +64,14 @@ class UsersModel extends ConnectionModel{
     {
         $codigo = $this->generateCodeUsers();
         return $codigo;
+    }
+
+    public function reactivate($id)
+    {
+         //Creamos una consulta donde eliminamos un solo registro
+         $query = "UPDATE usuarios SET Id_Estado='1' WHERE Id_Usuario=:Id_Usuario";
+         //Utilizamos set_query para reactivar el registro (actualizar a activo)
+         return $this->set_query($query,[":Id_Usuario"=>$id]);
     }
 }
 

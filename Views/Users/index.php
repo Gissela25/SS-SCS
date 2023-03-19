@@ -65,10 +65,13 @@ include_once "./Core/config.php"
                                 <td><?=$empleado['Nombre']?></td>
                                 <td><?=$empleado['Apellido']?></td>
                                 <td><?=$empleado['Correo']?></td>
-                                <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
-                                            class="bi bi-pencil"> </button></i>
-                                    <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-file-excel"> </button></i>
+                                <td>
+                                    <form action="<?=PATH?>Users/Operations/<?=$empleado['Id_Usuario']?>" method="post">
+                                        <a name="editar" href="<?=PATH?>Users/Update/<?=$empleado['Id_Usuario']?>"
+                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                        <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
+                                                class="bi bi-file-excel"> </button></i>
+                                    </form>
                                 </td>
                             </tr>
                             <?php
@@ -122,11 +125,13 @@ include_once "./Core/config.php"
                                 <td><?=$empleado['Nombre']?></td>
                                 <td><?=$empleado['Apellido']?></td>
                                 <td><?=$empleado['Correo']?></td>
-                                <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
-                                            class="bi bi-pencil"> </button></i>
-
-                                    <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-check-square"> </button></i>
+                                <td>
+                                    <form action="<?=PATH?>Users/Operations/<?=$empleado['Id_Usuario']?>" method="post">
+                                        <a name="editar" href="<?=PATH?>Users/Update/<?=$empleado['Id_Usuario']?>"
+                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                        <button name="Activar" type="submit" id="Activar" class="btn btn-dark"><i
+                                                class="bi bi-check-square"> </button></i>
+                                    </form>
                                 </td>
                             </tr>
                             <?php

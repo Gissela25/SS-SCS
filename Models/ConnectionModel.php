@@ -58,6 +58,7 @@ abstract class ConnectionModel
         return $rows;
     }
 
+    //Funcion de generar codigos, aplicable y modificable para las otras tablas
     public function generateCodeUsers(){
         $generated_code = '';
         do {
