@@ -1,4 +1,4 @@
-# PROYECTOD CR
+# PROYECTO CR
 
 Sistema para control de productos en el area de laboratorio del centro de sangre
 
