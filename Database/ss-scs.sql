@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 16-01-2023 a las 05:34:39
+-- Tiempo de generación: 19-03-2023 a las 00:24:49
 -- Versión del servidor: 5.7.36
--- Versión de PHP: 7.4.26
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -84,7 +84,15 @@ CREATE TABLE IF NOT EXISTS `estados` (
   `Id_Estado` int(1) NOT NULL AUTO_INCREMENT,
   `Estado` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_Estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `estados`
+--
+
+INSERT INTO `estados` (`Id_Estado`, `Estado`) VALUES
+(1, 'Activo'),
+(2, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -159,6 +167,14 @@ CREATE TABLE IF NOT EXISTS `tipos_usuario` (
   PRIMARY KEY (`Id_Tipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `tipos_usuario`
+--
+
+INSERT INTO `tipos_usuario` (`Id_Tipo`, `Tipo`) VALUES
+(0, 'Admin'),
+(1, 'Empleado');
+
 -- --------------------------------------------------------
 
 --
@@ -171,13 +187,22 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Apellido` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Correo` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
-  `Clave` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `Tipo_Usuario` int(1) NOT NULL,
-  `Id_Estado` int(1) NOT NULL,
+  `Clave` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Tipo_Usuario` int(1) NOT NULL DEFAULT '1',
+  `Id_Estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Usuario`),
   KEY `Id_Estado` (`Id_Estado`),
   KEY `Tipo_Usuario` (`Tipo_Usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `Tipo_Usuario`, `Id_Estado`) VALUES
+('U00001', 'Jony', 'Morales', 'jony25lopezml@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
+('U00002', 'Gissela', 'Serrano', 'gissela25serrano@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
+('U00003', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1);
 
 --
 -- Restricciones para tablas volcadas
