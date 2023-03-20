@@ -1,3 +1,6 @@
+<?php
+include_once "./Core/config.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,16 +34,23 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <td>0004</td>
-                            <td>Ambulancias</td>
-                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
-                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
+                        <?php
+                        foreach($departamentos as $departamento){
+                            if($departamento['Id_Estado']==1)
+                            {
+                            ?>
+                        <tr id="id_<?=$departamento['Id_Departamento']?>">
+                            <td><?=$departamento['Id_Departamento']?></td>
+                            <td><?=$departamento['Nombre']?></td>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
+                                        class="bi bi-pencil"> </button></i>
+                                <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
+                                        class="bi bi-file-excel"> </button></i>
                             </td>
                         </tr>
-                        <tr>
-                        </tr>
+                        <?php
+                        }
+                    }?>
                     </tbody>
                 </table>
             </div>

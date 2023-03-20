@@ -73,6 +73,18 @@ abstract class ConnectionModel
         return $generated_code;
     }
 
+    //Generar codigo para Departamentos
+    public function generateCodeDeparments(){
+        $generated_code = '';
+        do {
+            $code = rand(10000, 99999);
+            $generated_code = 'D' . $code;
+            $query = "SELECT COUNT(*) FROM departamentos WHERE Id_Departamento = ?";
+            $result = $this->get_query($query, [$generated_code]);
+        } while ($result[0]["COUNT(*)"] > 0);
+        return $generated_code;
+    }
+
     abstract public function get();
     abstract public function create();
     abstract public function delete();

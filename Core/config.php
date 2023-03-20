@@ -1,3 +1,3 @@
 <?php
-    define('PATH','/SS-SCS/');
+    define('PATH','/Cruz_Roja/');
 ?>
