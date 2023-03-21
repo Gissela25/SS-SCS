@@ -13,7 +13,7 @@ include_once "./Core/config.php"
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Departamentos - Cruz Roja</title>
     <link rel="stylesheet" href="styles/style.css">
-     <!--
+    <!--
         DataTable 
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
@@ -35,39 +35,57 @@ include_once "./Core/config.php"
             <a class="edit" href="<?=PATH?>Deparments/Insert" style="color: #FF0032"><i
                     class="bi bi-plus-circle"></i>Agregar Departamento</a>
             <div class="row mt-3">
-                <table class="table table-bordered " id="datatable">
-                    <thead class="Te" style="background-color: #FF8B8B">
-                        <tr>
-                            <th>ID Departamento</th>
-                            <th>Departamento</th>
-                            <th>Acciones</th>
+                <div class="table-responsive">
+                    <table class="table table-bordered " id="datatable">
+                        <thead class="Te" style="background-color: #FF8B8B">
+                            <tr>
+                                <th>ID Departamento</th>
+                                <th>Departamento</th>
+                                <th>Acciones</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
                         foreach($lugares as $departamento){
                             if($departamento['Id_Estado']==1)
                             {
                             ?>
-                        <tr id="id_<?=$departamento['Id_Departamento']?>">
-                            <td><?=$departamento['Id_Departamento']?></td>
-                            <td><?=$departamento['Nombre']?></td>
-                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
-                                        class="bi bi-pencil"> </button></i>
-                                <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
-                                        class="bi bi-file-excel"> </button></i>
-                            </td>
-                        </tr>
-                        <?php
+                            <tr id="id_<?=$departamento['Id_Departamento']?>">
+                                <td><?=$departamento['Id_Departamento']?></td>
+                                <td><?=$departamento['Nombre']?></td>
+                                <td>
+                                    <form action="<?=PATH?>Deparments/Operations/<?=$departamento['Id_Departamento']?>" method="post">
+                                        <a name="editar"
+                                            href="<?=PATH?>Deparments/Update/<?=$departamento['Id_Departamento']?>"
+                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                                <button name="Desactivar" type="submit" id="Desactivar"
+                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+                                </td>
+                            </tr>
+                            <?php
                         }
                     }?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
                 crossorigin="anonymous">
+            </script>
+            <!--
+                Script para el datatable
+            -->
+            <script>
+            $(document).ready(function() {
+                $('#datatable').DataTable();
+            });
+            </script>
+            <script>
+            $(document).ready(function() {
+                $('#datatable2').DataTable();
+            });
             </script>
 </body>
 

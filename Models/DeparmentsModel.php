@@ -57,7 +57,7 @@ class DeparmentsModel extends ConnectionModel{
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT * FROM usuarios WHERE Id_Departamento=:Id_Departamento";
+            $query = "SELECT * FROM departamentos WHERE Id_Departamento=:Id_Departamento";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Departamento"=>$id]);
         }
@@ -73,10 +73,10 @@ class DeparmentsModel extends ConnectionModel{
     }
     public function update($arreglo=array())
     {
-        // extract($arreglo);
-        // // Actualizamos y colocamos las variables que realmente se actualizarán
-        // $query = "UPDATE usuarios SET Nombre=:Nombre, Apellido=:Apellido, Correo=:Correo WHERE Id_Usuario=:Id_Usuario;";
-        // return $this->set_query($query,$arreglo);
+        extract($arreglo);
+        // Actualizamos y colocamos las variables que realmente se actualizarán
+        $query = "UPDATE departamentos SET Nombre=:Nombre WHERE Id_Departamento=:Id_Departamento;";
+        return $this->set_query($query,$arreglo);
     }
     public function delete($id='')
     {
