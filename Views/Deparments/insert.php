@@ -49,7 +49,7 @@ include_once "./Core/config.php"
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregar Departamento"
                                 aria-label="Name" aria-describedby="basic-addon1" name="Nombre" id="nombre"
-                                value="<?=isset($deparment)?$deparment['Nombre']:''?>">
+                                value="<?=isset($lugar)?$lugar['Nombre']:''?>">
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-danger" name="Guardar" id="Guardar">Guardar</a>
