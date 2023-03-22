@@ -90,7 +90,7 @@ class DeparmentsController extends Controller{
             }
             // Guardamos las variables en un arreglo llamado usuario
             $departamento['Id_Departamento']=$this->modelo->getCode();
-            $departamento['Nombre']=$Nombre;
+            $departamento['NombreD']=$Nombre;
             //Comprobamos si el arreglo errores está vacío o no
             if(count($errores)>0)
                 {

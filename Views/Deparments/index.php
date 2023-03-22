@@ -48,12 +48,12 @@ include_once "./Core/config.php"
                         <tbody>
                             <?php
                         foreach($lugares as $departamento){
-                            if($departamento['Id_Estado']==1)
-                            {
+                            // if($departamento['Id_Estado']==1)
+                            // {
                             ?>
                             <tr id="id_<?=$departamento['Id_Departamento']?>">
                                 <td><?=$departamento['Id_Departamento']?></td>
-                                <td><?=$departamento['Nombre']?></td>
+                                <td><?=$departamento['NombreD']?></td>
                                 <td>
                                     <form action="<?=PATH?>Deparments/Operations/<?=$departamento['Id_Departamento']?>" method="post">
                                         <a name="editar"
@@ -65,7 +65,7 @@ include_once "./Core/config.php"
                             </tr>
                             <?php
                         }
-                    }?>
+                    ?>
                         </tbody>
                     </table>
                 </div>

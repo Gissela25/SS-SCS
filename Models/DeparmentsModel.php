@@ -67,7 +67,7 @@ class DeparmentsModel extends ConnectionModel{
     {
        
         //Creamos la consulta para ingresar los datos
-        $query = "INSERT INTO departamentos(Id_Departamento, Nombre ) VALUES(  :Id_Departamento ,:Nombre )";
+        $query = "INSERT INTO departamentos(Id_Departamento, NombreD ) VALUES(  :Id_Departamento ,:NombreD )";
         //Utilzamos el método set_query para realizar un registro
         return $this->set_query($query,$arreglo);
     }
@@ -75,7 +75,7 @@ class DeparmentsModel extends ConnectionModel{
     {
         extract($arreglo);
         // Actualizamos y colocamos las variables que realmente se actualizarán
-        $query = "UPDATE departamentos SET Nombre=:Nombre WHERE Id_Departamento=:Id_Departamento;";
+        $query = "UPDATE departamentos SET NombreD=:Nombre WHERE Id_Departamento=:Id_Departamento;";
         return $this->set_query($query,$arreglo);
     }
     public function delete($id='')

@@ -1,3 +1,6 @@
 .Te{
     color: #F7F6F2;
 }
+select option:hover {
+    background-color: #FF8B8B;
+}
