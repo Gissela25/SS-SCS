@@ -29,7 +29,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregar Departamento" aria-label="Username"
+                        <input type="text" class="form-control" placeholder="Agregar Area" aria-label="Username"
                             aria-describedby="basic-addon1">
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">

@@ -8,42 +8,60 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Departamentos - Cruz Roja</title>
+    <title>Document</title>
     <link rel="stylesheet" href="styles/style.css">
-    <!--
-        DataTable 
-    -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <!--
-        DataTable 
-    -->
 </head>
 
 <body>
     <?php 
  require_once "./Views/NavbarScreen.php";
 ?>
-<h1>Existencias index</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <!--
-Script para el datatable
--->
-    <script>
-    $(document).ready(function() {
-        $('#datatable').DataTable();
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $('#datatable2').DataTable();
-    });
-    </script>
+    <div class="row mx-5 mt-5">
+        <div class="col ml-5">
+            <div class="row mt-3">
+                <table class="table table-bordered " id="datatable">
+                    <thead class="Te" style="background-color: #FF8B8B">
+                        <tr>
+                            <th>ID existencia</th>
+                            <th>Artìculos</th>
+                            <th>Fecha entrada</th>
+                            <th>Entrada</th>
+                            <th>Fecha salida</th>
+                            <th>Salida</th>
+                            <th>Fecha actualizaciòn</th>
+                            <th>Saldo</th>
+                            <th>editar</th>
+                            <th>Eliminar</th>
+                            <th>Agregar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A004</td>
+                            <td>Sangria</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                            </td>
+                            <td><button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
+                            </td>
+                            <td><a class="edit" href="<?=PATH?>Stocks/Insert" style="color: #FF0032"><button name="Agregar" type="submit" id="Agregar" class="btn btn-dark"><i class="bi bi-file-plus">  </button></i>
+                            </td>
+
+                        </tr>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous">
+            </script>
 </body>
 
 </html>
