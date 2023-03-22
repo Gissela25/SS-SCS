@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 22-03-2023 a las 00:19:05
+-- Tiempo de generación: 22-03-2023 a las 02:58:30
 -- Versión del servidor: 5.7.36
--- Versión de PHP: 7.4.26
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,8 +63,7 @@ DROP TABLE IF EXISTS `articulos`;
 CREATE TABLE IF NOT EXISTS `articulos` (
   `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Nombre` varchar(65) COLLATE utf8_unicode_ci NOT NULL,
-  `Id_Presentacion` int(2) NOT NULL,
-  `Fecha` date NOT NULL,
+  `Id_Presentacion` char(4) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Departamento` char(6) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Area` char(6) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Estado` int(1) NOT NULL DEFAULT '1',
@@ -129,10 +128,13 @@ INSERT INTO `estados` (`Id_Estado`, `Estado`) VALUES
 DROP TABLE IF EXISTS `existencias`;
 CREATE TABLE IF NOT EXISTS `existencias` (
   `Id_Existencia` char(6) COLLATE utf8_unicode_ci NOT NULL,
-  `Id_Articulo` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Entrada` int(10) NOT NULL,
   `Salida` int(10) NOT NULL,
   `Saldo` int(10) NOT NULL,
+  `f_entrada` datetime NOT NULL,
+  `f_salida` datetime NOT NULL,
+  `f_actualizacion` datetime NOT NULL,
   PRIMARY KEY (`Id_Existencia`),
   KEY `Id_Articulo` (`Id_Articulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -145,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 
 DROP TABLE IF EXISTS `presentaciones`;
 CREATE TABLE IF NOT EXISTS `presentaciones` (
-  `Id_Presentacion` int(2) NOT NULL AUTO_INCREMENT,
+  `Id_Presentacion` char(4) COLLATE utf8_unicode_ci NOT NULL,
   `Presentacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Presentacion`),
@@ -162,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `presentaciones` (
 DROP TABLE IF EXISTS `retiros`;
 CREATE TABLE IF NOT EXISTS `retiros` (
   `Correlativo` char(8) COLLATE utf8_unicode_ci NOT NULL,
-  `Id_Articulo` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Existencia` char(6) COLLATE utf8_unicode_ci NOT NULL,
   KEY `Id_Articulo` (`Id_Articulo`),
   KEY `Id_Existencia` (`Id_Existencia`)
@@ -177,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `retiros` (
 DROP TABLE IF EXISTS `retiros_temp`;
 CREATE TABLE IF NOT EXISTS `retiros_temp` (
   `Id_Session` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
-  `Id_Articulo` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   KEY `Id_Articulo` (`Id_Articulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

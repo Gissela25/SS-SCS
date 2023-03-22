@@ -31,7 +31,7 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <!--
-       Sección de usuarios activos
+       Sección de usuarios activos e inactivos
     -->
     <div class="row mx-5 mt-5">
         <h3 style="text-align:center">Usuarios Activos</h3>
@@ -43,11 +43,13 @@ include_once "./Core/config.php"
                     <table class="table table-bordered " id="datatable">
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
-                                <th>ID Usuario</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Correo</th>
-                                <th>Acciones</th>
+                                <th class="text-center">ID Usuario</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Apellido</th>
+                                <th class="text-center">Correo</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Activar/Desactivar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,97 +58,71 @@ include_once "./Core/config.php"
                     foreach($empleados as $empleado)
                     {
                         //Para imprimir a los usarios inactivos
-                        if($empleado['Id_Estado']==1)
-                        {
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
-                            <tr id="id_<?=$empleado['Id_Usuario']?>">
-                                <td><?=$empleado['Id_Usuario']?></td>
-                                <td><?=$empleado['Nombre']?></td>
-                                <td><?=$empleado['Apellido']?></td>
-                                <td><?=$empleado['Correo']?></td>
-                                <td>
-                                    <form action="<?=PATH?>Users/Operations/<?=$empleado['Id_Usuario']?>" method="post">
-                                        <a name="editar" href="<?=PATH?>Users/Update/<?=$empleado['Id_Usuario']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                        <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
-                                                class="bi bi-file-excel"> </button></i>
-                                    </form>
-                                </td>
-                            </tr>
-                            <?php
-                        }
-                    }
-                    ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--
-       Sección de usuarios inactivos
-    -->
+                            <tr id="id_<?=$empleado['Id_Usuario']?>"
+                                class="<?=($empleado['Id_Estado']==2)?"text-danger":""?>">
+                                <td class="text-center"><?=$empleado['Id_Usuario']?></td>
+                                <td class="text-center"><?=$empleado['Nombre']?></td>
+                                <td class="text-center"><?=$empleado['Apellido']?></td>
+                                <td class="text-center"><?=$empleado['Correo']?></td>
+                                <td class="text-center">
+                                    <?php
+                                if($empleado['Id_Estado']==1)
+                                {
+                                ?>
+                                    Activo
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    Inactivo
+                                    <?php
+                                }
+                                ?>
+                                <td class="text-center"><a name="editar"
+                                        href="<?=PATH?>Users/Update/<?=$empleado['Id_Usuario']?>" id="editar"
+                                        class="btn btn-dark" title="Editar"><i class="bi bi-pencil">
+                                    </a></i></td>
+                                <td class="text-center">
 
-    <!--
-        Código php para evitar la impresión de la tabla Inactivos si el número de estas es cero
-    -->
-    <?php
-    if($inactivos>0)
-    {
-    ?>
-    <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Usuarios Inanctivos</h3>
-        <div class="col ml-5">
-            <div class="row mt-3">
-                <div class="table-responsive">
-                    <table class="table table-bordered " id="datatable2">
-                        <thead class="Te" style="background-color: #FF8B8B">
-                            <tr>
-                                <th>ID Usuario</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Correo</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            //Recorremos el arreglo alojado en ViewBag con nombre empleados
-                    foreach($empleados as $empleado)
-                    {
-                        //Para imprimir a los usarios inactivos
-                        if($empleado['Id_Estado']!=1)
-                        {
-                        // con $empleado['campo'] entramos al campo o variable que queremos imprimir
-                        ?>
-                            <tr id="id_<?=$empleado['Id_Usuario']?>">
-                                <td><?=$empleado['Id_Usuario']?></td>
-                                <td><?=$empleado['Nombre']?></td>
-                                <td><?=$empleado['Apellido']?></td>
-                                <td><?=$empleado['Correo']?></td>
-                                <td>
-                                    <form action="<?=PATH?>Users/Operations/<?=$empleado['Id_Usuario']?>" method="post">
-                                        <a name="editar" href="<?=PATH?>Users/Update/<?=$empleado['Id_Usuario']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                        <button name="Activar" type="submit" id="Activar" class="btn btn-dark"><i
-                                                class="bi bi-check-square"> </button></i>
-                                    </form>
+
+                                    <?php
+                                if($empleado['Id_Estado']==1)
+                                {
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-dash-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOf_<?=$empleado['Id_Usuario']?>"
+                                            title="Desactivar"> </button></i>
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-plus-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOn_<?=$empleado['Id_Usuario']?>"
+                                            title="Activar"> </button></i>
+                                    <?php
+                                }
+                                ?>
+
+
                                 </td>
                             </tr>
-                            <?php
-                        }
+                            <?php include 'deactivate_modal.php'; ?>
+                            <?php include 'activate_modal.php'; ?>
+                            <?php                 
                     }
                     ?>
                         </tbody>
                     </table>
+
+
                 </div>
             </div>
         </div>
     </div>
-    <?php
-    }
-    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
