@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 22-03-2023 a las 02:58:30
+-- Tiempo de generación: 22-03-2023 a las 06:17:29
 -- Versión del servidor: 5.7.36
--- Versión de PHP: 8.0.13
+-- Versión de PHP: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,6 +53,14 @@ CREATE TABLE IF NOT EXISTS `areas` (
   KEY `Id_Estado` (`Id_Estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `areas`
+--
+
+INSERT INTO `areas` (`Id_Area`, `Nombre`, `Id_Estado`) VALUES
+('A12343', 'Serologia', 1),
+('A12345', 'Tamizaje', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -62,18 +70,25 @@ CREATE TABLE IF NOT EXISTS `areas` (
 DROP TABLE IF EXISTS `articulos`;
 CREATE TABLE IF NOT EXISTS `articulos` (
   `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
-  `Nombre` varchar(65) COLLATE utf8_unicode_ci NOT NULL,
+  `NombreA` varchar(65) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Presentacion` char(4) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Departamento` char(6) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Area` char(6) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Articulo`),
-  UNIQUE KEY `Nombre` (`Nombre`),
+  UNIQUE KEY `Nombre` (`NombreA`),
   KEY `Id_Presentacion` (`Id_Presentacion`),
   KEY `Id_Departamento` (`Id_Departamento`),
   KEY `Id_Area` (`Id_Area`),
   KEY `Id_Estado` (`Id_Estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `articulos`
+--
+
+INSERT INTO `articulos` (`Id_Articulo`, `NombreA`, `Id_Presentacion`, `Id_Departamento`, `Id_Area`, `Id_Estado`) VALUES
+('12345678', 'Bandeja', 'P123', 'D44522', 'A12343', 1);
 
 -- --------------------------------------------------------
 
@@ -84,10 +99,10 @@ CREATE TABLE IF NOT EXISTS `articulos` (
 DROP TABLE IF EXISTS `departamentos`;
 CREATE TABLE IF NOT EXISTS `departamentos` (
   `Id_Departamento` char(6) COLLATE utf8_unicode_ci NOT NULL,
-  `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `NombreD` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Departamento`),
-  UNIQUE KEY `Nombre` (`Nombre`),
+  UNIQUE KEY `Nombre` (`NombreD`),
   KEY `Id_Estado` (`Id_Estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -95,8 +110,9 @@ CREATE TABLE IF NOT EXISTS `departamentos` (
 -- Volcado de datos para la tabla `departamentos`
 --
 
-INSERT INTO `departamentos` (`Id_Departamento`, `Nombre`, `Id_Estado`) VALUES
-('D44522', 'Ambulan', 1);
+INSERT INTO `departamentos` (`Id_Departamento`, `NombreD`, `Id_Estado`) VALUES
+('D32551', 'Crecitin', 1),
+('D44522', 'Ambu', 1);
 
 -- --------------------------------------------------------
 
@@ -148,12 +164,20 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 DROP TABLE IF EXISTS `presentaciones`;
 CREATE TABLE IF NOT EXISTS `presentaciones` (
   `Id_Presentacion` char(4) COLLATE utf8_unicode_ci NOT NULL,
-  `Presentacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `NombreP` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Estado` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Presentacion`),
-  UNIQUE KEY `Presentacion` (`Presentacion`),
+  UNIQUE KEY `Presentacion` (`NombreP`),
   KEY `Id_Estado` (`Id_Estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `presentaciones`
+--
+
+INSERT INTO `presentaciones` (`Id_Presentacion`, `NombreP`, `Id_Estado`) VALUES
+('P123', 'Unidad', 1),
+('P234', '250 ml', 1);
 
 -- --------------------------------------------------------
 
@@ -231,7 +255,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `Tipo_Usuario`, `Id_Estado`) VALUES
 ('U00001', 'Jony', 'Morales', 'jony25lopezml@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00002', 'Gissela', 'Serrano', 'gissela25serrano@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
-('U00003', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1);
+('U00003', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
+('U31988', 'Kelly', 'Wakasa', 'wakasi@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1);
 
 --
 -- Restricciones para tablas volcadas
