@@ -35,39 +35,25 @@ include_once "./Core/config.php"
                         </tr>
                     </thead>
                     <tbody>
-
-                        <?php
-                        foreach($Areas as $area){
-                            if($area['Id_Area']==1)
-                            {
+                    <?php
+                        foreach($zonas as $presentacion){
+                            // if($departamento['Id_Estado']==1)
+                            // {
                             ?>
-                        <tr id="id_<?=$area['Id_Area']?>">
-                            <td><?=$area['Id_Area']?></td>
-                            <td><?=$area['Nombre']?></td>
-                            <td>
-                                <form action="<?=PATH?>Areas/Operations/<?=$areas['Id_Estado']?>" method="post">
-                                    <a name="editar" href="<?=PATH?>Areas/Update/<?=$areas['Id_Estado']?>" id="editar"
-                                        class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                    <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-file-excel"> </button></i>
-                            </td>
-                        </tr>
-                        <?php
-                        }
-                    }?>
-
-                        <!-- <tr>
-                            <td>A004</td>
-                            <td>Sangria</td>
-                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
-                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
-                            
-
-
+                        <tr id="id_<?=$presentacion['Id_Area']?>">
+                            <td><?=$presentacion['Id_Area']?></td>
+                            <td><?=$presentacion['Nombre']?></td>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
+                                        class="bi bi-pencil"> </button></i>
+                                <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
+                                        class="bi bi-file-excel"> </button></i>
                             </td>
                         </tr>
                         <tr>
-                        </tr> -->
+                        </tr>
+                        <?php
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div>
