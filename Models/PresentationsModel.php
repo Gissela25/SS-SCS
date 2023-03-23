@@ -1,7 +1,7 @@
 <?php
 require_once 'ConnectionModel.php';
 
-class DeparmentsModel extends ConnectionModel{
+class PresentationsModel extends ConnectionModel{
 
   
 
@@ -12,27 +12,27 @@ class DeparmentsModel extends ConnectionModel{
         if($id=='')
         {
        
-            $query = "SELECT * FROM departamentos;";
+            $query = "SELECT * FROM presentaciones;";
 
             return $this->get_query($query);
         }
         else{
 
-            $query = "SELECT * FROM departamentos WHERE Id_Departamento=:Id_Departamento";
+            $query = "SELECT * FROM presentaciones WHERE Id_Presentacion=:Id_Presentacion";
 
-            return $this->get_query($query,[":Id_Departamento"=>$id]);
+            return $this->get_query($query,[":Id_Presentacion"=>$id]);
         }
     }
 
     public function create($arreglo = array())
     {
-        $query = "INSERT INTO departamentos(Id_Departamento, NombreD ) VALUES(  :Id_Departamento ,:NombreD )";
+        $query = "INSERT INTO presentaciones(Id_Presentacion, NombreP ) VALUES(  :Id_Presentacion ,:NombreP )";
         return $this->set_query($query,$arreglo);
     }
     public function update($arreglo=array())
     {
         extract($arreglo);
-        $query = "UPDATE departamentos SET NombreD=:Nombre WHERE Id_Departamento=:Id_Departamento;";
+        $query = "UPDATE presentaciones SET NombreP=:Nombre WHERE Id_Presentacion=:Id_Presentacion;";
         return $this->set_query($query,$arreglo);
     }
     public function delete($id='')

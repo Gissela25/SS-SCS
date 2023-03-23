@@ -85,6 +85,18 @@ abstract class ConnectionModel
         return $generated_code;
     }
 
+    //Generar codigo para Presentacion
+    public function generateCodePresentations(){
+        $generated_code = '';
+        do {
+            $code = rand(100, 999);
+            $generated_code = 'P' . $code;
+            $query = "SELECT COUNT(*) FROM presentaciones WHERE Id_Presentacion = ?";
+            $result = $this->get_query($query, [$generated_code]);
+        } while ($result[0]["COUNT(*)"] > 0);
+        return $generated_code;
+    }
+
     abstract public function get();
     abstract public function create();
     abstract public function delete();

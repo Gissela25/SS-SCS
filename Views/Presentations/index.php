@@ -1,3 +1,6 @@
+<?php
+include_once "./Core/config.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +21,8 @@
 ?>
     <div class="row mx-5 mt-5">
         <div class="col ml-5">
-            <a class="edit" href="<?=PATH?>Presentations/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Presentacion</a>
+            <a class="edit" href="<?=PATH?>Presentations/Insert" style="color: #FF0032"><i
+                    class="bi bi-plus-circle"></i>Agregar Presentacion</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF8B8B">
@@ -30,19 +34,25 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <td>A004</td>
-                            <td>Sangria</td>
-                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
-                            <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
-                            
-
-
+                        <?php
+                        foreach($formas as $presentacion){
+                            // if($departamento['Id_Estado']==1)
+                            // {
+                            ?>
+                        <tr id="id_<?=$presentacion['Id_Presentacion']?>">
+                            <td><?=$presentacion['Id_Presentacion']?></td>
+                            <td><?=$presentacion['NombreP']?></td>
+                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
+                                        class="bi bi-pencil"> </button></i>
+                                <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
+                                        class="bi bi-file-excel"> </button></i>
                             </td>
                         </tr>
                         <tr>
                         </tr>
+                        <?php
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div>
