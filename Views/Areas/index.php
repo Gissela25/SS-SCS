@@ -22,7 +22,8 @@ include_once "./Core/config.php"
 ?>
     <div class="row mx-5 mt-5">
         <div class="col ml-5">
-            <a class="edit" href="<?=PATH?>Areas/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar Area</a>
+            <a class="edit" href="<?=PATH?>Areas/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
+                Area</a>
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF8B8B">
@@ -35,24 +36,23 @@ include_once "./Core/config.php"
                     </thead>
                     <tbody>
 
-                    <?php
+                        <?php
                         foreach($Areas as $area){
                             if($area['Id_Area']==1)
                             {
                             ?>
-                            <tr id="id_<?=$area['Id_Area']?>">
-                                <td><?=$area['Id_Area']?></td>
-                                <td><?=$area['Nombre']?></td>
-                                <td>
-                                    <form action="<?=PATH?>Areas/Operations/<?=$areas['Id_Estado']?>" method="post">
-                                        <a name="editar"
-                                            href="<?=PATH?>Areas/Update/<?=$areas['Id_Estado']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                <button name="Desactivar" type="submit" id="Desactivar"
-                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
-                                </td>
-                            </tr>
-                            <?php
+                        <tr id="id_<?=$area['Id_Area']?>">
+                            <td><?=$area['Id_Area']?></td>
+                            <td><?=$area['Nombre']?></td>
+                            <td>
+                                <form action="<?=PATH?>Areas/Operations/<?=$areas['Id_Estado']?>" method="post">
+                                    <a name="editar" href="<?=PATH?>Areas/Update/<?=$areas['Id_Estado']?>" id="editar"
+                                        class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                    <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-file-excel"> </button></i>
+                            </td>
+                        </tr>
+                        <?php
                         }
                     }?>
 
