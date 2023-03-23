@@ -1,3 +1,7 @@
+<?php
+include_once "./Core/config.php"
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +35,28 @@
                     </thead>
                     <tbody>
 
-                        <tr>
+                    <?php
+                        foreach($Areas as $area){
+                            if($area['Id_Area']==1)
+                            {
+                            ?>
+                            <tr id="id_<?=$area['Id_Area']?>">
+                                <td><?=$area['Id_Area']?></td>
+                                <td><?=$area['Nombre']?></td>
+                                <td>
+                                    <form action="<?=PATH?>Areas/Operations/<?=$areas['Id_Estado']?>" method="post">
+                                        <a name="editar"
+                                            href="<?=PATH?>Areas/Update/<?=$areas['Id_Estado']?>"
+                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                                <button name="Desactivar" type="submit" id="Desactivar"
+                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }?>
+
+                        <!-- <tr>
                             <td>A004</td>
                             <td>Sangria</td>
                             <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
@@ -42,7 +67,7 @@
                             </td>
                         </tr>
                         <tr>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
