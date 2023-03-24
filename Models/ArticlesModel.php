@@ -40,7 +40,7 @@ class ArticlesModel extends ConnectionModel{
     {
         extract($arreglo);
         // Actualizamos y colocamos las variables que realmente se actualizarán
-        $query = "UPDATE articulos SET NombreA=:NombreA, Id_Presentacion=:Id_Presentacion, Id_Departamento=:Id_Departamento, Id_Area=:Id_Area WHERE Id_Articulo=:Id_Articulo;";
+        $query = "UPDATE articulos SET NombreA=:NombreA, Id_Presentacion=:Id_Presentacion, Id_Departamento=:Id_Departamento WHERE Id_Articulo=:Id_Articulo;";
         return $this->set_query($query,$arreglo);
     }
     public function delete($id='')

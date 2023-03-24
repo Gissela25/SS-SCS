@@ -36,7 +36,7 @@ include_once "./Core/config.php"
                        }
                    }
                    ?>
-                        <input type="hidden" name="Id_Departamento" id="Id_Articulo"
+                        <input type="hidden" name="Id_Articulo" id="Id_Articulo"
                             value="<?=$producto['Id_Articulo']?>">
                         <div class="form-group text-center my-1">
                             <h3 class="text" style="color:#FF0032">Actualizar Articulo</h3>
@@ -50,11 +50,17 @@ include_once "./Core/config.php"
                                 aria-describedby="basic-addon1" name="Nombre" id="nombre"
                                 value="<?=isset($producto)?$producto['NombreA']:''?>">
                         </div>
+                        <!-- <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" class="form-control" placeholder="Agregar Departamento" aria-label="Name"
+                                aria-describedby="basic-addon1" name="Id_Area" id="Id_Area"
+                                value="<?=isset($producto)?$producto['Id_Area']:''?>">
+                        </div> -->
                         <div class="mb-2">
                             <label for="exampleInputPassword1" class="form-label">Departamento</label>
                         </div>
                         <div class="input-group mb-3">
-                        <select class="form-select" name="ID_Familia" id="ID_Familia"
+                        <select class="form-select" name="Id_Departamento" id="Id_Departamento"
                                 aria-label="Floating label select example">
                                 <?php
 							foreach($lugares as $lugar)
@@ -62,7 +68,7 @@ include_once "./Core/config.php"
 							?>
 
 
-                                <?php if($producto['Id_Departamento']==$lugar['Id_Departamento'])
+                                <?php if($producto['NombreD']==$lugar['NombreD'])
 							{
 
 								?>
@@ -83,6 +89,41 @@ include_once "./Core/config.php"
                         ?>
                             </select>
                         </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Presentacion</label>
+                        </div>
+                        <div class="input-group mb-3">
+                        <select class="form-select" name="Id_Presentacion" id="Id_Presentacion"
+                                aria-label="Floating label select example">
+                                <?php
+							foreach($formas as $forma)
+							{
+							?>
+
+
+                                <?php if($producto['NombreP']==$forma['NombreP'])
+							{
+
+								?>
+                                <option selected value="<?=$forma['Id_Presentacion']?>"><?=$forma['NombreP']?></option>
+                                <?php
+							} 
+							else
+							{
+								?>
+                                
+                                <option value="<?=$forma['Id_Presentacion']?>"><?=$forma['NombreP']?></option>
+                                <?php
+							}
+							?>
+                                <?php
+                            }
+						
+                        ?>
+                            </select>
+                        </div>
+                        <!-- <input type="hidden" name="Id_Area" id="Id_Area"
+                            value="<?=$producto['Id_Area']?>"> -->
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-danger" name="Actualizar" id="Actualizar">Guardar</a>
                             </button>

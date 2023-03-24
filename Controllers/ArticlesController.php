@@ -86,25 +86,16 @@ class ArticlesController extends Controller{
         }
     }
 
-    // public function Update($id)
-    // {
-    //     $viewBag = [];
-    //     $viewBag["productos"]=$this->modelo->get($id);
-    //     $viewBag['lugares'] = $this->deparmentsModel->get($id);
-    //     $viewBag['formas'] = $this->presentationsModel->get($id);
-    //     $viewBag['zonas'] = $this->areasModel->get($id);
-    //     $this->render("update.php",$viewBag);
-    // }
     public function Update($id)
-{
-    $viewBag = [];
-    $viewBag["productos"]=$this->modelo->get($id);
-    $viewBag['lugares'] = $this->deparmentsModel->get();
-    $viewBag['formas'] = $this->presentationsModel->get($id);
-    $viewBag['zonas'] = $this->areasModel->get($id);
-    $this->render("update.php",$viewBag);
-}
-
+    {
+        $viewBag = [];
+        $viewBag["productos"]=$this->modelo->get($id);
+        $viewBag['lugares'] = $this->deparmentsModel->get();
+        $viewBag['formas'] = $this->presentationsModel->get();
+        $viewBag['zonas'] = $this->areasModel->get($id);
+        $this->render("update.php",$viewBag);
+    }
+    
 
     //Funcion para actualizar los datos generales de un usuario
     public function SetArticle()
@@ -131,7 +122,6 @@ class ArticlesController extends Controller{
              $articulo['Id_Articulo']=$Id_Articulo;
              $articulo['Id_Presentacion']=$Id_Presentacion;
              $articulo['Id_Departamento']=$Id_Departamento;
-             $articulo['Id_Area']=$Id_Area;
              //Comprobamos si el arreglo errores está vacío o no
              if(count($errores)>0)
                  {
