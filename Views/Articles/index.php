@@ -62,11 +62,14 @@ include_once "./Core/config.php"
                             <td><?=$producto['NombreA']?></td>
                             <td><?=$producto['NombreP']?></td>
                             <td><?=$producto['NombreD']?></td>
-                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i
-                                        class="bi bi-pencil"> </button></i>
-                                <button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i
-                                        class="bi bi-file-excel"> </button></i>
-                            </td>
+                            <td>
+                                    <form action="<?=PATH?>Articles/Operations/<?=$producto['Id_Articulo']?>" method="post">
+                                        <a name="editar"
+                                            href="<?=PATH?>Articles/Update/<?=$producto['Id_Articulo']?>"
+                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                                <button name="Desactivar" type="submit" id="Desactivar"
+                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+                                </td>
                         </tr>
                         <?php
                         }

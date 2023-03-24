@@ -31,17 +31,17 @@ class ArticlesModel extends ConnectionModel{
     public function create($arreglo = array())
     {
        
-        // //Creamos la consulta para ingresar los datos
-        // $query = "INSERT INTO usuarios(Id_Usuario, Nombre , Apellido, Correo, Clave ) VALUES(  :Id_Usuario, :Nombre, :Apellido, :Correo  ,:Clave )";
-        // //Utilzamos el método set_query para realizar un registro
-        // return $this->set_query($query,$arreglo);
+        //Creamos la consulta para ingresar los datos
+        $query = "INSERT INTO articulos(Id_Articulo, NombreA , Id_Presentacion, Id_Departamento, Id_Area ) VALUES(  :Id_Articulo, :NombreA, :Id_Presentacion, :Id_Departamento  ,:Id_Area )";
+        //Utilzamos el método set_query para realizar un registro
+        return $this->set_query($query,$arreglo);
     }
     public function update($arreglo=array())
     {
-        // extract($arreglo);
-        // // Actualizamos y colocamos las variables que realmente se actualizarán
-        // $query = "UPDATE usuarios SET Nombre=:Nombre, Apellido=:Apellido, Correo=:Correo WHERE Id_Usuario=:Id_Usuario;";
-        // return $this->set_query($query,$arreglo);
+        extract($arreglo);
+        // Actualizamos y colocamos las variables que realmente se actualizarán
+        $query = "UPDATE articulos SET NombreA=:NombreA, Id_Presentacion=:Id_Presentacion, Id_Departamento=:Id_Departamento, Id_Area=:Id_Area WHERE Id_Articulo=:Id_Articulo;";
+        return $this->set_query($query,$arreglo);
     }
     public function delete($id='')
     {
@@ -60,19 +60,19 @@ class ArticlesModel extends ConnectionModel{
         //     return $this->get_query($query);
     }
 
-    // public function getCode()
-    // {
-    //     $codigo = $this->generateCodeUsers();
-    //     return $codigo;
-    // }
+    public function getCode()
+    {
+        $codigo = $this->generateCodeUsers();
+        return $codigo;
+    }
 
-    // public function reactivate($id)
-    // {
-    //      //Creamos una consulta donde eliminamos un solo registro
-    //      $query = "UPDATE usuarios SET Id_Estado='1' WHERE Id_Usuario=:Id_Usuario";
-    //      //Utilizamos set_query para reactivar el registro (actualizar a activo)
-    //      return $this->set_query($query,[":Id_Usuario"=>$id]);
-    // }
+    public function reactivate($id)
+    {
+         //Creamos una consulta donde eliminamos un solo registro
+         $query = "UPDATE usuarios SET Id_Estado='1' WHERE Id_Usuario=:Id_Usuario";
+         //Utilizamos set_query para reactivar el registro (actualizar a activo)
+         return $this->set_query($query,[":Id_Usuario"=>$id]);
+    }
 }
 
 ?>

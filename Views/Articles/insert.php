@@ -19,81 +19,96 @@ include_once "./Core/config.php"
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <div class="form-group text-center my-1">
-                        <h3 class="text" style="color:#FF0032">Agregar Artìculo</h3>
-                    </div>
-                    <!-- <div class="">
-                        <label for="exampleInputPassword1" class="form-label">Fecha</label>
-                    </div>
-                    <div class="input-group mb-3 ">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
-                        <input type="text" class="form-control" placeholder="15/01/2023" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div> -->
-                    <!-- <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Còdigo</label>
-                    </div>
-                    <div class="input-group mb-3 ">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-upc-scan"></i></span>
-                        <input type="text" class="form-control" placeholder="agregue còdigo" aria-label="Username"  readonly
-                            aria-describedby="basic-addon1">
-                    </div> -->
-                    <!-- <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Nombre</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregue nombre" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div> -->
-                    <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Artìculo</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-basket"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregue artìculo" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div>
-                    <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Departamentos</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <!-- <span class="input-group-text" id="basic-addon1"><i class="bi bi-bar-chart-steps"></i></span>
+                    <form method="post" action="<?=PATH?>Articles/AddArticle" enctype="multipart/form-data" role="form">
+                        <?php
+                   if(isset($errores))
+                   {
+                       if(count($errores)>0)
+                       {
+                        echo "<div class='alert alert-danger' style='color:#343a40' ><ul>";
+                           foreach ($errores as $error) {
+                               echo "<li style='color:#343a40'>$error</li>";
+                           }
+                           echo "</ul></div>";
+                       }
+                   }
+                   ?>
+                        <div class="form-group text-center my-1">
+                            <h3 class="text" style="color:#FF0032">Agregar Artìculo</h3>
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Artìculo</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-basket"></i></span>
+                            <input type="text" class="form-control" placeholder="Agregue artìculo" aria-label="Username"
+                                aria-describedby="basic-addon1" name="Nombre" id="Nombre"
+                                value="<?=isset($producto)?$producto['NombreP']:''?>">
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Departamento</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <!-- <span class="input-group-text" id="basic-addon1"><i class="bi bi-bar-chart-steps"></i></span>
                         <input type="text" class="form-control" placeholder="Agregue Mìnimo" aria-label="Username"
                             aria-describedby="basic-addon1"> -->
-                            <select class="form-select" name="Id_Departamento"  id="floatingSelect"
-                            aria-label="Floating label select example">
-                            <option selected value=""></option>
-                            <?php
+                            <select class="form-select" name="Id_Departamento" id="floatingSelect"
+                                aria-label="Floating label select example">
+                                <option selected value=""></option>
+                                <?php
                             foreach($lugares as $departamento)
                             {
                             ?>
-                            <option value="<?=$departamento['Id_Departamento']?>"><?=$departamento['NombreD']?></option>
-                            <?php
+                                <option value="<?=$departamento['Id_Departamento']?>"><?=$departamento['NombreD']?>
+                                </option>
+                                <?php
                             }
                             ?>
-                        </select>
-                    </div>
-                    <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Presentaciòn</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-clipboard2-pulse"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregue Presentaciòn" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div>
-                    <div class="mb-2">
-                        <label for="exampleInputPassword1" class="form-label">Existencias</label>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-archive"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregue existencias" aria-label="Username"
-                            aria-describedby="basic-addon1">
-                    </div>
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="submit" class="btn btn-danger"><a href="index.php" style="color: white">Enviar</a>
-                        </button>
-                    </div>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Presentación</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <!-- <span class="input-group-text" id="basic-addon1"><i class="bi bi-bar-chart-steps"></i></span>
+                        <input type="text" class="form-control" placeholder="Agregue Mìnimo" aria-label="Username"
+                            aria-describedby="basic-addon1"> -->
+                            <select class="form-select" name="Id_Presentacion" id="floatingSelect"
+                                aria-label="Floating label select example">
+                                <option selected value=""></option>
+                                <?php
+                            foreach($formas as $presentacion)
+                            {
+                            ?>
+                                <option value="<?=$presentacion['Id_Presentacion']?>"><?=$presentacion['NombreP']?>
+                                </option>
+                                <?php
+                            }
+                            ?>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Area</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="Id_Area" id="floatingSelect"
+                                aria-label="Floating label select example">
+                                <option selected value=""></option>
+                                <?php
+                            foreach($zonas as $area)
+                            {
+                            ?>
+                                <option value="<?=$area['Id_Area']?>"><?=$area['Nombre']?></option>
+                                <?php
+                            }
+                            ?>
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="submit" class="btn btn-danger" name="Guardar" id="Guardar">Guardar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
