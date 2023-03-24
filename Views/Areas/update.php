@@ -20,9 +20,9 @@ include_once "./Core/config.php"
                 <div class="card-body">
                 <?php
                     //Para recorrer el arreglo de datos del usuario ingresado
-            foreach($lugares as $departamento){
+            foreach($zonas as $area){
             ?>
-                    <form method="post" action="<?=PATH?>Deparments/SetDeparment" enctype="multipart/form-data" role="form">
+                    <form method="post" action="<?=PATH?>Areas/SetArea" enctype="multipart/form-data" role="form">
                     <?php
                    if(isset($errores))
                    {
@@ -36,9 +36,9 @@ include_once "./Core/config.php"
                        }
                    }
                    ?>
-                    <input type="hidden" name="Id_Departamento" id="Id_Departamento" value="<?=$departamento['Id_Departamento']?>">
+                    <input type="hidden" name="Id_Area" id="Id_Area" value="<?=$area['Id_Area']?>">
                         <div class="form-group text-center my-1">
-                            <h3 class="text" style="color:#FF0032">Actualizar Departamento</h3>
+                            <h3 class="text" style="color:#FF0032">Actualizar Area</h3>
                         </div>
                         <!-- <div class="">
                             <label for="exampleInputPassword1" class="form-label">ID Departamento</label>
@@ -49,13 +49,13 @@ include_once "./Core/config.php"
                                 aria-describedby="basic-addon1" readonly>
                         </div> -->
                         <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Departamento</label>
+                            <label for="exampleInputPassword1" class="form-label"><Area></Area></label>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-                            <input type="text" class="form-control" placeholder="Agregar Departamento"
+                            <input type="text" class="form-control" placeholder="Agregar Area"
                                 aria-label="Name" aria-describedby="basic-addon1" name="Nombre" id="nombre"
-                                value="<?=isset($departamento)?$departamento['NombreD']:''?>">
+                                value="<?=isset($area)?$area['Nombre']:''?>">
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-danger" name="Actualizar" id="Actualizar">Guardar</a>

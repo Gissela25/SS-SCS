@@ -54,7 +54,7 @@ class PresentationsModel extends ConnectionModel{
 
     public function getCode()
     {
-        $codigo = $this->generateCodeDeparments();
+        $codigo = $this->generateCodePresentations();
         return $codigo;
     }
 

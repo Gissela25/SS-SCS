@@ -97,6 +97,18 @@ abstract class ConnectionModel
         return $generated_code;
     }
 
+    //Generar codigo para Area
+    public function generateCodeAreas(){
+        $generated_code = '';
+        do {
+            $code = rand(10000, 99999);
+            $generated_code = 'A' . $code;
+            $query = "SELECT COUNT(*) FROM areas WHERE Id_Area = ?";
+            $result = $this->get_query($query, [$generated_code]);
+        } while ($result[0]["COUNT(*)"] > 0);
+        return $generated_code;
+    }
+
     abstract public function get();
     abstract public function create();
     abstract public function delete();

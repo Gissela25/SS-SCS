@@ -18,51 +18,6 @@ class DeparmentsController extends Controller{
         $this->render("index.php",$viewBag);
     }
 
-    // public function Insert()
-    // {
-    //     $this->render("insert.php");
-    // }
-    // public function AddDeparment()
-    // {
-    //     if(isset($_POST['Guardar']))
-    //     {
-    //         extract($_POST);
-    //         $errores=array();
-    //         $viewBag=array(); 
-    //         if(!isset($Nombre)||isEmpty($Nombre))
-    //         {
-    //             array_push($errores,"Debes ingresar un Departamento");
-    //         }
-    //         elseif(!isOnlyText($Nombre))
-    //         {
-    //             array_push($errores,"El campo Nombre de Departamento acepta solo texto");
-    //         }
-
-    //         $departamento['Id_Departamento']=$this->modelo->getCode();
-    //         $departamento['Nombre']=$Nombre;
-
-    //         if(count($errores)>0)
-    //         {
-    //             $viewBag['deparment']=$departamento;
-    //             $viewBag['errores']=$errores;
-    //             $this->render("insert.php",$viewBag);
-    //         }
-    //         else
-    //         {
-    //             if($this->modelo->create($departamento)>0)
-    //             {
-    //                 header('Location: '.PATH.'Deparments');
-    //             }
-    //             else{
-    //                 array_push($errores, "Ha ocurrido un error al intentar agregar un departamento");
-    //                 $viewBag['errores']=$errores;
-    //                 $viewBag['deparment']=$departamento;
-    //                 $this->render("insert.php",$viewBag);
-    //             }
-    //         }
-    //     }
-    // }
-    //Renderizado del formulario de agregar usuarios
     public function Insert()
     {
         $this->render("insert.php");
@@ -118,25 +73,6 @@ class DeparmentsController extends Controller{
         }
     }
 
-    //Activar o Desactivar registros (usuarios)
-    // public function Operations($id)
-    // {
-    //     if(isset($_POST['Desactivar']))
-    //     {
-    //         if($this->modelo->delete($id))
-    //         {
-    //             header('Location: '.PATH.'Users');
-    //         }
-    //     }
-
-    //     if(isset($_POST['Activar']))
-    //     {
-    //         if($this->modelo->reactivate($id))
-    //         {
-    //             header('Location: '.PATH.'Users');
-    //         }
-    //     }
-    // }
 
     //Rendirzamos la vista de actualizacion de perfil
     public function Update($id)

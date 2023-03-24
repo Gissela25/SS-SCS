@@ -32,7 +32,7 @@ class AreasModel extends ConnectionModel{
     public function update($arreglo=array())
     {
         extract($arreglo);
-        $query = "UPDATE areas SET Nombre=:Nombre WHERE Id_Presentacion=:Id_Area;";
+        $query = "UPDATE areas SET Nombre=:Nombre WHERE Id_Area=:Id_Area;";
         return $this->set_query($query,$arreglo);
     }
     public function delete($id='')
@@ -54,7 +54,7 @@ class AreasModel extends ConnectionModel{
 
     public function getCode()
     {
-        $codigo = $this->generateCodeDeparments();
+        $codigo = $this->generateCodeAreas();
         return $codigo;
     }
 

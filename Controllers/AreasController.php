@@ -18,58 +18,13 @@ class AreasController extends Controller{
         $this->render("index.php",$viewBag);
     }
 
-    // public function Insert()
-    // {
-    //     $this->render("insert.php");
-    // }
-    // public function AddDeparment()
-    // {
-    //     if(isset($_POST['Guardar']))
-    //     {
-    //         extract($_POST);
-    //         $errores=array();
-    //         $viewBag=array(); 
-    //         if(!isset($Nombre)||isEmpty($Nombre))
-    //         {
-    //             array_push($errores,"Debes ingresar un Departamento");
-    //         }
-    //         elseif(!isOnlyText($Nombre))
-    //         {
-    //             array_push($errores,"El campo Nombre de Departamento acepta solo texto");
-    //         }
-
-    //         $departamento['Id_Departamento']=$this->modelo->getCode();
-    //         $departamento['Nombre']=$Nombre;
-
-    //         if(count($errores)>0)
-    //         {
-    //             $viewBag['deparment']=$departamento;
-    //             $viewBag['errores']=$errores;
-    //             $this->render("insert.php",$viewBag);
-    //         }
-    //         else
-    //         {
-    //             if($this->modelo->create($departamento)>0)
-    //             {
-    //                 header('Location: '.PATH.'Deparments');
-    //             }
-    //             else{
-    //                 array_push($errores, "Ha ocurrido un error al intentar agregar un departamento");
-    //                 $viewBag['errores']=$errores;
-    //                 $viewBag['deparment']=$departamento;
-    //                 $this->render("insert.php",$viewBag);
-    //             }
-    //         }
-    //     }
-    // }
-    //Renderizado del formulario de agregar usuarios
     public function Insert()
     {
         $this->render("insert.php");
     }
 
     //Función para añadir un registro a la tabla usuarios
-    public function AddDeparment()
+    public function AddArea()
     {
         //Comprobamos el submit del formuario con el nombre del botón
         if(isset($_POST['Guardar']))
@@ -82,34 +37,34 @@ class AreasController extends Controller{
             //la validación en el elseif es una validación especial para el campo que utilice
             if(!isset($Nombre)||isEmpty($Nombre))
             {
-                array_push($errores,"Debes ingresar un departamento");
+                array_push($errores,"Debes ingresar una Area");
             }
             elseif(!isOnlyText($Nombre))
             {
               array_push($errores,"El campo nombre acepta solo texto");
             }
             // Guardamos las variables en un arreglo llamado usuario
-            $departamento['Id_Departamento']=$this->modelo->getCode();
-            $departamento['NombreD']=$Nombre;
+            $area['Id_Area']=$this->modelo->getCode();
+            $area['Nombre']=$Nombre;
             //Comprobamos si el arreglo errores está vacío o no
             if(count($errores)>0)
                 {
 
-                    $viewBag['lugar']=$departamento;
+                    $viewBag['zona']=$area;
                     $viewBag['errores']=$errores;
                     $this->render("insert.php",$viewBag);
                 }
                 else
                 {
                     //Si el conteo es menor o igual a cero procedemos a crear un registro
-                    if($this->modelo->create($departamento)>0)
+                    if($this->modelo->create($area)>0)
                     {
-                        header('Location: '.PATH.'Deparments');
+                        header('Location: '.PATH.'Areas');
                     }
                     else{
-                        array_push($errores, "Ha ocurrido un error al ingresar departamento");
+                        array_push($errores, "Ha ocurrido un error al ingresar area");
                         $viewBag['errores']=$errores;
-                        $viewBag['lugar']=$departamento;
+                        $viewBag['zona']=$area;
                         $this->render("insert.php",$viewBag);
                     }
                 }
@@ -142,12 +97,12 @@ class AreasController extends Controller{
     public function Update($id)
     {
         $viewBag = [];
-        $viewBag["lugares"]=$this->modelo->get($id);
+        $viewBag["zonas"]=$this->modelo->get($id);
         $this->render("update.php",$viewBag);
     }
 
     //Funcion para actualizar los datos generales de un usuario
-    public function SetDeparment()
+    public function SetArea()
     {
          //Comprobamos el submit del formuario con el nombre del botón
          if(isset($_POST['Actualizar']))
@@ -160,34 +115,34 @@ class AreasController extends Controller{
              //la validación en el elseif es una validación especial para el campo que utilice
              if(!isset($Nombre)||isEmpty($Nombre))
              {
-                 array_push($errores,"Debes ingresar un departamento");
+                 array_push($errores,"Debes ingresar un area");
              }
              elseif(!isOnlyText($Nombre))
              {
-               array_push($errores,"El campo departamento acepta solo texto");
+               array_push($errores,"El campo area acepta solo texto");
              }
              // Guardamos las variables en un arreglo llamado usuario
-             $departamento['Nombre']=$Nombre;
-             $departamento['Id_Departamento']=$Id_Departamento;
+             $area['Nombre']=$Nombre;
+             $area['Id_Area']=$Id_Area;
              //Comprobamos si el arreglo errores está vacío o no
              if(count($errores)>0)
                  {
  
-                     $viewBag['lugares']=$departamento;
+                     $viewBag['zonas']=$area;
                      $viewBag['errores']=$errores;
                      $this->render("update.php",$viewBag);
                  }
                  else
                  {
                      //Si el conteo es menor o igual a cero procedemos a crear un registro
-                     if($this->modelo->update($departamento)>0)
+                     if($this->modelo->update($area)>0)
                      {
-                         header('Location: '.PATH.'Deparments');
+                         header('Location: '.PATH.'Areas');
                      }
                      else{
                          array_push($errores, "Nos haz realizado ningún cambio 👀");
                          $viewBag['errores']=$errores;
-                         $viewBag['lugares']=$this->modelo->get($Id_Departamento);
+                         $viewBag['zonas']=$this->modelo->get($Id_Area);
                          $this->render("update.php",$viewBag);
                      }
                  }
