@@ -9,6 +9,12 @@ include_once "./Models/AreasModel.php";
 //Incluimos el archivo con las validacions
 include_once "./Core/validaciones.php";
 class ArticlesController extends Controller{
+
+    private $modelo;
+    private $deparmentsModel;
+    private $presentationsModel;
+    private $areasModel;
+
     public function __construct()
     {
         $this->modelo = new ArticlesModel();
@@ -126,7 +132,7 @@ class ArticlesController extends Controller{
              if(count($errores)>0)
                  {
  
-                     $viewBag['productos']=$articulo;
+                     $viewBag['productos']=$this->modelo->get($Id_Articulo);
                      $viewBag['errores']=$errores;
                      $this->render("update.php",$viewBag);
                  }

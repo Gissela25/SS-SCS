@@ -179,7 +179,7 @@ class UsersController extends Controller{
              if(count($errores)>0)
                  {
  
-                     $viewBag['empleados']=$usuario;
+                     $viewBag['empleados']=$this->modelo->get($Id_Usuario);
                      $viewBag['errores']=$errores;
                      $this->render("update.php",$viewBag);
                  }
@@ -191,7 +191,7 @@ class UsersController extends Controller{
                          header('Location: '.PATH.'Users');
                      }
                      else{
-                         array_push($errores, "Nos haz realizado ningún cambio 👀");
+                         array_push($errores, "No haz realizado ningún cambio 👀");
                          $viewBag['errores']=$errores;
                          $viewBag['empleados']=$this->modelo->get($Id_Usuario);
                          $this->render("update.php",$viewBag);

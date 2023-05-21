@@ -37,7 +37,8 @@ include_once "./Core/config.php"
                        }
                    }
                    ?>
-                        <input type="hidden" name="Id_Usuario" id="Id_Usuario" value="<?=$empleado['Id_Usuario']?>">
+                        <input hidden name="Id_Usuario" id="Id_Usuario"
+                            value="<?=isset($empleado)?$empleado['Id_Usuario']:''?>">
                         <div class="form-group text-center my-1">
                             <h3 class="text" style="color:#FF0032">Actualizar Datos Generales</h3>
                         </div>

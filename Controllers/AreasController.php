@@ -6,6 +6,9 @@ include_once "./Models/AreasModel.php";
 include_once "./Core/validaciones.php";
 
 class AreasController extends Controller{
+
+    private $modelo;
+
     public function __construct()
     {
         $this->modelo = new AreasModel();
@@ -128,7 +131,7 @@ class AreasController extends Controller{
              if(count($errores)>0)
                  {
  
-                     $viewBag['zonas']=$area;
+                     $viewBag['zonas']=$this->modelo->get($Id_Area);
                      $viewBag['errores']=$errores;
                      $this->render("update.php",$viewBag);
                  }

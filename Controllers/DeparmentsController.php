@@ -6,6 +6,9 @@ include_once "./Models/DeparmentsModel.php";
 include_once "./Core/validaciones.php";
 
 class DeparmentsController extends Controller{
+
+    private $modelo;
+
     public function __construct()
     {
         $this->modelo = new DeparmentsModel();
@@ -109,7 +112,7 @@ class DeparmentsController extends Controller{
              if(count($errores)>0)
                  {
  
-                     $viewBag['lugares']=$departamento;
+                     $viewBag['lugares']=$this->modelo->get($Id_Departamento);
                      $viewBag['errores']=$errores;
                      $this->render("update.php",$viewBag);
                  }
