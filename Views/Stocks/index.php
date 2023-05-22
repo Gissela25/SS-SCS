@@ -24,15 +24,12 @@
                         <tr>
                             <th class="text-center">ID existencia</th>
                             <th class="text-center">Artìculos</th>
-                            <th class="text-center">Fecha entrada</th>
-                            <th class="text-center">Entrada</th>
-                            <th class="text-center" >Fecha salida</th>
-                            <th class="text-center">Salida</th>
-                            <th class="text-center">Fecha actualizaciòn</th>
                             <th class="text-center">Saldo</th>
+                            <th class="text-center">Fecha actualizaciòn</th>
                             <th class="text-center">editar</th>
                             <th class="text-center">Eliminar</th>
                             <th class="text-center">Agregar</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -40,10 +37,8 @@
                             <td class="text-center">A004</td>
                             <td class="text-center">Sangria</td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            
+                           
                             <td></td>
                             <td class="text-center"><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
                             </td>
