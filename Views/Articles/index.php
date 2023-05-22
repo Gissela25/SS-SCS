@@ -42,11 +42,12 @@ include_once "./Core/config.php"
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
-                            <th>Codigo</th>
-                            <th>Articulo</th>
-                            <th>Presentacion</th>
-                            <th>Departamento</th>
-                            <th>Acciones</th>
+                            <th class="text-center">Codigo</th>
+                            <th class="text-center">Articulo</th>
+                            <th class="text-center">Presentacion</th>
+                            <th class="text-center">Departamento</th>
+                            <th class="text-center">Editar</th>
+                            <th class="text-center">Anular</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,18 +59,21 @@ include_once "./Core/config.php"
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
                         <tr id="id_<?=$producto['Id_Articulo']?>">
-                            <td><?=$producto['Id_Articulo']?></td>
-                            <td><?=$producto['NombreA']?></td>
-                            <td><?=$producto['NombreP']?></td>
-                            <td><?=$producto['NombreD']?></td>
-                            <td>
+                            <td class="text-center"><?=$producto['Id_Articulo']?></td>
+                            <td class="text-center"><?=$producto['NombreA']?></td>
+                            <td class="text-center"><?=$producto['NombreP']?></td>
+                            <td class="text-center"><?=$producto['NombreD']?></td>
+                            <td class="text-center">
                                     <form action="<?=PATH?>Articles/Operations/<?=$producto['Id_Articulo']?>" method="post">
                                         <a name="editar"
                                             href="<?=PATH?>Articles/Update/<?=$producto['Id_Articulo']?>"
                                             id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                <button name="Desactivar" type="submit" id="Desactivar"
-                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+                                                
                                 </td>
+                                <td class="text-center">
+                                <button name="Desactivar" type="submit" id="Desactivar"
+                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+                    </td>
                         </tr>
                         <?php
                         }

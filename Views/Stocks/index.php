@@ -22,34 +22,34 @@
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
-                            <th>ID existencia</th>
-                            <th>Artìculos</th>
-                            <th>Fecha entrada</th>
-                            <th>Entrada</th>
-                            <th>Fecha salida</th>
-                            <th>Salida</th>
-                            <th>Fecha actualizaciòn</th>
-                            <th>Saldo</th>
-                            <th>editar</th>
-                            <th>Eliminar</th>
-                            <th>Agregar</th>
+                            <th class="text-center">ID existencia</th>
+                            <th class="text-center">Artìculos</th>
+                            <th class="text-center">Fecha entrada</th>
+                            <th class="text-center">Entrada</th>
+                            <th class="text-center" >Fecha salida</th>
+                            <th class="text-center">Salida</th>
+                            <th class="text-center">Fecha actualizaciòn</th>
+                            <th class="text-center">Saldo</th>
+                            <th class="text-center">editar</th>
+                            <th class="text-center">Eliminar</th>
+                            <th class="text-center">Agregar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>A004</td>
-                            <td>Sangria</td>
+                            <td class="text-center">A004</td>
+                            <td class="text-center">Sangria</td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                            <td class="text-center"><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
                             </td>
-                            <td><button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
+                            <td class="text-center"><button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
                             </td>
-                            <td><a class="edit" href="<?=PATH?>Stocks/Insert" style="color: #FF0032"><button name="Agregar" type="submit" id="Agregar" class="btn btn-dark"><i class="bi bi-file-plus">  </button></i>
+                            <td class="text-center"><a class="edit" href="<?=PATH?>Stocks/Insert" style="color: #FF0032"><button name="Agregar" type="submit" id="Agregar" class="btn btn-dark"><i class="bi bi-file-plus">  </button></i>
                             </td>
 
                         </tr>

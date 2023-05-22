@@ -41,7 +41,8 @@ include_once "./Core/config.php"
                             <tr>
                                 <th>ID Area</th>
                                 <th>Area</th>
-                                <th>Acciones</th>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Anular</th>
 
                             </tr>
                         </thead>
@@ -52,15 +53,22 @@ include_once "./Core/config.php"
                             // {
                             ?>
                             <tr id="id_<?=$area['Id_Area']?>">
-                                <td><?=$area['Id_Area']?></td>
-                                <td><?=$area['Nombre']?></td>
-                                <td>
+                                <th class="text-center"><?=$area['Id_Area']?></td>
+                                <th class="text-center"><?=$area['Nombre']?></td>
+                                <td class="text-center">
                                     <form action="<?=PATH?>Areas/Operations/<?=$area['Id_Area']?>" method="post">
                                         <a name="editar"
                                             href="<?=PATH?>Areas/Update/<?=$area['Id_Area']?>"
                                             id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                <button name="Desactivar" type="submit" id="Desactivar"
+                                                
+                                </td>
+
+                                <td class="text-center">
+                                <button name="Desactivar" type="submit" id="Desactivar"
                                                     class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+
+
+
                                 </td>
                             </tr>
                             <?php
