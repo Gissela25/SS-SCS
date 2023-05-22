@@ -39,7 +39,7 @@ class PresentationsController extends Controller{
             {
                 array_push($errores,"Debes ingresar una Presentación");
             }
-            elseif(!isOnlyText($Nombre))
+            elseif(!isText($Nombre))
             {
               array_push($errores,"El campo presentación acepta solo texto");
             }
