@@ -23,33 +23,36 @@
                     <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
                             <th class="text-center">ID existencia</th>
-                            <th class="text-center">Artìculos</th>
+                            <th class="text-center">Artículo</th>
                             <th class="text-center">Saldo</th>
-                            <th class="text-center">Fecha actualizaciòn</th>
+                            <th class="text-center">Fecha actualización</th>
                             <th class="text-center">editar</th>
-                            <th class="text-center">Eliminar</th>
                             <th class="text-center">Agregar</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="text-center">A004</td>
-                            <td class="text-center">Sangria</td>
-                            <td></td>
-                            
-                           
-                            <td></td>
-                            <td class="text-center"><button name="editar" type="submit" id="editar" class="btn btn-dark"><i class="bi bi-pencil">  </button></i>
+                        <?php
+                        foreach($stock as $existencias){
+                        ?>
+
+                        <tr id="id_<?=$existencias['Id_Existencia']?>">
+                            <td class="text-center"><?=$existencias['Id_Existencia']?></td>
+                            <td class="text-center"><?=$existencias['NombreA']?></td>
+                            <td class="text-center"><?=$existencias['Saldo']?></td>
+                            <td class="text-center"><?=$existencias['F_LastUpdate']?></td>
+                            <td class="text-center"><button name="editar" type="submit" id="editar"
+                                    class="btn btn-dark"><i class="bi bi-pencil"> </button></i>
                             </td>
-                            <td class="text-center"><button name="Desactivar" type="submit" id="Desactivar" class="btn btn-dark"><i class="bi bi-file-excel">  </button></i>
-                            </td>
-                            <td class="text-center"><a class="edit" href="<?=PATH?>Stocks/Insert" style="color: #FF0032"><button name="Agregar" type="submit" id="Agregar" class="btn btn-dark"><i class="bi bi-file-plus">  </button></i>
+                            <td class="text-center"><a class="edit" href="<?=PATH?>Stocks/Insert"
+                                    style="color: #FF0032"><button name="Agregar" type="submit" id="Agregar"
+                                        class="btn btn-dark"><i class="bi bi-file-plus"> </button></i>
                             </td>
 
                         </tr>
-                        <tr>
-                        </tr>
+                        <?php
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div>
