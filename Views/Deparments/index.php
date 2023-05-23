@@ -39,9 +39,10 @@ include_once "./Core/config.php"
                     <table class="table table-bordered " id="datatable">
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
-                                <th>ID Departamento</th>
-                                <th>Departamento</th>
-                                <th>Acciones</th>
+                                <th class="text-center">ID Departamento</th>
+                                <th class="text-center">Departamento</th>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Anular</th>
 
                             </tr>
                         </thead>
@@ -52,13 +53,17 @@ include_once "./Core/config.php"
                             // {
                             ?>
                             <tr id="id_<?=$departamento['Id_Departamento']?>">
-                                <td><?=$departamento['Id_Departamento']?></td>
-                                <td><?=$departamento['NombreD']?></td>
-                                <td>
+                                <td class="text-center"><?=$departamento['Id_Departamento']?></td>
+                                <td class="text-center"><?=$departamento['NombreD']?></td>
+                                <td class="text-center">
                                     <form action="<?=PATH?>Deparments/Operations/<?=$departamento['Id_Departamento']?>" method="post">
                                         <a name="editar"
                                             href="<?=PATH?>Deparments/Update/<?=$departamento['Id_Departamento']?>"
                                             id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                                
+                                </td>
+                                <td class="text-center">
+                                    
                                                 <button name="Desactivar" type="submit" id="Desactivar"
                                                     class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
                                 </td>

@@ -28,14 +28,35 @@ class ArticlesModel extends ConnectionModel{
         }
     }
     //Declaramos un arreglo en donde vendrán las variables que guardaremos
-    public function create($arreglo = array())
+    public function create($arreglo = array(), $arreglo2 = array())
     {
        
         //Creamos la consulta para ingresar los datos
         $query = "INSERT INTO articulos(Id_Articulo, NombreA , Id_Presentacion, Id_Departamento, Id_Area ) VALUES(  :Id_Articulo, :NombreA, :Id_Presentacion, :Id_Departamento  ,:Id_Area )";
         //Utilzamos el método set_query para realizar un registro
-        return $this->set_query($query,$arreglo);
+        $result = $this->set_query($query,$arreglo);
+
+        if($result){
+            $equery = "INSERT INTO existencias (Id_Existencia, Id_Articulo, F_LastUpdate) VALUES ( :Id_Existencia, :Id_Articulo, :F_LastUpdate )";
+
+            $result2 = $this->set_query($equery,$arreglo2);
+
+            if($result2){
+
+                return true;
+
+            }else{
+
+                return false;
+
+            }
+        }
+        else{
+            return false;
+        }
+
     }
+    
     public function update($arreglo=array())
     {
         extract($arreglo);
@@ -62,7 +83,13 @@ class ArticlesModel extends ConnectionModel{
 
     public function getCode()
     {
-        $codigo = $this->generateCodeUsers();
+        $codigo = $this->generateCodeArticules();
+        return $codigo;
+    }
+
+    public function getCode2()
+    {
+        $codigo = $this->generateCodeExistencias();
         return $codigo;
     }
 
