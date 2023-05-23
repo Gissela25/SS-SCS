@@ -60,7 +60,16 @@ class ArticlesController extends Controller{
               array_push($errores,"El campo articulo acepta solo texto");
             }
             // Guardamos las variables en un arreglo llamado usuario
-            $articulo['Id_Articulo']=$this->modelo->getCode();
+
+            $code1 = $this->modelo->getCode();
+            $code2 = $this->modelo->getCode2();
+
+
+            $articuloe['Id_Articulo']=$code1;
+            $articuloe['Id_Existencia']=$code2;
+            $articuloe['F_LastUpdate']=date('Y-m-d');
+
+            $articulo['Id_Articulo']=$code1;
             $articulo['NombreA']=$Nombre;
             $articulo['Id_Presentacion']=$Id_Presentacion;
             $articulo['Id_Departamento']=$Id_Departamento;
@@ -76,7 +85,7 @@ class ArticlesController extends Controller{
                 else
                 {
                     //Si el conteo es menor o igual a cero procedemos a crear un registro
-                    if($this->modelo->create($articulo)>0)
+                    if($this->modelo->create($articulo, $articuloe)>0)
                     {
                         header('Location: '.PATH.'Articles');
                     }

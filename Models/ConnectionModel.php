@@ -120,6 +120,17 @@ abstract class ConnectionModel
         return $generated_code;
     }
 
+    public function generateCodeExistencias(){
+        $generated_code = '';
+        do {
+            $code = rand(100000, 999999);
+            $generated_code = 'E' . $code;
+            $query = "SELECT COUNT(*) FROM articulos WHERE Id_Articulo = ?";
+            $result = $this->get_query($query, [$generated_code]);
+        } while ($result[0]["COUNT(*)"] > 0);
+        return $generated_code;
+    }
+
     
     
 

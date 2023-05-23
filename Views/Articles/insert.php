@@ -37,11 +37,11 @@ include_once "./Core/config.php"
                             <h3 class="text" style="color:#FF0032">Agregar Artìculo</h3>
                         </div>
                         <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Artìculo</label>
+                            <label for="exampleInputPassword1" class="form-label">Artículo</label>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-basket"></i></span>
-                            <input type="text" class="form-control" placeholder="Agregue artìculo" aria-label="Username"
+                            <input type="text" class="form-control" placeholder="Agregue artículo" aria-label="Username"
                                 aria-describedby="basic-addon1" name="Nombre" id="Nombre"
                                 value="<?=isset($producto)?$producto['NombreP']:''?>">
                         </div>
