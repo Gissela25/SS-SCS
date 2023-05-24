@@ -62,10 +62,22 @@ class StocksController extends Controller{
                     $this->render("update.php",$viewBag);
                 }
                 else{
+                    $correctivo = abs($SaldoActual - $Saldo);
+                    $correlativo = $this->modelo->generateCodeCorrelative();
+
+                    $correlative['Id_Correlativo'] = $correlativo;
+                    //Este dato se obtendra de la sesión, por ahora ocuparemos este.
+                    $correlative["Id_Usuario"] = "U00005";
                     $existencia["Id_Existencia"] = $id;
                     $existencia["Saldo"] = $Saldo;
                     $existencia['F_LastUpdate']=date('Y-m-d');
-                    if($this->modelo->UpdateBalance($existencia)>0)
+                    $movimiento['Id_Correlativo'] = $correlativo;
+                    $movimiento['Id_Articulo'] = $Id_Articulo;
+                    $movimiento["Id_Existencia"] = $id;
+                    $movimiento["Correctivo"] = $correctivo;
+                    $movimiento["SaldoResultante"] = $Saldo;
+                    $movimiento["F_Movimiento"] = date('Y-m-d');
+                    if($this->modelo->UpdateBalance($existencia,$correlative,$movimiento)>0)
                     {
                         header('Location: '.PATH.'Stocks');
                     }

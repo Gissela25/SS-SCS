@@ -67,10 +67,34 @@ class StocksModel extends ConnectionModel{
         return $codigo;
     }
 
-    public function UpdateBalance($existencia = array()){
+    public function UpdateBalance($existencia = array(),$correlative = array(), $movimiento = array()){
         extract($existencia);
+        extract($correlative);
+        extract($movimiento);
+
         $query = "UPDATE existencias SET Saldo=:Saldo, F_LastUpdate=:F_LastUpdate WHERE Id_Existencia =:Id_Existencia ;";
-        return $this->set_query($query,$existencia);
+        $firsResult = $this->set_query($query,$existencia);
+        if($firsResult){
+            $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
+            $secondResult =  $this->set_query($query,$correlative);
+            if($secondResult){
+                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, Correctivo, SaldoResultante, F_Movimiento)
+                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :Correctivo, :SaldoResultante, :F_Movimiento)";
+                $thirdResult =  $this->set_query($query,$movimiento);
+                if($thirdResult){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
     }
 
     public function AddBeginningBalance($existencia = array(),$correlative = array(), $movimiento = array()){

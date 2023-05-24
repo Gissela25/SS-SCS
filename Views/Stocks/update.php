@@ -46,7 +46,8 @@ include_once "./Core/config.php";
                                 value="<?=isset($existencias)?$existencias['Id_Existencia']:''?>">
                         </div>
 
-
+                        <input type="text" name="SaldoActual" id="SaldoActual"
+                            value="<?=isset($existencias)?$existencias['Saldo']:''?>" hidden />
                         <input type="text" name="EsSaldoInicial" id="EsSaldoInicial"
                             value="<?=isset($existencias)?$existencias['EsSaldoInicial']:''?>" hidden />
                         <input type="text" name="Id_Articulo" id="Id_Articulo"

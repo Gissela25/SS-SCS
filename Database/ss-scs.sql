@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 24, 2023 at 05:42 AM
+-- Generation Time: May 24, 2023 at 08:53 PM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -72,9 +72,8 @@ CREATE TABLE IF NOT EXISTS `articulos` (
 --
 
 INSERT INTO `articulos` (`Id_Articulo`, `NombreA`, `Id_Presentacion`, `Id_Departamento`, `Id_Area`, `Id_Estado`) VALUES
-('I20393496421920', 'Agua Mineral', 'P123', 'D32551', 'A12343', 1),
-('I97103925870630', 'Crecitin', 'P123', 'D32551', 'A12343', 1),
-('I98395158113942', 'Jeringa', 'P123', 'D44522', 'A12345', 1);
+('I17444664310128', 'Agua Mineral', 'P123', 'D32551', 'A12343', 1),
+('I99745938237056', 'Jeringas', 'P123', 'D44522', 'A12345', 1);
 
 -- --------------------------------------------------------
 
@@ -95,12 +94,9 @@ CREATE TABLE IF NOT EXISTS `correlativos` (
 --
 
 INSERT INTO `correlativos` (`Id_Correlativo`, `Id_Usuario`) VALUES
-('C25764859037813', 'U00005'),
-('C57227365468998', 'U00005'),
-('C57745249387201', 'U00005'),
-('C59450790514171', 'U00005'),
-('C61565750305903', 'U00005'),
-('C76241440517778', 'U00005');
+('C73075489944345', 'U00005'),
+('C86948846408555', 'U00005'),
+('C87261418159830', 'U00005');
 
 -- --------------------------------------------------------
 
@@ -191,9 +187,8 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 --
 
 INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
-('E27085654116005', 'I97103925870630', 125, 120, '2023-05-24', 0),
-('E70843305429800', 'I20393496421920', 55, 54, '2023-05-24', 0),
-('E93184882188812', 'I98395158113942', 0, NULL, '2023-05-24', 1);
+('E43321048868076', 'I99745938237056', 25, 25, '2023-05-24', 0),
+('E81797379711633', 'I17444664310128', 60, 55, '2023-05-24', 0);
 
 -- --------------------------------------------------------
 
@@ -208,6 +203,7 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Entrada` int(8) NOT NULL DEFAULT '0',
   `Salida` int(8) NOT NULL DEFAULT '0',
+  `Correctivo` int(8) DEFAULT '0',
   `SaldoResultante` int(8) NOT NULL,
   `F_Movimiento` date NOT NULL,
   KEY `movimientos_ibfk_1` (`Id_Correlativo`),
@@ -219,12 +215,10 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
 -- Dumping data for table `movimientos`
 --
 
-INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `Entrada`, `Salida`, `SaldoResultante`, `F_Movimiento`) VALUES
-('C76241440517778', 'I97103925870630', 'E27085654116005', 120, 0, 120, '2023-05-24'),
-('C59450790514171', 'I97103925870630', 'E27085654116005', 3, 0, 123, '2023-05-24'),
-('C57227365468998', 'I20393496421920', 'E70843305429800', 54, 0, 54, '2023-05-24'),
-('C61565750305903', 'I20393496421920', 'E70843305429800', 1, 0, 55, '2023-05-24'),
-('C57745249387201', 'I97103925870630', 'E27085654116005', 2, 0, 125, '2023-05-24');
+INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `Entrada`, `Salida`, `Correctivo`, `SaldoResultante`, `F_Movimiento`) VALUES
+('C73075489944345', 'I17444664310128', 'E81797379711633', 55, 0, 0, 55, '2023-05-24'),
+('C87261418159830', 'I17444664310128', 'E81797379711633', 0, 0, 5, 60, '2023-05-24'),
+('C86948846408555', 'I99745938237056', 'E43321048868076', 25, 0, 0, 25, '2023-05-24');
 
 -- --------------------------------------------------------
 
