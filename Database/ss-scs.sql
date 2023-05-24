@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2023 at 12:57 AM
+-- Generation Time: May 24, 2023 at 05:42 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -67,6 +67,15 @@ CREATE TABLE IF NOT EXISTS `articulos` (
   KEY `Id_Estado` (`Id_Estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `articulos`
+--
+
+INSERT INTO `articulos` (`Id_Articulo`, `NombreA`, `Id_Presentacion`, `Id_Departamento`, `Id_Area`, `Id_Estado`) VALUES
+('I20393496421920', 'Agua Mineral', 'P123', 'D32551', 'A12343', 1),
+('I97103925870630', 'Crecitin', 'P123', 'D32551', 'A12343', 1),
+('I98395158113942', 'Jeringa', 'P123', 'D44522', 'A12345', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +89,18 @@ CREATE TABLE IF NOT EXISTS `correlativos` (
   PRIMARY KEY (`Id_Correlativo`),
   KEY `correlativos_ibfk_1` (`Id_Usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `correlativos`
+--
+
+INSERT INTO `correlativos` (`Id_Correlativo`, `Id_Usuario`) VALUES
+('C25764859037813', 'U00005'),
+('C57227365468998', 'U00005'),
+('C57745249387201', 'U00005'),
+('C59450790514171', 'U00005'),
+('C61565750305903', 'U00005'),
+('C76241440517778', 'U00005');
 
 -- --------------------------------------------------------
 
@@ -137,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `estados_movimiento` (
   `Id_EstadoMov` int(1) NOT NULL AUTO_INCREMENT,
   `Estado_Movimiento` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_EstadoMov`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `estados_movimiento`
@@ -158,10 +179,21 @@ CREATE TABLE IF NOT EXISTS `existencias` (
   `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Saldo` int(8) NOT NULL DEFAULT '0',
-  `F_LastUpdate` datetime NOT NULL,
+  `SaldoInicial` int(8) DEFAULT NULL,
+  `F_LastUpdate` date NOT NULL,
+  `EsSaldoInicial` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Existencia`),
   KEY `existencias_ibfk_1` (`Id_Articulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `existencias`
+--
+
+INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
+('E27085654116005', 'I97103925870630', 125, 120, '2023-05-24', 0),
+('E70843305429800', 'I20393496421920', 55, 54, '2023-05-24', 0),
+('E93184882188812', 'I98395158113942', 0, NULL, '2023-05-24', 1);
 
 -- --------------------------------------------------------
 
@@ -174,13 +206,25 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   `Id_Correlativo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
-  `Entrada` int(8) NOT NULL,
-  `Salida` int(8) NOT NULL,
-  `F_Movimiento` datetime NOT NULL,
+  `Entrada` int(8) NOT NULL DEFAULT '0',
+  `Salida` int(8) NOT NULL DEFAULT '0',
+  `SaldoResultante` int(8) NOT NULL,
+  `F_Movimiento` date NOT NULL,
   KEY `movimientos_ibfk_1` (`Id_Correlativo`),
   KEY `movimientos_ibfk_2` (`Id_Articulo`),
   KEY `movimientos_ibfk_3` (`Id_Existencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `movimientos`
+--
+
+INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `Entrada`, `Salida`, `SaldoResultante`, `F_Movimiento`) VALUES
+('C76241440517778', 'I97103925870630', 'E27085654116005', 120, 0, 120, '2023-05-24'),
+('C59450790514171', 'I97103925870630', 'E27085654116005', 3, 0, 123, '2023-05-24'),
+('C57227365468998', 'I20393496421920', 'E70843305429800', 54, 0, 54, '2023-05-24'),
+('C61565750305903', 'I20393496421920', 'E70843305429800', 1, 0, 55, '2023-05-24'),
+('C57745249387201', 'I97103925870630', 'E27085654116005', 2, 0, 125, '2023-05-24');
 
 -- --------------------------------------------------------
 
@@ -273,6 +317,7 @@ INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `
 ('U00001', 'Jony Edenilson', 'Morales', 'jony25lopezml@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00002', 'Gissela', 'Serrano', 'gissela25serrano@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00003', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
+('U00005', 'John', 'Doe', 'johndoe@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 0, 1),
 ('U31988', 'Kelly', 'Wakasa', 'wakasi@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 2);
 
 --
