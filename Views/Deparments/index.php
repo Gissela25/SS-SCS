@@ -41,6 +41,7 @@ include_once "./Core/config.php"
                             <tr>
                                 <th class="text-center">ID Departamento</th>
                                 <th class="text-center">Departamento</th>
+                                <th class="text-center">Estado</th>
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Anular</th>
 
@@ -52,12 +53,13 @@ include_once "./Core/config.php"
                             // if($departamento['Id_Estado']==1)
                             // {
                             ?>
-                            <tr id="id_<?=$departamento['Id_Departamento']?>">
+                            <tr id="id_<?=$departamento['Id_Departamento']?>"
+                                class="<?=($departamento['Id_Estado']==2)?"text-danger":""?>">
                                 <td class="text-center"><?=$departamento['Id_Departamento']?></td>
                                 <td class="text-center"><?=$departamento['NombreD']?></td>
                                 <td class="text-center">
-                                <?php
-                                if($departamento['Id_Departamento']==1)
+                                    <?php
+                                if($departamento['Id_Estado']==1)
                                 {
                                 ?>
                                     Activo
@@ -69,16 +71,18 @@ include_once "./Core/config.php"
                                     <?php
                                 }
                                 ?>
-                                    <form action="<?=PATH?>Deparments/Operations/<?=$departamento['Id_Departamento']?>" method="post">
+                                </td>
+                                <td class="text-center">
                                         <a name="editar"
                                             href="<?=PATH?>Deparments/Update/<?=$departamento['Id_Departamento']?>"
                                             id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                
+
                                 </td>
+
                                 <td class="text-center">
 
-                                     <?php
-                                if($departamento['Id_Departamento']==1)
+                                    <?php
+                                if($departamento['Id_Estado']==1)
                                 {
                                 ?>
                                     <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
@@ -96,7 +100,7 @@ include_once "./Core/config.php"
                                     <?php
                                 }
                                 ?>
-                                
+
 
                                 </td>
                             </tr>

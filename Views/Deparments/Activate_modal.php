@@ -12,7 +12,7 @@
                     <?=$departamento['NombreD']?>?</h4>
             </div>
             <div class="modal-footer">
-                <form role="form" method="post" action="<?=PATH?>Users/Operations/<?=$departamento['Id_Departamento']?>">
+                <form role="form" method="post" action="<?=PATH?>Deparments/Operations/<?=$departamento['Id_Departamento']?>">
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-danger" id="Activar" name="Activar">Activar</button>
                 </form>
