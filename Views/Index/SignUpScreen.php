@@ -24,7 +24,7 @@
                             <img src="<?=PATH?>Assets/imgs/logo.png" class="img-thumbnail" alt="...">
                         </div>
                         <div class="col-4 my-3">
-                            <form action="<?=PATH?>Users/Index" method="POST" role="form">
+                            <form action="<?=PATH?>Articles/Index" method="POST" role="form">
                                 <div class="mb-3">
                                     <select class="form-select" name="area" aria-label="Default select example">
                                         <option selected>área</option>

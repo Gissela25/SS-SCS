@@ -74,6 +74,7 @@ class ArticlesController extends Controller{
             $articulo['Id_Presentacion']=$Id_Presentacion;
             $articulo['Id_Departamento']=$Id_Departamento;
             $articulo['Id_Area']=$Id_Area;
+            $articulo['Id_Existencia']=$code2;
             //Comprobamos si el arreglo errores está vacío o no
             if(count($errores)>0)
                 {
