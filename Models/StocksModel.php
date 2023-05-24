@@ -16,7 +16,8 @@ class StocksModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT existencias.Id_Existencia, articulos.NombreA, existencias.Saldo, existencias.F_LastUpdate FROM existencias JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo;";
+            $query = "SELECT existencias.Id_Existencia, articulos.NombreA, existencias.Saldo, existencias.F_LastUpdate FROM existencias JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo
+            WHERE Id_Estado ='1';";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);
         }
@@ -62,8 +63,74 @@ class StocksModel extends ConnectionModel{
 
     public function getCode()
     {
-        $codigo = $this->generateCodeUsers();
+        $codigo = $this->generateCodeCorrelative();
         return $codigo;
+    }
+
+    public function UpdateBalance($existencia = array()){
+        extract($existencia);
+        $query = "UPDATE existencias SET Saldo=:Saldo, F_LastUpdate=:F_LastUpdate WHERE Id_Existencia =:Id_Existencia ;";
+        return $this->set_query($query,$existencia);
+    }
+
+    public function AddBeginningBalance($existencia = array(),$correlative = array(), $movimiento = array()){
+        extract($existencia);
+        extract($correlative);
+        extract($movimiento);
+        // Actualizamos y colocamos las variables que realmente se actualizarán
+        $query = "UPDATE existencias SET Saldo=:Saldo, SaldoInicial=:SaldoInicial, F_LastUpdate=:F_LastUpdate,  EsSaldoInicial=:EsSaldoInicial WHERE Id_Existencia =:Id_Existencia ;";
+        $firsResult =  $this->set_query($query,$existencia);
+        if($firsResult){
+            $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
+            $secondResult =  $this->set_query($query,$correlative);
+            if($secondResult){
+                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, Entrada, SaldoResultante, F_Movimiento)
+                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :Entrada, :SaldoResultante, :F_Movimiento)";
+                $thirdResult =  $this->set_query($query,$movimiento);
+                if($thirdResult){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function AddBalance($existencia = array(),$correlative = array(), $movimiento = array()){
+        extract($existencia);
+        extract($correlative);
+        extract($movimiento);
+        // Actualizamos y colocamos las variables que realmente se actualizarán
+        $query = "UPDATE existencias SET Saldo=:Saldo, F_LastUpdate=:F_LastUpdate WHERE Id_Existencia =:Id_Existencia ;";
+        $firsResult =  $this->set_query($query,$existencia);
+        if($firsResult){
+            $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
+            $secondResult =  $this->set_query($query,$correlative);
+            if($secondResult){
+                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, Entrada, SaldoResultante, F_Movimiento)
+                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :Entrada, :SaldoResultante, :F_Movimiento)";
+                $thirdResult =  $this->set_query($query,$movimiento);
+                if($thirdResult){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
     }
 
     public function reactivate($id)

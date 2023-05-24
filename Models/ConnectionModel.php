@@ -112,7 +112,7 @@ abstract class ConnectionModel
     public function generateCodeArticules(){
         $generated_code = '';
         do {
-            $code = rand(100000, 999999);
+            $code = rand(10000000000000, 99999999999999);
             $generated_code = 'I' . $code;
             $query = "SELECT COUNT(*) FROM articulos WHERE Id_Articulo = ?";
             $result = $this->get_query($query, [$generated_code]);
@@ -123,9 +123,20 @@ abstract class ConnectionModel
     public function generateCodeExistencias(){
         $generated_code = '';
         do {
-            $code = rand(100000, 999999);
+            $code = rand(10000000000000, 99999999999999);
             $generated_code = 'E' . $code;
-            $query = "SELECT COUNT(*) FROM articulos WHERE Id_Articulo = ?";
+            $query = "SELECT COUNT(*) FROM existencias WHERE Id_Existencia = ?";
+            $result = $this->get_query($query, [$generated_code]);
+        } while ($result[0]["COUNT(*)"] > 0);
+        return $generated_code;
+    }
+
+    public function generateCodeCorrelative(){
+        $generated_code = '';
+        do {
+            $code = rand(10000000000000, 99999999999999);
+            $generated_code = 'C' . $code;
+            $query = "SELECT COUNT(*) FROM correlativos WHERE Id_Correlativo = ?";
             $result = $this->get_query($query, [$generated_code]);
         } while ($result[0]["COUNT(*)"] > 0);
         return $generated_code;
