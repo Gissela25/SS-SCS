@@ -56,6 +56,19 @@ include_once "./Core/config.php"
                                 <td class="text-center"><?=$departamento['Id_Departamento']?></td>
                                 <td class="text-center"><?=$departamento['NombreD']?></td>
                                 <td class="text-center">
+                                <?php
+                                if($departamento['Id_Departamento']==1)
+                                {
+                                ?>
+                                    Activo
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    Inactivo
+                                    <?php
+                                }
+                                ?>
                                     <form action="<?=PATH?>Deparments/Operations/<?=$departamento['Id_Departamento']?>" method="post">
                                         <a name="editar"
                                             href="<?=PATH?>Deparments/Update/<?=$departamento['Id_Departamento']?>"
@@ -63,11 +76,32 @@ include_once "./Core/config.php"
                                                 
                                 </td>
                                 <td class="text-center">
-                                    
-                                                <button name="Desactivar" type="submit" id="Desactivar"
-                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+
+                                     <?php
+                                if($departamento['Id_Departamento']==1)
+                                {
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-dash-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOf_<?=$departamento['Id_Departamento']?>"
+                                            title="Desactivar"> </button></i>
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-plus-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOn_<?=$departamento['Id_Departamento']?>"
+                                            title="Activar"> </button></i>
+                                    <?php
+                                }
+                                ?>
+                                
+
                                 </td>
                             </tr>
+                            <?php include 'deactivate_modal.php'; ?>
+                            <?php include 'activate_modal.php'; ?>
                             <?php
                         }
                     ?>

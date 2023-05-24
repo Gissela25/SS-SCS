@@ -45,19 +45,19 @@ class ArticlesModel extends ConnectionModel{
     }
     public function delete($id='')
     {
-        // //Creamos una consulta donde eliminamos un solo registro
-        // $query = "UPDATE usuarios SET Id_Estado='2' WHERE Id_Usuario=:Id_Usuario";
-        // //Utilizamos set_query para eliminar el registro (actualizar a deshabilitado)
-        // return $this->set_query($query,[":Id_Usuario"=>$id]);
+         //Creamos una consulta donde eliminamos un solo registro
+         $query = "UPDATE articulos SET Id_Estado='2' WHERE Id_Articulo=:Id_Articulo";
+        //Utilizamos set_query para eliminar el registro (actualizar a deshabilitado)
+         return $this->set_query($query,[":Id_Articulo"=>$id]);
     }
-    //Funcion pora contar la cantidad de usuarios inactivos
+    //Funcion pora contar la cantidad de articulos inactivos
     public function getInactive()
     {
-        // //Creamos una variable en donde almacenaremos la consulta que haremos, buscando todos los registro que su estado sea 2
-        // $query='';
-        //     $query = "SELECT * FROM usuarios WHERE Id_Estado='2';";
-        //     //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
-        //     return $this->get_query($query);
+         //Creamos una variable en donde almacenaremos la consulta que haremos, buscando todos los registro que su estado sea 2
+         $query='';
+             $query = "SELECT * FROM articulos WHERE Id_Estado='2';";
+        //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+             return $this->get_query($query);
     }
 
     public function getCode()
@@ -69,9 +69,9 @@ class ArticlesModel extends ConnectionModel{
     public function reactivate($id)
     {
          //Creamos una consulta donde eliminamos un solo registro
-         $query = "UPDATE usuarios SET Id_Estado='1' WHERE Id_Usuario=:Id_Usuario";
+         $query = "UPDATE articulos SET Id_Estado='1' WHERE Id_Articulo=:Id_Articulo";
          //Utilizamos set_query para reactivar el registro (actualizar a activo)
-         return $this->set_query($query,[":Id_Usuario"=>$id]);
+         return $this->set_query($query,[":Id_Articulo"=>$id]);
     }
 }
 

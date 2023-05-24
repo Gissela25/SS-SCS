@@ -73,25 +73,25 @@ class PresentationsController extends Controller{
         }
     }
 
-    //Activar o Desactivar registros (usuarios)
-    // public function Operations($id)
-    // {
-    //     if(isset($_POST['Desactivar']))
-    //     {
-    //         if($this->modelo->delete($id))
-    //         {
-    //             header('Location: '.PATH.'Users');
-    //         }
-    //     }
+    //Activar o Desactivar registros (Presentacion)
+     public function Operations($id)
+     {
+         if(isset($_POST['Desactivar']))
+         {
+             if($this->modelo->delete($id))
+             {
+                 header('Location: '.PATH.'Presentations');
+             }
+         }
 
-    //     if(isset($_POST['Activar']))
-    //     {
-    //         if($this->modelo->reactivate($id))
-    //         {
-    //             header('Location: '.PATH.'Users');
-    //         }
-    //     }
-    // }
+         if(isset($_POST['Activar']))
+         {
+             if($this->modelo->reactivate($id))
+             {
+                 header('Location: '.PATH.'Presentations');
+             }
+         }
+     }
 
     //Rendirzamos la vista de actualizacion de perfil
     public function Update($id)
@@ -122,7 +122,7 @@ class PresentationsController extends Controller{
                array_push($errores,"El campo presentación acepta solo texto");
              }
              // Guardamos las variables en un arreglo llamado usuario
-             $presentacion['Nombre']=$Nombre;
+             $presentacion['NombreP']=$Nombre;
              $presentacion['Id_Presentacion']=$Id_Presentacion;
              //Comprobamos si el arreglo errores está vacío o no
              if(count($errores)>0)

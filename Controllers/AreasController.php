@@ -76,25 +76,25 @@ class AreasController extends Controller{
         }
     }
 
-    //Activar o Desactivar registros (usuarios)
-    // public function Operations($id)
-    // {
-    //     if(isset($_POST['Desactivar']))
-    //     {
-    //         if($this->modelo->delete($id))
-    //         {
-    //             header('Location: '.PATH.'Users');
-    //         }
-    //     }
+    //Activar o Desactivar registros (Areas)
+     public function Operations($id)
+     {
+         if(isset($_POST['Desactivar']))
+         {
+             if($this->modelo->delete($id))
+             {
+                 header('Location: '.PATH.'Areas');
+             }
+         }
 
-    //     if(isset($_POST['Activar']))
-    //     {
-    //         if($this->modelo->reactivate($id))
-    //         {
-    //             header('Location: '.PATH.'Users');
-    //         }
-    //     }
-    // }
+         if(isset($_POST['Activar']))
+         {
+             if($this->modelo->reactivate($id))
+             {
+                 header('Location: '.PATH.'Areas');
+             }
+         }
+     }
 
     //Rendirzamos la vista de actualizacion de perfil
     public function Update($id)

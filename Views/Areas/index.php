@@ -56,21 +56,51 @@ include_once "./Core/config.php"
                                 <th class="text-center"><?=$area['Id_Area']?></td>
                                 <th class="text-center"><?=$area['Nombre']?></td>
                                 <td class="text-center">
+                                    <?php
+                                if($area['Id_Area']==1)
+                                {
+                                ?>
+                                    Activo
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    Inactivo
+                                    <?php
+                                }
+                                ?>
                                     <form action="<?=PATH?>Areas/Operations/<?=$area['Id_Area']?>" method="post">
                                         <a name="editar"
                                             href="<?=PATH?>Areas/Update/<?=$area['Id_Area']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                
+                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>                            
                                 </td>
-
                                 <td class="text-center">
-                                <button name="Desactivar" type="submit" id="Desactivar"
-                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
 
 
+                                <?php
+                                if($area['Id_Area']==1)
+                                {
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-dash-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOf_<?=$area['Id_Area']?>"
+                                            title="Desactivar"> </button></i>
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-plus-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOn_<?=$area['Id_Area']?>"
+                                            title="Activar"> </button></i>
+                                    <?php
+                                }
+                                ?>
 
                                 </td>
                             </tr>
+                            <?php include 'deactivate_modal.php'; ?>
+                            <?php include 'activate_modal.php'; ?>
                             <?php
                         }
                     ?>
