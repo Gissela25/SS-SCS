@@ -83,7 +83,7 @@ class PresentationsController extends Controller{
         {
             if($this->modelo->delete($id))
             {
-                header('Location: '.PATH.'Users');
+                header('Location: '.PATH.'Presentations');
             }
         }
 
@@ -91,7 +91,7 @@ class PresentationsController extends Controller{
         {
             if($this->modelo->reactivate($id))
             {
-                header('Location: '.PATH.'Users');
+                header('Location: '.PATH.'Presentations');
             }
         }
     }

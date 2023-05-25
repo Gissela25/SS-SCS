@@ -33,7 +33,7 @@ include_once "./Core/config.php"
 ?>
     <div class="row mx-5 mt-5">
         <h5 style="text-align:center">Ingresar Articulos</h5>
-        <h3>Centro de Sangre: William Portan</h3>
+        <h3>Centro de Sangre: <?=$_SESSION['usuario']?></h3>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Articles/Insert" style="color: #FF0032"><i
                     class="bi bi-plus-circle"></i>Agregar
@@ -60,7 +60,7 @@ include_once "./Core/config.php"
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
                         <tr id="id_<?=$producto['Id_Articulo']?>"
-                        class="<?=($producto['Id_Estado']==2)?"text-danger":""?>">
+                            class="<?=($producto['Id_Estado']==2)?"text-danger":""?>">
                             <td class="text-center"><?=$producto['Id_Articulo']?></td>
                             <td class="text-center"><?=$producto['NombreA']?></td>
                             <td class="text-center"><?=$producto['NombreP']?></td>

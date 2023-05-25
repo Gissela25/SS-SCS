@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 24, 2023 at 08:53 PM
+-- Generation Time: May 25, 2023 at 06:28 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `articulos` (
 
 INSERT INTO `articulos` (`Id_Articulo`, `NombreA`, `Id_Presentacion`, `Id_Departamento`, `Id_Area`, `Id_Estado`) VALUES
 ('I17444664310128', 'Agua Mineral', 'P123', 'D32551', 'A12343', 1),
+('I48081567842105', 'Gasas', 'P123', 'D44522', 'A12343', 1),
 ('I99745938237056', 'Jeringas', 'P123', 'D44522', 'A12345', 1);
 
 -- --------------------------------------------------------
@@ -188,7 +189,8 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 
 INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
 ('E43321048868076', 'I99745938237056', 25, 25, '2023-05-24', 0),
-('E81797379711633', 'I17444664310128', 60, 55, '2023-05-24', 0);
+('E81797379711633', 'I17444664310128', 60, 55, '2023-05-24', 0),
+('E95265838413285', 'I48081567842105', 0, NULL, '2023-05-25', 1);
 
 -- --------------------------------------------------------
 
@@ -231,11 +233,13 @@ CREATE TABLE IF NOT EXISTS `movimientos_temp` (
   `Id_Session` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Usuario` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Cantidad` int(8) NOT NULL,
-  `Id_EstadoMov` int(1) NOT NULL,
+  `Id_EstadoMov` int(1) NOT NULL DEFAULT '1',
   KEY `movimientos_temp_ibfk_1` (`Id_EstadoMov`),
   KEY `movimientos_temp_ibfk_2` (`Id_Articulo`),
-  KEY `movimientos_temp_ibfk_3` (`Id_Usuario`)
+  KEY `movimientos_temp_ibfk_3` (`Id_Usuario`),
+  KEY `movimientos_temp_ibfk_5` (`Id_Existencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -312,7 +316,7 @@ INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `
 ('U00002', 'Gissela', 'Serrano', 'gissela25serrano@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00003', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00005', 'John', 'Doe', 'johndoe@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 0, 1),
-('U31988', 'Kelly', 'Wakasa', 'wakasi@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 2);
+('U31988', 'Kelly', 'Wakasa', 'wakasi@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1);
 
 --
 -- Constraints for dumped tables
@@ -365,7 +369,8 @@ ALTER TABLE `movimientos`
 ALTER TABLE `movimientos_temp`
   ADD CONSTRAINT `movimientos_temp_ibfk_1` FOREIGN KEY (`Id_EstadoMov`) REFERENCES `estados_movimiento` (`Id_EstadoMov`),
   ADD CONSTRAINT `movimientos_temp_ibfk_2` FOREIGN KEY (`Id_Articulo`) REFERENCES `articulos` (`Id_Articulo`),
-  ADD CONSTRAINT `movimientos_temp_ibfk_3` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuarios` (`Id_Usuario`);
+  ADD CONSTRAINT `movimientos_temp_ibfk_3` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuarios` (`Id_Usuario`),
+  ADD CONSTRAINT `movimientos_temp_ibfk_5` FOREIGN KEY (`Id_Existencia`) REFERENCES `existencias` (`Id_Existencia`);
 
 --
 -- Constraints for table `presentaciones`

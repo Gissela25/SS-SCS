@@ -21,7 +21,7 @@ class MovementsModel extends ConnectionModel{
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN areas ON articulos.Id_Area = areas.Id_Area 
             JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento
-            WHERE articulos.Id_Estado  = '1';";
+            WHERE articulos.Id_Estado  = '1' AND  existencias.Saldo > '0';";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);
         }
@@ -32,11 +32,62 @@ class MovementsModel extends ConnectionModel{
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN areas ON articulos.Id_Area = areas.Id_Area 
             JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento
-            WHERE articulos.Id_Estado  = '1' WHERE Id_Articulo=:Id_Articulo;";
+            WHERE articulos.Id_Estado  = '1' AND articulos.Id_Articulo=:Id_Articulo;";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
         }
     }
+
+    public function ModifyItemToWithDraw($movimiento=array()){
+        extract($movimiento);
+        $query = "UPDATE movimientos_temp SET Cantidad=:Cantidad WHERE Id_Articulo=:Id_Articulo;";
+        return $this->set_query($query,$movimiento);
+    }
+
+    public function getMovementsTemp($id='')
+    {
+        $query='';
+        $query = "SELECT * FROM movimientos_temp 
+        JOIN articulos ON movimientos_temp.Id_Articulo = articulos.Id_Articulo
+        JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
+        JOIN areas ON articulos.Id_Area = areas.Id_Area 
+        JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento
+        WHERE Id_Session=:Id_Session AND Cantidad > '0'";
+        return $this->get_query($query,[":Id_Session"=>$id]);
+    }
+
+    public function searchMovements(){
+        $query = "SELECT * FROM movimientos
+        JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo";
+        return $this->get_query($query);
+    }
+
+    public function verifyItem($item = array()){
+        extract($item);
+        $query = "SELECT * FROM movimientos_temp WHERE Id_Articulo=:Id_Articulo
+        AND Id_Session=:Id_Session";
+        return $this->get_query($query,$item);
+    }
+
+    public function createOrModifyWithDrawal($withDrawal=array(), $op=''){
+        extract($withDrawal);
+        if($op=="firts"){
+            $query = "INSERT INTO movimientos_temp( Id_Session, Id_Articulo, Id_Usuario, Id_Existencia, Cantidad ) VALUES( :Id_Session, :Id_Articulo, :Id_Usuario, :Id_Existencia, :Cantidad  )";
+            return $this->set_query($query,$withDrawal);
+        }
+        else if($op=="notFirst"){
+            $query = "UPDATE movimientos_temp SET Cantidad=:Cantidad WHERE Id_Articulo=:Id_Articulo 
+            AND Id_Session=:Id_Session;";
+            return $this->set_query($query,$withDrawal);
+        }
+    }
+
+    public function createWithDrawal($withDrawal=array()){
+        extract($withDrawal);
+        $query = "INSERT INTO movimientos_temp( Id_Session, Id_Articulo, Id_Usuario, Cantidad, Id_Existencia ) VALUES( :Id_Session, :Id_Articulo, :Id_Usuario, :Cantidad, :Id_Existencia  )";
+        return $this->set_query($query,$withDrawal);
+    }
+
     //Declaramos un arreglo en donde vendrán las variables que guardaremos
     public function create($arreglo = array(), $arreglo2 = array())
     {
