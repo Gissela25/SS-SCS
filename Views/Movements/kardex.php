@@ -50,8 +50,7 @@ include_once "./Core/config.php"
                         //Para imprimir a los usarios inactivos
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
-                        <tr id="id_<?=$producto['Id_Articulo']?>"
-                            class="<?=($producto['Id_Estado']==2)?"text-danger":""?>">
+                        <tr id="id_<?=$producto['Id_Articulo']?>">
                             <td class="text-center"><?=$producto['Id_Articulo']?></td>
                             <td class="text-center"><?=$producto['NombreA']?></td>
                             <td class="text-center"><?=$producto['NombreP']?></td>

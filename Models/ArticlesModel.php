@@ -22,7 +22,7 @@ class ArticlesModel extends ConnectionModel{
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE Id_Articulo=:Id_Articulo";
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE Id_Articulo=:Id_Articulo";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
         }
