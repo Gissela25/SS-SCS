@@ -70,6 +70,16 @@ include_once "./Core/config.php"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
                 crossorigin="anonymous">
             </script>
+             <script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#datatable2').DataTable();
+    });
+    </script>
 </body>
 
 </html>
