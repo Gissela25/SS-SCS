@@ -10,8 +10,6 @@
             <div class="modal-body py-4 my-2">
                 <h4 class="text-center">¿Deseas realmente <span class="text-success">activar</span> a
                     <?=$producto['NombreA']?>
-                    <?=$producto['NombreP']?>
-                    <?=$producto['NombreD']?>?</h4>
             </div>
             <div class="modal-footer">
                 <form role="form" method="post" action="<?=PATH?>Articles/Operations/<?=$producto['Id_Articulo']?>">

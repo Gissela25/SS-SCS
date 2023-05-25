@@ -69,7 +69,7 @@ class ArticlesModel extends ConnectionModel{
         //Creamos una consulta donde eliminamos un solo registro
         $query = "UPDATE articulos SET Id_Estado='2' WHERE Id_Articulo=:Id_Articulo";
         //Utilizamos set_query para eliminar el registro (actualizar a deshabilitado)
-        return $this->set_query($query,[":Id_Usuario"=>$id]);
+        return $this->set_query($query,[":Id_Articulo"=>$id]);
     }
     //Funcion pora contar la cantidad de usuarios inactivos
     public function getInactive()
@@ -96,9 +96,9 @@ class ArticlesModel extends ConnectionModel{
     public function reactivate($id)
     {
          //Creamos una consulta donde eliminamos un solo registro
-         $query = "UPDATE usuarios SET Id_Estado='1' WHERE Id_Usuario=:Id_Usuario";
+         $query = "UPDATE articulos SET Id_Estado='1' WHERE Id_Articulo=:Id_Articulo";
          //Utilizamos set_query para reactivar el registro (actualizar a activo)
-         return $this->set_query($query,[":Id_Usuario"=>$id]);
+         return $this->set_query($query,[":Id_Articulo"=>$id]);
     }
 }
 

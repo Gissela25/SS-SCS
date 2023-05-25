@@ -172,7 +172,7 @@ class ArticlesController extends Controller{
         {
             if($this->modelo->delete($id))
             {
-                header('Location: '.PATH.'Users');
+                header('Location: '.PATH.'Articles');
             }
         }
 
@@ -180,7 +180,7 @@ class ArticlesController extends Controller{
         {
             if($this->modelo->reactivate($id))
             {
-                header('Location: '.PATH.'Users');
+                header('Location: '.PATH.'Articles');
             }
         }
     }
