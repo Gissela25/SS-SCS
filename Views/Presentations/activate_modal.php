@@ -12,7 +12,7 @@
                     <?=$presentacion['NombreP']?>?</h4>
             </div>
             <div class="modal-footer">
-                <form role="form" method="post" action="<?=PATH?>Users/Operations/<?=$presentacion['Id_Presentacion']?>">
+                <form role="form" method="post" action="<?=PATH?>Presentations/Operations/<?=$presentacion['Id_Presentacion']?>">
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-danger" id="Activar" name="Activar">Activar</button>
                 </form>

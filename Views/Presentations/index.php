@@ -41,8 +41,9 @@ include_once "./Core/config.php"
                             <tr>
                                 <th class="text-center">ID Presentación</th>
                                 <th class="text-center">Presentación</th>
+                                <th class="text-center">Estado</th>
                                 <th class="text-center">Editar</th>
-                                <th class="text-center">Anular</th>
+                                <th class="text-center">Activar/Desactivar</th>
 
                             </tr>
                         </thead>
@@ -52,12 +53,13 @@ include_once "./Core/config.php"
                             // if($departamento['Id_Estado']==1)
                             // {
                             ?>
-                            <tr id="id_<?=$presentacion['Id_Presentacion']?>">
+                            <tr id="id_<?=$presentacion['Id_Presentacion']?>"
+                            class="<?=($presentacion['Id_Estado']==2)?"text-danger":""?>">
                                 <td class="text-center"><?=$presentacion['Id_Presentacion']?></td>
                                 <td class="text-center"><?=$presentacion['NombreP']?></td>
                                 <td class="text-center">
                                      <?php
-                                if($presentacion['Id_Presentacion']==1)
+                                if($presentacion['Id_Estado']==1)
                                 {
                                 ?>
                                     Activo
@@ -69,7 +71,8 @@ include_once "./Core/config.php"
                                     <?php
                                 }
                                 ?>
-                                    <form action="<?=PATH?>Presentations/Operations/<?=$presentacion['Id_Presentacion']?>" method="post">
+                                </td>
+                                <td class="text-center">
                                         <a name="editar"
                                             href="<?=PATH?>Presentations/Update/<?=$presentacion['Id_Presentacion']?>"
                                             id="editar" class="btn btn-dark"><i class="bi bi-pencil">
@@ -77,7 +80,7 @@ include_once "./Core/config.php"
                                 <td class="text-center">
 
                                 <?php
-                                if($presentacion['Id_Presentacion']==1)
+                                if($presentacion['Id_Estado']==1)
                                 {
                                 ?>
                                  <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i

@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="setModalStateOf_<?php echo $presentacion['Id_presentacion']?>" tabindex="-1"
+<div class="modal fade" id="setModalStateOf_<?php echo $presentacion['Id_Presentacion']?>" tabindex="-1"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -12,7 +12,7 @@
                     <?=$presentacion['NombreP']?>?</h4>
             </div>
             <div class="modal-footer">
-                <form role="form" method="post" action="<?=PATH?>Users/Operations/<?=$presentacion['Id_presentacion']?>">
+                <form role="form" method="post" action="<?=PATH?>Presentations/Operations/<?=$presentacion['Id_Presentacion']?>">
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-danger" id="Desactivar" name="Desactivar">Desactivar</button>
                 </form>

@@ -43,7 +43,7 @@ include_once "./Core/config.php"
                                 <th class="text-center">Departamento</th>
                                 <th class="text-center">Estado</th>
                                 <th class="text-center">Editar</th>
-                                <th class="text-center">Anular</th>
+                                <th class="text-center">Activas/Desactivar</th>
 
                             </tr>
                         </thead>

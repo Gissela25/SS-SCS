@@ -14,7 +14,7 @@
                     <?=$producto['NombreD']?>?</h4>
             </div>
             <div class="modal-footer">
-                <form role="form" method="post" action="<?=PATH?>Users/Operations/<?=$producto['Id_Articulo']?>">
+                <form role="form" method="post" action="<?=PATH?>Articles/Operations/<?=$producto['Id_Articulo']?>">
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-danger" id="Activar" name="Activar">Activar</button>
                 </form>

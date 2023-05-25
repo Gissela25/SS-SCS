@@ -46,70 +46,72 @@ include_once "./Core/config.php"
                             <th class="text-center">Articulo</th>
                             <th class="text-center">Presentacion</th>
                             <th class="text-center">Departamento</th>
+                            <th class="text-center">Estado</th>
                             <th class="text-center">Editar</th>
-                            <th class="text-center">Anular</th>
+                            <th class="text-center">Activar/Desactivar</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                        <?php
                             //Recorremos el arreglo alojado en ViewBag con nombre empleados
                     foreach($productos as $producto)
                     {
                         //Para imprimir a los usarios inactivos
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
-                        <tr id="id_<?=$producto['Id_Articulo']?>">
+                        <tr id="id_<?=$producto['Id_Articulo']?>"
+                        class="<?=($producto['Id_Estado']==2)?"text-danger":""?>">
                             <td class="text-center"><?=$producto['Id_Articulo']?></td>
                             <td class="text-center"><?=$producto['NombreA']?></td>
                             <td class="text-center"><?=$producto['NombreP']?></td>
                             <td class="text-center"><?=$producto['NombreD']?></td>
                             <td class="text-center">
-                                 <?php
-                                if($producto['Id_Articulo']==1)
+                                <?php
+                                if($producto['Id_Estado']==1)
                                 {
                                 ?>
-                                    Activo
-                                    <?php
+                                Activo
+                                <?php
                                 }
                                 else{
                                 ?>
-                                    Inactivo
-                                    <?php
+                                Inactivo
+                                <?php
                                 }
                                 ?>
-                                    <form action="<?=PATH?>Articles/Operations/<?=$producto['Id_Articulo']?>" method="post">
-                                        <a name="editar"
-                                            href="<?=PATH?>Articles/Update/<?=$producto['Id_Articulo']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                
-                                </td>
-                                <td class="text-center">
-                               <?php
-                                if($producto['Id_Articulo']==1)
+                            </td>
+                            <td class="text-center">
+                                <a name="editar" href="<?=PATH?>Articles/Update/<?=$producto['Id_Articulo']?>"
+                                    id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+
+                            </td>
+                            <td class="text-center">
+                                <?php
+                                if($producto['Id_Estado']==1)
                                 {
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-dash-lg" data-bs-toggle="modal"
-                                            data-bs-target="#setModalStateOf_<?=$producto['Id_Articulo']?>"
-                                            title="Desactivar"> </button></i>
-                                    <?php
+                                <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                        class="bi bi-dash-lg" data-bs-toggle="modal"
+                                        data-bs-target="#setModalStateOf_<?=$producto['Id_Articulo']?>"
+                                        title="Desactivar"> </button></i>
+                                <?php
                                 }
                                 else{
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-plus-lg" data-bs-toggle="modal"
-                                            data-bs-target="#setModalStateOn_<?=$producto['Id_Articulo']?>"
-                                            title="Activar"> </button></i>
-                                    <?php
+                                <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                        class="bi bi-plus-lg" data-bs-toggle="modal"
+                                        data-bs-target="#setModalStateOn_<?=$producto['Id_Articulo']?>" title="Activar">
+                                </button></i>
+                                <?php
                                 }
                                 ?>
 
 
-                              </td>
-                         </tr>
-                         <?php include 'deactivate_modal.php'; ?>
-                         <?php include 'activate_modal.php'; ?>
-                         <?php
+                            </td>
+                        </tr>
+                        <?php include 'deactivate_modal.php'; ?>
+                        <?php include 'activate_modal.php'; ?>
+                        <?php
                      }
                     ?>
                     </tbody>
