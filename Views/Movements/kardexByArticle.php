@@ -27,17 +27,22 @@ include_once "./Core/config.php"
 ?>
  <div class="row mx-5 mt-5">
         <h2 style="text-align:center"> Articulos</h5>
-        <h3>Centro de Sangre: <?=$_SESSION['usuario']?></h3>
+        <h3>Centro de Sangre: <?=$_SESSION['usuario']?> </h3>
+        <h3><?=$productos[0]['NombreA']?> / Saldo Inicial:<?=$productos[0]['SaldoInicial']?>  </h3>
         <div class="col ml-5">
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
-                            <th class="text-center">Codigo</th>
-                            <th class="text-center">Articulo</th>
+                            <th class="text-center">Codigo Art.</th>
                             <th class="text-center">Presentacion</th>
-                            <th class="text-center">Departamento</th>
-                            <th class="text-center">Kardex/Articulo</th>
+                            <th class="text-center">Responsable</th>
+                            <th class="text-center">Comprobante</th>
+                            <th class="text-center">Fecha</th>
+                            <th class="text-center">Entrada</th>
+                            <th class="text-center">Correctivo</th>
+                            <th class="text-center">Salida</th>
+                            <th class="text-center">Saldo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,13 +55,14 @@ include_once "./Core/config.php"
                         ?>
                         <tr id="id_<?=$producto['Id_Articulo']?>">
                             <td class="text-center"><?=$producto['Id_Articulo']?></td>
-                            <td class="text-center"><?=$producto['NombreA']?></td>
                             <td class="text-center"><?=$producto['NombreP']?></td>
-                            <td class="text-center"><?=$producto['NombreD']?></td>
-                            <td class="text-center"><a title="Kardex"
-                                    href="<?=PATH?>Movements/SeeSpecificKardex/<?=$producto['Id_Articulo']?>" name="Agregar"
-                                    id="Agregar" class="btn btn-dark"><i class="bi bi-clipboard2-data-fill"></i></a>
-                            </td>
+                            <td class="text-center">John Doe</td>
+                            <td class="text-center"><?=$producto['Id_Correlativo']?></td>
+                            <td class="text-center"><?=$producto['F_Movimiento']?></td>
+                            <td class="text-center"><?=$producto['Entrada']?></td>
+                            <td class="text-center"><?=$producto['Correctivo']?></td>
+                            <td class="text-center"><?=$producto['Salida']?></td>
+                            <td class="text-center"><?=$producto['SaldoResultante']?></td>
                         </tr>
                         <?php
                      }

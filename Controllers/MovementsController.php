@@ -35,6 +35,12 @@ class MovementsController extends Controller{
         $this->render("kardex.php",$viewBag);
     }
 
+    public function SeeSpecificKardex($id){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovements($id);
+        $this->render("kardexByArticle.php",$viewBag);
+    }
+
     public function WithDraw($id)
     {
         $viewBag = [];
