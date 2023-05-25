@@ -22,7 +22,7 @@ class ArticlesModel extends ConnectionModel{
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado  FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE Id_Articulo=:Id_Articulo";
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE Id_Articulo=:Id_Articulo";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
         }
@@ -32,7 +32,7 @@ class ArticlesModel extends ConnectionModel{
     {
        
         //Creamos la consulta para ingresar los datos
-        $query = "INSERT INTO articulos(Id_Articulo, NombreA , Id_Presentacion, Id_Departamento, Id_Area, Id_Existencia ) VALUES(  :Id_Articulo, :NombreA, :Id_Presentacion, :Id_Departamento  ,:Id_Area, :Id_Existencia )";
+        $query = "INSERT INTO articulos(Id_Articulo, NombreA , Id_Presentacion, Id_Departamento, Id_Area ) VALUES(  :Id_Articulo, :NombreA, :Id_Presentacion, :Id_Departamento  ,:Id_Area )";
         //Utilzamos el método set_query para realizar un registro
         $result = $this->set_query($query,$arreglo);
 
@@ -66,19 +66,19 @@ class ArticlesModel extends ConnectionModel{
     }
     public function delete($id='')
     {
-         //Creamos una consulta donde eliminamos un solo registro
-         $query = "UPDATE articulos SET Id_Estado='2' WHERE Id_Articulo=:Id_Articulo";
+        //Creamos una consulta donde eliminamos un solo registro
+        $query = "UPDATE articulos SET Id_Estado='2' WHERE Id_Articulo=:Id_Articulo";
         //Utilizamos set_query para eliminar el registro (actualizar a deshabilitado)
-         return $this->set_query($query,[":Id_Articulo"=>$id]);
+        return $this->set_query($query,[":Id_Usuario"=>$id]);
     }
-    //Funcion pora contar la cantidad de articulos inactivos
+    //Funcion pora contar la cantidad de usuarios inactivos
     public function getInactive()
     {
-         //Creamos una variable en donde almacenaremos la consulta que haremos, buscando todos los registro que su estado sea 2
-         $query='';
-             $query = "SELECT * FROM articulos WHERE Id_Estado='2';";
-        //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
-             return $this->get_query($query);
+        //Creamos una variable en donde almacenaremos la consulta que haremos, buscando todos los registro que su estado sea 2
+        $query='';
+            $query = "SELECT * FROM articulos WHERE Id_Estado='2';";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query);
     }
 
     public function getCode()
@@ -96,9 +96,9 @@ class ArticlesModel extends ConnectionModel{
     public function reactivate($id)
     {
          //Creamos una consulta donde eliminamos un solo registro
-         $query = "UPDATE articulos SET Id_Estado='1' WHERE Id_Articulo=:Id_Articulo";
+         $query = "UPDATE usuarios SET Id_Estado='1' WHERE Id_Usuario=:Id_Usuario";
          //Utilizamos set_query para reactivar el registro (actualizar a activo)
-         return $this->set_query($query,[":Id_Articulo"=>$id]);
+         return $this->set_query($query,[":Id_Usuario"=>$id]);
     }
 }
 
