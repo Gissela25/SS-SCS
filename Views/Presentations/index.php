@@ -41,8 +41,9 @@ include_once "./Core/config.php"
                             <tr>
                                 <th class="text-center">ID Presentación</th>
                                 <th class="text-center">Presentación</th>
+                                <th class="text-center">Estado</th>
                                 <th class="text-center">Editar</th>
-                                <th class="text-center">Anular</th>
+                                <th class="text-center">Activar/Desactivar</th>
 
                             </tr>
                         </thead>
@@ -52,28 +53,63 @@ include_once "./Core/config.php"
                             // if($departamento['Id_Estado']==1)
                             // {
                             ?>
-                            <tr id="id_<?=$presentacion['Id_Presentacion']?>">
+                            <tr id="id_<?=$presentacion['Id_Presentacion']?>"
+                            class="<?=($presentacion['Id_Estado']==2)?"text-danger":""?>">
                                 <td class="text-center"><?=$presentacion['Id_Presentacion']?></td>
                                 <td class="text-center"><?=$presentacion['NombreP']?></td>
                                 <td class="text-center">
-                                    <form action="<?=PATH?>Presentations/Operations/<?=$presentacion['Id_Presentacion']?>" method="post">
+                                     <?php
+                                if($presentacion['Id_Estado']==1)
+                                {
+                                ?>
+                                    Activo
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    Inactivo
+                                    <?php
+                                }
+                                ?>
+                                </td>
+                                <td class="text-center">
                                         <a name="editar"
                                             href="<?=PATH?>Presentations/Update/<?=$presentacion['Id_Presentacion']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                
-                                </td>
-
+                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil">
+                                            </a></i></td>
                                 <td class="text-center">
-                                    
-                                                <button name="Desactivar" type="submit" id="Desactivar"
-                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+
+                                <?php
+                                if($presentacion['Id_Estado']==1)
+                                {
+                                ?>
+                                 <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-dash-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOf_<?=$presentacion['Id_Presentacion']?>"
+                                            title="Desactivar"> </button></i>
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-plus-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOn_<?=$presentacion['Id_Presentacion']?>"
+                                            title="Activar"> </button></i>
+                                    <?php
+                                }
+                                ?>
+                            
                                 </td>
                             </tr>
+                            <?php include 'deactivate_modal.php'; ?>
+                            <?php include 'activate_modal.php'; ?>
                             <?php
                         }
                     ?>
                         </tbody>
                     </table>
+
+                    
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

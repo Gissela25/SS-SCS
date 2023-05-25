@@ -41,8 +41,9 @@ include_once "./Core/config.php"
                             <tr>
                                 <th class="text-center">ID Departamento</th>
                                 <th class="text-center">Departamento</th>
+                                <th class="text-center">Estado</th>
                                 <th class="text-center">Editar</th>
-                                <th class="text-center">Anular</th>
+                                <th class="text-center">Activas/Desactivar</th>
 
                             </tr>
                         </thead>
@@ -52,22 +53,59 @@ include_once "./Core/config.php"
                             // if($departamento['Id_Estado']==1)
                             // {
                             ?>
-                            <tr id="id_<?=$departamento['Id_Departamento']?>">
+                            <tr id="id_<?=$departamento['Id_Departamento']?>"
+                                class="<?=($departamento['Id_Estado']==2)?"text-danger":""?>">
                                 <td class="text-center"><?=$departamento['Id_Departamento']?></td>
                                 <td class="text-center"><?=$departamento['NombreD']?></td>
                                 <td class="text-center">
-                                    <form action="<?=PATH?>Deparments/Operations/<?=$departamento['Id_Departamento']?>" method="post">
+                                    <?php
+                                if($departamento['Id_Estado']==1)
+                                {
+                                ?>
+                                    Activo
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    Inactivo
+                                    <?php
+                                }
+                                ?>
+                                </td>
+                                <td class="text-center">
                                         <a name="editar"
                                             href="<?=PATH?>Deparments/Update/<?=$departamento['Id_Departamento']?>"
                                             id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
-                                                
+
                                 </td>
+
                                 <td class="text-center">
-                                    
-                                                <button name="Desactivar" type="submit" id="Desactivar"
-                                                    class="btn btn-dark"><i class="bi bi-file-excel"> </button></i>
+
+                                    <?php
+                                if($departamento['Id_Estado']==1)
+                                {
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-dash-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOf_<?=$departamento['Id_Departamento']?>"
+                                            title="Desactivar"> </button></i>
+                                    <?php
+                                }
+                                else{
+                                ?>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                            class="bi bi-plus-lg" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOn_<?=$departamento['Id_Departamento']?>"
+                                            title="Activar"> </button></i>
+                                    <?php
+                                }
+                                ?>
+
+
                                 </td>
                             </tr>
+                            <?php include 'deactivate_modal.php'; ?>
+                            <?php include 'activate_modal.php'; ?>
                             <?php
                         }
                     ?>

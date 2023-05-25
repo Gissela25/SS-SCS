@@ -166,13 +166,15 @@ class ArticlesController extends Controller{
          }
     }
 
+
+    //Activar o Desactivar registros (usuarios)
     public function Operations($id)
     {
         if(isset($_POST['Desactivar']))
         {
             if($this->modelo->delete($id))
             {
-                header('Location: '.PATH.'Users');
+                header('Location: '.PATH.'Articles');
             }
         }
 
@@ -180,7 +182,7 @@ class ArticlesController extends Controller{
         {
             if($this->modelo->reactivate($id))
             {
-                header('Location: '.PATH.'Users');
+                header('Location: '.PATH.'Articles');
             }
         }
     }

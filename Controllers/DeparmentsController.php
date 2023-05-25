@@ -76,6 +76,26 @@ class DeparmentsController extends Controller{
         }
     }
 
+        //Activar o Desactivar registros (Departamentos)
+        public function Operations($id)
+        {
+            if(isset($_POST['Desactivar']))
+            {
+                if($this->modelo->delete($id))
+                {
+                    header('Location: '.PATH.'Deparments');
+                }
+            }
+    
+            if(isset($_POST['Activar']))
+            {
+                if($this->modelo->reactivate($id))
+                {
+                    header('Location: '.PATH.'Deparments');
+                }
+            }
+        }
+
 
     //Rendirzamos la vista de actualizacion de perfil
     public function Update($id)
