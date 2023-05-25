@@ -38,6 +38,36 @@ class MovementsModel extends ConnectionModel{
         }
     }
 
+
+    public function getMovements($id='')
+    {
+        //Creamos una variable en donde almacenaremos la consulta que haremos
+        $query='';
+        //Comprobaremos si la variable id que traifa get() este vacíía o no
+        if($id=='')
+        {
+            //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
+            $query = "SELECT  * FROM movimientos
+            JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion
+            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query);
+        }
+        else{
+            //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
+            $query = "SELECT  * FROM existencias
+            JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo 
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
+            JOIN areas ON articulos.Id_Area = areas.Id_Area 
+            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento
+            WHERE articulos.Id_Articulo=:Id_Articulo;";
+            //Retornamos el registro
+            return $this->get_query($query,[":Id_Articulo"=>$id]);
+        }
+    }
+
     public function ModifyItemToWithDraw($movimiento=array()){
         extract($movimiento);
         $query = "UPDATE movimientos_temp SET Cantidad=:Cantidad WHERE Id_Articulo=:Id_Articulo;";
