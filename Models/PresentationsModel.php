@@ -24,6 +24,25 @@ class PresentationsModel extends ConnectionModel{
         }
     }
 
+    public function getactive($id='')
+    {
+        $query='';
+   
+        if($id=='')
+        {
+       
+            $query = "SELECT * FROM presentaciones WHERE Id_Estado=1;";
+
+            return $this->get_query($query);
+        }
+        else{
+
+            $query = "SELECT * FROM presentaciones WHERE Id_Presentacion=:Id_Presentacion";
+
+            return $this->get_query($query,[":Id_Presentacion"=>$id]);
+        }
+    }
+
     public function create($arreglo = array())
     {
         $query = "INSERT INTO presentaciones(Id_Presentacion, NombreP ) VALUES(  :Id_Presentacion ,:NombreP )";

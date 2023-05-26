@@ -24,6 +24,26 @@ class AreasModel extends ConnectionModel{
         }
     }
 
+    
+    public function getactive($id='')
+    {
+        $query='';
+   
+        if($id=='')
+        {
+       
+            $query = "SELECT * FROM areas WHERE Id_Estado=1;";
+
+            return $this->get_query($query);
+        }
+        else{
+
+            $query = "SELECT * FROM areas WHERE Id_Area=:Id_Area";
+
+            return $this->get_query($query,[":Id_Area"=>$id]);
+        }
+    }
+
     public function create($arreglo = array())
     {
         $query = "INSERT INTO areas(Id_Area, Nombre ) VALUES(  :Id_Area ,:Nombre )";

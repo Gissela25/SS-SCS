@@ -34,9 +34,9 @@ class ArticlesController extends Controller{
     public function Insert()
     {
         $viewBag = [];
-        $viewBag['lugares'] = $this->deparmentsModel->get();
-        $viewBag['formas'] = $this->presentationsModel->get();
-        $viewBag['zonas'] = $this->areasModel->get();
+        $viewBag['lugares'] = $this->deparmentsModel->getactive();
+        $viewBag['formas'] = $this->presentationsModel->getactive();
+        $viewBag['zonas'] = $this->areasModel->getactive();
         $this->render("insert.php",$viewBag);
     }
 
@@ -107,9 +107,9 @@ class ArticlesController extends Controller{
     {
         $viewBag = [];
         $viewBag["productos"]=$this->modelo->get($id);
-        $viewBag['lugares'] = $this->deparmentsModel->get();
-        $viewBag['formas'] = $this->presentationsModel->get();
-        $viewBag['zonas'] = $this->areasModel->get($id);
+        $viewBag['lugares'] = $this->deparmentsModel->getactive();
+        $viewBag['formas'] = $this->presentationsModel->getactive();
+        $viewBag['zonas'] = $this->areasModel->getactive($id);
         $this->render("update.php",$viewBag);
     }
     

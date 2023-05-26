@@ -31,7 +31,7 @@ class DeparmentsModel extends ConnectionModel{
         if($id=='')
         {
        
-            $query = "SELECT * FROM departamentos;";
+            $query = "SELECT * FROM departamentos WHERE Id_Estado = 1;";
 
             return $this->get_query($query);
         }
