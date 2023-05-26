@@ -81,19 +81,31 @@ class MovementsController extends Controller{
             extract($_POST);
             $id_session = $_SESSION['id_session'];
             $correlativo = $this->modelo->generateCorrelative();
-            //if($this->modelo->getTemporaryWithDrawalData($id_session))
-            //{
-            //    header('Location: '.PATH.'Movements');
-            //}
             $tempData = $this->modelo->getTemporaryWithDrawalData($id_session);
-            $newTempData = [];
-            foreach ($tempData as $item) {
-                $item['F_Movimiento'] = date('Y-m-d');
-                $item['Id_Correlativo'] = $correlativo;
-                $newTempData = $item;
-                var_dump($newTempData);
+            $correlative['Id_Correlativo'] = $correlativo;
+            $correlative['Id_Usuario']=$_SESSION['id_usuario'];
+            $counter=0;
+            if($this->modelo->createCorrelative($correlative)){
+                foreach ($tempData as $item) {
+                    $item['F_Movimiento'] = date('Y-m-d');
+                    $item['Id_Correlativo'] = $correlativo;             
+                    if($this->modelo->completeWithDrawals($item)){
+                        $newBalance['Id_Existencia'] = $item['Id_Existencia'];
+                        $newBalance['Id_Articulo'] = $item['Id_Articulo'];
+                        $newBalance['Saldo'] = $item['SaldoResultante'];
+                        if($this->modelo->updateBalances($newBalance))
+                        {
+                            $counter +=1;
+                        }
+                    }
+                }
             }
-            
+            if(count($tempData)== $counter){
+                if($this->modelo->deleteAllTemporaryWithDrawalData($id_session))
+                {
+                    header('Location: '.PATH.'Movements');
+                }
+            }    
         }
     }
 

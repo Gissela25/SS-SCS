@@ -58,12 +58,14 @@ class MovementsModel extends ConnectionModel{
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, existencias.SaldoInicial, presentaciones.NombreP, correlativos.Id_Correlativo, movimientos.* FROM movimientos 
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, existencias.SaldoInicial, presentaciones.NombreP, correlativos.Id_Correlativo, movimientos.*,
+            usuarios.Nombre, usuarios.Apellido FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN correlativos ON movimientos.Id_Correlativo = correlativos.Id_Correlativo
-            WHERE articulos.Id_Articulo=:Id_Articulo;";
+            JOIN usuarios ON correlativos.Id_Usuario = usuarios.Id_Usuario
+            WHERE articulos.Id_Articulo=:Id_Articulo ORDER BY movimientos.F_Movimiento DESC;;";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
         }
@@ -81,6 +83,17 @@ class MovementsModel extends ConnectionModel{
             
             return $this->get_query($query,[":Id_Session"=>$id]);
         }
+    }
+    
+    public function createCorrelative($correlative = array())
+    {
+        $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
+        return $this->set_query($query,$correlative);
+    }
+
+    public function deleteAllTemporaryWithDrawalData($id = ''){
+        $query = "DELETE FROM movimientos_temp WHERE Id_Session=:Id_Session";
+        return $this->set_query($query,[":Id_Session"=>$id]);
     }
 
     public function getNewBalance($id){
@@ -124,8 +137,10 @@ class MovementsModel extends ConnectionModel{
     }
 
     public function searchMovements(){
-        $query = "SELECT * FROM movimientos
-        JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo";
+        $query = "SELECT  articulos.Id_Articulo, articulos.NombreA, movimientos.Id_Correlativo, movimientos.F_Movimiento
+        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante FROM movimientos
+        JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+        ORDER BY movimientos.F_Movimiento DESC;";
         return $this->get_query($query);
     }
 
