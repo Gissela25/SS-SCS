@@ -154,6 +154,19 @@ include_once "./Core/config.php";
                     </table>
                 </div>
             </div>
+
+
+        </div>
+
+    </div>
+    <div class="row mx-3 my-3 text-center ">
+        <div>
+            <form role="form" method="post" action="<?=PATH?>Movements/CompleteWithDrawls">
+                <button type="submit" class="btn btn-danger btn-block" title="Completar" name="Completar"
+                    id="Completar">Completar
+                    retiro
+                </button>
+            </form>
         </div>
     </div>
     <?php    

@@ -69,6 +69,42 @@ class MovementsModel extends ConnectionModel{
         }
     }
 
+    public function getTemporaryWithDrawalData($id = ''){
+        if($id!='')
+        {
+            $query = "SELECT movimientos_temp.Id_Articulo, movimientos_temp.Id_Existencia, 
+            movimientos_temp.Cantidad as 'Salida', 
+            (existencias.Saldo - movimientos_temp.Cantidad) as 'SaldoResultante' 
+            FROM movimientos_temp
+            JOIN existencias ON movimientos_temp.Id_Existencia = existencias.Id_Existencia
+            WHERE movimientos_temp.Id_Session=:Id_Session;";
+            
+            return $this->get_query($query,[":Id_Session"=>$id]);
+        }
+    }
+
+    public function getNewBalance($id){
+        if($id!='')
+        {
+        $query = "SELECT movimientos.Id_Existencia, movimientos.Id_Articulo, movimientos.SaldoResultante FROM movimientos
+        WHERE movimientos.Id_Correlativo=:Id_Correlativo;";
+         return $this->get_query($query,[":Id_Correlativo"=>$id]);
+        }
+    }
+
+    public function completeWithDrawals($withDrawal = array()){
+        extract($withDrawal);
+        $query = "INSERT INTO movimientos( Id_Correlativo, Id_Articulo, Id_Existencia, Salida, SaldoResultante, F_Movimiento ) 
+        VALUES( :Id_Correlativo, :Id_Articulo, :Id_Existencia, :Salida, :SaldoResultante , :F_Movimiento );";
+        return $this->set_query($query,$withDrawal);
+    }
+
+    public function updateBalances($balances = array()){
+        $query = "UPDATE existencias SET Saldo=:Saldo WHERE Id_Articulo=:Id_Articulo
+        AND Id_Existencia=:Id_Existencia;";
+        return $this->set_query($query,$balances);
+    }
+
     public function ModifyItemToWithDraw($movimiento=array()){
         extract($movimiento);
         $query = "UPDATE movimientos_temp SET Cantidad=:Cantidad WHERE Id_Articulo=:Id_Articulo;";
@@ -171,6 +207,10 @@ class MovementsModel extends ConnectionModel{
         //     $query = "SELECT * FROM usuarios WHERE Id_Estado='2';";
         //     //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
         //     return $this->get_query($query);
+    }
+
+    public function generateCorrelative(){
+        return $this->generateCodeCorrelative();
     }
 
     public function getCode()

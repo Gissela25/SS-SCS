@@ -75,6 +75,28 @@ class MovementsController extends Controller{
     }
 
 
+
+    public function CompleteWithDrawls(){
+        if(isset($_POST['Completar'])){
+            extract($_POST);
+            $id_session = $_SESSION['id_session'];
+            $correlativo = $this->modelo->generateCorrelative();
+            //if($this->modelo->getTemporaryWithDrawalData($id_session))
+            //{
+            //    header('Location: '.PATH.'Movements');
+            //}
+            $tempData = $this->modelo->getTemporaryWithDrawalData($id_session);
+            $newTempData = [];
+            foreach ($tempData as $item) {
+                $item['F_Movimiento'] = date('Y-m-d');
+                $item['Id_Correlativo'] = $correlativo;
+                $newTempData = $item;
+                var_dump($newTempData);
+            }
+            
+        }
+    }
+
     public function MakeWithDrawal($id){
         if(isset($_POST['Aceptar'])){
             extract($_POST);
