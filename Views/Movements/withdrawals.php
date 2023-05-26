@@ -24,6 +24,7 @@ include_once "./Core/config.php";
     <!--
         DataTable 
     -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Articulos - Cruz Roja</title>
 </head>
 
@@ -123,37 +124,26 @@ include_once "./Core/config.php";
                                 <td class="text-center"><?=$movimiento['NombreD']?></td>
                                 <td class="text-center">
 
-                                    <form action="<?=PATH?>Movements/Operations/<?=$movimiento['Id_Articulo']?>"
-                                        role="form" method="post">
-                                        <input type="text" value="<?=isset($movimiento)?$movimiento['Cantidad']:''?>"
-                                            id="Salida" name="Salida" hidden>
-                                        <button type="submit" title="Agregar" name="Agregar" id="Agregar"
-                                            class="btn btn-dark">
-                                            <i class="bi bi-plus-circle"></i>
-                                        </button>
-                                    </form>
+                                    <button type="button" title="Agregar" name="Agregar" id="Agregar"
+                                        class="btn btn-dark btn-operacion" data-id="<?=$movimiento['Id_Articulo']?>"
+                                        data-operacion="Agregar">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </button>
 
                                 </td>
                                 <td class="text-center">
-
-                                    <form action="<?=PATH?>Movements/Operations/<?=$movimiento['Id_Articulo']?>"
-                                        role="form" method="post">
-                                        <input type="text" value="<?=isset($movimiento)?$movimiento['Cantidad']:''?>"
-                                            id="Salida" name="Salida" hidden>
-                                        <button title="Quitar" name="Quitar" type="submit" id="Quitar"
-                                            class="btn btn-dark">
-                                            <i class="bi bi-dash-circle"></i>
-                                        </button>
-                                    </form>
+                                    <button title="Quitar" name="Quitar" type="button" id="Quitar"
+                                        class="btn btn-dark btn-operacion" data-id="<?=$movimiento['Id_Articulo']?>"
+                                        data-operacion="Quitar">
+                                        <i class="bi bi-dash-circle"></i>
 
                                 </td>
 
                                 <td class="text-center">
-
-                                    <form action="<?=PATH?>Movements/Operations/<?=$movimiento['Id_Articulo']?>"
-                                        role="form" method="post">
+                                    <form role="form" method="post"
+                                        action="<?=PATH?>Movements/Operations/<?=$movimiento['Id_Articulo']?>">
                                         <button title="Eliminar" name="Eliminar" type="submit" id="Eliminar"
-                                            class="btn btn-dark">
+                                            class="btn btn-dark btn-operacion" data-operacion="Eliminar">
                                             <i class="bi bi-trash-fill"></i>
                                         </button>
                                     </form>
@@ -192,6 +182,33 @@ include_once "./Core/config.php";
                 Script para el datatable
             -->
 
+    <script>
+    $(document).ready(function() {
+        $('.btn-operacion').click(function() {
+            var button = $(this);
+            var id = button.data('id');
+            var operacion = button.data('operacion');
+            var url = '<?=PATH?>Movements/Operations/' + id;
+            var cantidadCell = button.closest('tr').find('.text-center:eq(2)');
+            var cantidad = parseInt(cantidadCell.text());
+
+            if (operacion === 'Agregar') {
+                cantidad++;
+            } else if (operacion === 'Quitar') {
+                cantidad--;
+            }
+
+            $.post(url, {
+                [operacion]: true,
+                Salida: cantidad
+            }, function(response) {
+                if (response === 'success') {
+                    cantidadCell.text(cantidad);
+                }
+            });
+        });
+    });
+    </script>
     <script>
     $(document).ready(function() {
         $('#datatable').DataTable();

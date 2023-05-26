@@ -50,38 +50,39 @@ class MovementsController extends Controller{
     }
 
     public function Operations($id)
+{
+    if(isset($_POST['Agregar']))
     {
-        if(isset($_POST['Agregar']))
+        extract($_POST);
+        $movimiento['Id_Articulo']=$id;
+        $movimiento['Cantidad'] = $Salida;        
+        if($this->modelo->ModifyItemToWithDraw($movimiento))
         {
-            extract($_POST);
-            $movimiento['Id_Articulo']=$id;
-            $movimiento['Cantidad'] = $Salida + 1;        
-            if($this->modelo->ModifyItemToWithDraw($movimiento))
-            {
-                header('Location: '.PATH.'Movements/WithDrawals');
-            }
-        }
-
-        if(isset($_POST['Quitar']))
-        {
-            extract($_POST);
-            $movimiento['Id_Articulo']=$id;
-            $movimiento['Cantidad'] = $Salida - 1;        
-            if($this->modelo->ModifyItemToWithDraw($movimiento))
-            {
-                header('Location: '.PATH.'Movements/WithDrawals');
-            }
-        }
-
-        if(isset($_POST['Eliminar']))
-        {
-            extract($_POST);   
-            if($this->modelo->deleteSpecificTemporaryWithDrawalData($id))
-            {
-                header('Location: '.PATH.'Movements/WithDrawals');
-            }
+            echo "success";
         }
     }
+
+    if(isset($_POST['Quitar']))
+    {
+        extract($_POST);
+        $movimiento['Id_Articulo']=$id;
+        $movimiento['Cantidad'] = $Salida;        
+        if($this->modelo->ModifyItemToWithDraw($movimiento))
+        {
+            echo "success";
+        }
+    }
+
+    if(isset($_POST['Eliminar']))
+    {
+        extract($_POST);   
+        if($this->modelo->deleteSpecificTemporaryWithDrawalData($id))
+        {
+            header('Location: '.PATH.'Movements/WithDrawals');
+        }
+    }
+}
+
 
 
 
