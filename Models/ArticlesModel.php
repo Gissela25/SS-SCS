@@ -16,13 +16,13 @@ class ArticlesModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento;";
+            $query = "SELECT articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento;";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE Id_Articulo=:Id_Articulo";
+            $query = "SELECT articulos.Codigo, articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE Id_Articulo=:Id_Articulo";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
         }
@@ -32,7 +32,7 @@ class ArticlesModel extends ConnectionModel{
     {
        
         //Creamos la consulta para ingresar los datos
-        $query = "INSERT INTO articulos(Id_Articulo, NombreA , Id_Presentacion, Id_Departamento, Id_Area) VALUES(  :Id_Articulo, :NombreA, :Id_Presentacion, :Id_Departamento  ,:Id_Area)";
+        $query = "INSERT INTO articulos(Id_Articulo, Codigo, NombreA , Id_Presentacion, Id_Departamento, Id_Area) VALUES(  :Id_Articulo, :Codigo, :NombreA, :Id_Presentacion, :Id_Departamento  ,:Id_Area)";
         //Utilzamos el método set_query para realizar un registro
         $result = $this->set_query($query,$arreglo);
 
@@ -61,7 +61,7 @@ class ArticlesModel extends ConnectionModel{
     {
         extract($arreglo);
         // Actualizamos y colocamos las variables que realmente se actualizarán
-        $query = "UPDATE articulos SET NombreA=:NombreA, Id_Presentacion=:Id_Presentacion, Id_Departamento=:Id_Departamento WHERE Id_Articulo=:Id_Articulo;";
+        $query = "UPDATE articulos SET Codigo=:Codigo, NombreA=:NombreA, Id_Presentacion=:Id_Presentacion, Id_Departamento=:Id_Departamento WHERE Id_Articulo=:Id_Articulo;";
         return $this->set_query($query,$arreglo);
     }
     public function delete($id='')

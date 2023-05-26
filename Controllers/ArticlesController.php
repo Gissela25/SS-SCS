@@ -70,6 +70,7 @@ class ArticlesController extends Controller{
             $articuloe['F_LastUpdate']=date('Y-m-d');
 
             $articulo['Id_Articulo']=$code1;
+            $articulo['Codigo']=$Codigo;
             $articulo['NombreA']=$Nombre;
             $articulo['Id_Presentacion']=$Id_Presentacion;
             $articulo['Id_Departamento']=$Id_Departamento;
@@ -134,6 +135,7 @@ class ArticlesController extends Controller{
                array_push($errores,"El campo articulo acepta solo texto");
              }
              // Guardamos las variables en un arreglo llamado usuario
+             $articulo['Codigo']=$Codigo;
              $articulo['NombreA']=$Nombre;
              $articulo['Id_Articulo']=$Id_Articulo;
              $articulo['Id_Presentacion']=$Id_Presentacion;

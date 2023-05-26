@@ -61,7 +61,7 @@ include_once "./Core/config.php"
                         ?>
                         <tr id="id_<?=$producto['Id_Articulo']?>"
                             class="<?=($producto['Id_Estado']==2)?"text-danger":""?>">
-                            <td class="text-center"><?=$producto['Id_Articulo']?></td>
+                            <td class="text-center"><?=$producto['Codigo']?></td>
                             <td class="text-center"><?=$producto['NombreA']?></td>
                             <td class="text-center"><?=$producto['NombreP']?></td>
                             <td class="text-center"><?=$producto['NombreD']?></td>

@@ -34,7 +34,16 @@ include_once "./Core/config.php"
                    }
                    ?>
                         <div class="form-group text-center my-1">
-                            <h3 class="text" style="color:#FF0032">Agregar Artìculo</h3>
+                            <h3 class="text" style="color:#FF0032">Agregar Artículo</h3>
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Codigo</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"></span>
+                            <input type="text" class="form-control" placeholder="Agregue codigo" aria-label="Username"
+                                aria-describedby="basic-addon1" name="Codigo" id="Codigo"
+                                value="<?=isset($producto)?$producto['Codigo']:''?>">
                         </div>
                         <div class="mb-2">
                             <label for="exampleInputPassword1" class="form-label">Artículo</label>

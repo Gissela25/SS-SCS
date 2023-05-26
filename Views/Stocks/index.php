@@ -47,7 +47,7 @@ include_once "./Core/config.php"
                         ?>
 
                         <tr id="id_<?=$existencias['Id_Existencia']?>">
-                            <td class="text-center"><?=$existencias['Id_Articulo']?></td>
+                            <td class="text-center"><?=$existencias['Codigo']?></td>
                             <td class="text-center"><?=$existencias['NombreA']?></td>
                             <td class="text-center"><?=$existencias['Saldo']?></td>
                             <td class="text-center"><?=$existencias['F_LastUpdate']?></td>
