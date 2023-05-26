@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 26-05-2023 a las 23:06:16
+-- Tiempo de generación: 26-05-2023 a las 23:18:30
 -- Versión del servidor: 8.0.31
 -- Versión de PHP: 8.0.26
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `areas` (
 --
 
 INSERT INTO `areas` (`Id_Area`, `Nombre`, `Id_Estado`) VALUES
-('A12343', 'Serologia', 1),
+('A12343', 'Serologia', 2),
 ('A12345', 'Tamizaje', 1);
 
 -- --------------------------------------------------------
@@ -70,7 +70,7 @@ INSERT INTO `areas` (`Id_Area`, `Nombre`, `Id_Estado`) VALUES
 DROP TABLE IF EXISTS `articulos`;
 CREATE TABLE IF NOT EXISTS `articulos` (
   `Id_Articulo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Codigo` char(8) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `Codigo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `NombreA` varchar(65) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `Id_Presentacion` char(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `Id_Departamento` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
@@ -92,6 +92,7 @@ INSERT INTO `articulos` (`Id_Articulo`, `Codigo`, `NombreA`, `Id_Presentacion`, 
 ('I17444664310128', '20212129', 'Agua Mineral', 'P123', 'D32551', 'A12343', 1),
 ('I48081567842105', '20212125', 'Gasas', 'P123', 'D44522', 'A12343', 1),
 ('I58544007596640', '20129091', 'PCR', 'P123', 'D44522', 'A12343', 1),
+('I58872765406360', '20128999', 'Kit de tamizaje', 'P123', 'D44522', 'A12345', 1),
 ('I89489943973588', '20129094', 'Prueba de Sifilis', 'P123', 'D44522', 'A12343', 1),
 ('I99745938237056', '20212127', 'Jeringas', 'P123', 'D44522', 'A12345', 1);
 
@@ -145,8 +146,9 @@ CREATE TABLE IF NOT EXISTS `departamentos` (
 --
 
 INSERT INTO `departamentos` (`Id_Departamento`, `NombreD`, `Id_Estado`) VALUES
-('D32551', 'Crecitin', 1),
-('D44522', 'Ambu', 1);
+('D32551', 'Crecitin', 2),
+('D44522', 'Ambu', 1),
+('D96937', 'Gerencia', 1);
 
 -- --------------------------------------------------------
 
@@ -216,6 +218,7 @@ INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `Saldo`, `SaldoInicia
 ('E26724557571726', 'I89489943973588', 0, NULL, '2023-05-26', 1),
 ('E35578389916098', 'I58544007596640', 0, NULL, '2023-05-26', 1),
 ('E43321048868076', 'I99745938237056', 0, 25, '2023-05-24', 0),
+('E57328323996558', 'I58872765406360', 0, NULL, '2023-05-26', 1),
 ('E81797379711633', 'I17444664310128', 59, 55, '2023-05-24', 0),
 ('E95265838413285', 'I48081567842105', 108, 111, '2023-05-26', 0);
 
@@ -298,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `presentaciones` (
 
 INSERT INTO `presentaciones` (`Id_Presentacion`, `NombreP`, `Id_Estado`) VALUES
 ('P123', 'Unidad', 1),
-('P234', '250 ml', 1);
+('P234', '250 ml', 2);
 
 -- --------------------------------------------------------
 
