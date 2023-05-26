@@ -104,6 +104,7 @@ include_once "./Core/config.php";
                                 <th class="text-center">Departamento</th>
                                 <th class="text-center">Agregar</th>
                                 <th class="text-center">Quitar</th>
+                                <th class="text-center">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,6 +143,18 @@ include_once "./Core/config.php";
                                         <button title="Quitar" name="Quitar" type="submit" id="Quitar"
                                             class="btn btn-dark">
                                             <i class="bi bi-dash-circle"></i>
+                                        </button>
+                                    </form>
+
+                                </td>
+
+                                <td class="text-center">
+
+                                    <form action="<?=PATH?>Movements/Operations/<?=$movimiento['Id_Articulo']?>"
+                                        role="form" method="post">
+                                        <button title="Eliminar" name="Eliminar" type="submit" id="Eliminar"
+                                            class="btn btn-dark">
+                                            <i class="bi bi-trash-fill"></i>
                                         </button>
                                     </form>
 

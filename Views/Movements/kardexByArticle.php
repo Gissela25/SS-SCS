@@ -62,7 +62,7 @@ include_once "./Core/config.php"
                             <tr id="id_<?=$producto['Id_Articulo']?>">
                                 <td class="text-center"><?=$producto['Id_Articulo']?></td>
                                 <td class="text-center"><?=$producto['NombreP']?></td>
-                                <td class="text-center">John Doe</td>
+                                <td class="text-center"><?=$producto['Nombre']?> <?=$producto['Apellido']?></td>
                                 <td class="text-center"><?=$producto['Id_Correlativo']?></td>
                                 <td class="text-center"><?=$producto['F_Movimiento']?></td>
                                 <td class="text-center"><?=$producto['Entrada']?></td>

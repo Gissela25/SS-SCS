@@ -96,6 +96,11 @@ class MovementsModel extends ConnectionModel{
         return $this->set_query($query,[":Id_Session"=>$id]);
     }
 
+    public function deleteSpecificTemporaryWithDrawalData($id = ''){
+        $query = "DELETE FROM movimientos_temp WHERE Id_Articulo=:Id_Articulo";
+        return $this->set_query($query,[":Id_Articulo"=>$id]);
+    }
+
     public function getNewBalance($id){
         if($id!='')
         {

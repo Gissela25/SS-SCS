@@ -72,6 +72,15 @@ class MovementsController extends Controller{
                 header('Location: '.PATH.'Movements/WithDrawals');
             }
         }
+
+        if(isset($_POST['Eliminar']))
+        {
+            extract($_POST);   
+            if($this->modelo->deleteSpecificTemporaryWithDrawalData($id))
+            {
+                header('Location: '.PATH.'Movements/WithDrawals');
+            }
+        }
     }
 
 
