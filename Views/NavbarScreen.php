@@ -40,7 +40,7 @@ include_once "./Core/config.php"
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="<?=PATH?>Articles/Index">Inventario</a></li>
                         <li><a class="dropdown-item" href="<?=PATH?>Presentations/Index">Presentaciones</a></li>
-                        <li><a class="dropdown-item" href="<?=PATH?>Stocks/Index">Existencias</a></li>
+                        <li><a class="dropdown-item" href="<?=PATH?>Stocks/Index">Ingresos</a></li>
                         <li><a class="dropdown-item" href="<?=PATH?>Movements/WithDrawals">Retiros</a></li>
                     </ul>
                 </li>

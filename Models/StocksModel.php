@@ -16,7 +16,7 @@ class StocksModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT existencias.Id_Existencia, articulos.NombreA, existencias.Saldo, existencias.F_LastUpdate FROM existencias JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo
+            $query = "SELECT existencias.Id_Existencia, articulos.Id_Articulo, articulos.NombreA, existencias.Saldo, existencias.F_LastUpdate FROM existencias JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo
             WHERE Id_Estado ='1';";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);

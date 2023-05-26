@@ -31,7 +31,7 @@ include_once "./Core/config.php"
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
-                            <th class="text-center">ID</th>
+                            <th class="text-center">Codigo</th>
                             <th class="text-center">Artículo</th>
                             <th class="text-center">Saldo</th>
                             <th class="text-center">Fecha actualización</th>
@@ -46,7 +46,7 @@ include_once "./Core/config.php"
                         ?>
 
                         <tr id="id_<?=$existencias['Id_Existencia']?>">
-                            <td class="text-center"><?=$existencias['Id_Existencia']?></td>
+                            <td class="text-center"><?=$existencias['Id_Articulo']?></td>
                             <td class="text-center"><?=$existencias['NombreA']?></td>
                             <td class="text-center"><?=$existencias['Saldo']?></td>
                             <td class="text-center"><?=$existencias['F_LastUpdate']?></td>
