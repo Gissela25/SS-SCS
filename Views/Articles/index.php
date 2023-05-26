@@ -32,7 +32,7 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h5 style="text-align:center">Ingresar Articulos</h5>
+        <h5 style="text-align:center">Ingreso de Nuevo Producto</h5>
         <h3>Centro de Sangre: <?=$_SESSION['usuario']?></h3>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Articles/Insert" style="color: #FF0032"><i

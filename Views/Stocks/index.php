@@ -26,6 +26,7 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
+    <h5 style="text-align:center">Ingreso de Insumos</h5>
         <div class="col ml-5">
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">
