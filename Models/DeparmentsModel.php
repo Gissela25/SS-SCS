@@ -24,6 +24,25 @@ class DeparmentsModel extends ConnectionModel{
         }
     }
 
+    public function getactive($id='')
+    {
+        $query='';
+   
+        if($id=='')
+        {
+       
+            $query = "SELECT * FROM departamentos;";
+
+            return $this->get_query($query);
+        }
+        else{
+
+            $query = "SELECT * FROM departamentos WHERE Id_Departamento=:Id_Departamento";
+
+            return $this->get_query($query,[":Id_Departamento"=>$id]);
+        }
+    }
+
     public function create($arreglo = array())
     {
         $query = "INSERT INTO departamentos(Id_Departamento, NombreD ) VALUES(  :Id_Departamento ,:NombreD )";
