@@ -89,34 +89,73 @@ class MovementsController extends Controller{
     public function CompleteWithDrawls(){
         if(isset($_POST['Completar'])){
             extract($_POST);
+            $errores = array();
             $id_session = $_SESSION['id_session'];
             $correlativo = $this->modelo->generateCorrelative();
+            $checkTempData = $this->modelo->checkWithDrawalAmount();
             $tempData = $this->modelo->getTemporaryWithDrawalData($id_session);
             $correlative['Id_Correlativo'] = $correlativo;
             $correlative['Id_Usuario']=$_SESSION['id_usuario'];
+            $erroresVag = [];
             $counter=0;
-            if($this->modelo->createCorrelative($correlative)){
-                foreach ($tempData as $item) {
-                    $item['F_Movimiento'] = date('Y-m-d');
-                    $item['Id_Correlativo'] = $correlativo;             
-                    if($this->modelo->completeWithDrawals($item)){
-                        $newBalance['Id_Existencia'] = $item['Id_Existencia'];
-                        $newBalance['Id_Articulo'] = $item['Id_Articulo'];
-                        $newBalance['Saldo'] = $item['SaldoResultante'];
-                        if($this->modelo->updateBalances($newBalance))
-                        {
-                            $counter +=1;
+            $negativeCounter=0;
+            foreach($checkTempData as $item)
+            {
+                if($item['SaldoResultante'] < 0)
+                {
+                    $negativeCounter+=1;
+                    $erroresVag[] = [
+                        'SaldoResultante' => (-1) * $item['SaldoResultante'],
+                        'Articulo' => $item['NombreA'],
+                        'Saldo' => $item['Saldo']
+                    ] ;
+                }
+            }
+            if($negativeCounter == 0)
+            {
+                if($this->modelo->createCorrelative($correlative)){
+                    foreach ($tempData as $item) {
+                        $item['F_Movimiento'] = date('Y-m-d');
+                        $item['Id_Correlativo'] = $correlativo;             
+                        if($this->modelo->completeWithDrawals($item)){
+                            $newBalance['Id_Existencia'] = $item['Id_Existencia'];
+                            $newBalance['Id_Articulo'] = $item['Id_Articulo'];
+                            $newBalance['Saldo'] = $item['SaldoResultante'];
+                            if($this->modelo->updateBalances($newBalance))
+                            {
+                                $counter +=1;
+                            }
                         }
                     }
                 }
+                if(count($tempData)== $counter){
+                    if($this->modelo->deleteAllTemporaryWithDrawalData($id_session))
+                    {
+                        header('Location: '.PATH.'Movements');
+                    }
+                }  
+                else{
+                    $this->renderWithDrawals("Algo salió mal al intentar coompletar el retiro");
+                }  
             }
-            if(count($tempData)== $counter){
-                if($this->modelo->deleteAllTemporaryWithDrawalData($id_session))
-                {
-                    header('Location: '.PATH.'Movements');
+            else{
+                foreach($erroresVag as $item){
+                    array_push($errores, "Has superado el saldo actual <b>(".$item['Saldo'].")</b> por un saldo excendente de ". $item['SaldoResultante']. " en el artículo ".$item['Articulo']);
                 }
-            }    
+                $this->renderWithDrawals($errores);
+            }
+           
         }
+    }
+
+    public function renderWithDrawals($errores = array())
+    {
+        $viewBag = [];
+        $viewBag['errores'] = $errores;
+        $viewBag['productos'] = $this->modelo->get();
+        $viewBag['quantity'] = $this->modelo->getMovementsTemp($_SESSION['id_session']);
+        $viewBag['movimientos']=$this->modelo->getMovementsTemp($_SESSION['id_session']);
+        $this->render("withdrawals.php",$viewBag);
     }
 
     public function MakeWithDrawal($id){

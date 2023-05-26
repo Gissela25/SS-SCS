@@ -141,6 +141,14 @@ class MovementsModel extends ConnectionModel{
         return $this->get_query($query,[":Id_Session"=>$id]);
     }
 
+    public function checkWithDrawalAmount($id = ''){
+        $query = " SELECT (existencias.Saldo - movimientos_temp.Cantidad) as 'SaldoResultante', articulos.NombreA,  existencias.Saldo
+        FROM movimientos_temp
+        JOIN existencias ON movimientos_temp.Id_Existencia = existencias.Id_Existencia
+        JOIN articulos ON movimientos_temp.Id_Articulo = articulos.Id_Articulo";
+        return $this->get_query($query);
+    }
+
     public function searchMovements(){
         $query = "SELECT  articulos.Id_Articulo, articulos.NombreA, movimientos.Id_Correlativo, movimientos.F_Movimiento
         ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante FROM movimientos

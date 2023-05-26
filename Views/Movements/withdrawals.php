@@ -90,7 +90,19 @@ include_once "./Core/config.php";
     ?>
     <div class="row mx-5 mt-5">
         <h5 style="text-align:center">Artículos por Retirar</h5>
-
+        <?php
+                   if(isset($errores))
+                   {
+                       if(count($errores)>0)
+                       {
+                        echo "<div class='alert alert-danger' style='color:#343a40' ><ul>";
+                           foreach ($errores as $error) {
+                               echo "<li style='color:#343a40'>$error</li>";
+                           }
+                           echo "</ul></div>";
+                       }
+                   }
+                   ?>
         <div class="col ml-5">
 
             <div class="row mt-3">
