@@ -74,7 +74,7 @@ class UsersController extends Controller{
               array_push($errores,"Correo no válido");
             }
             // Guardamos las variables en un arreglo llamado usuario
-            $usuario['Id_Usuario']=$this->modelo->getCode();
+            $usuario['Id_Usuario']=$this->modelo->getCodeUser($Nombre,$Apellido);
             $usuario['Nombre']=$Nombre;
             $usuario['Apellido']=$Apellido;
             $usuario['Correo']=$Correo;

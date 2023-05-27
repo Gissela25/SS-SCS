@@ -56,12 +56,12 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="Correo" class="form-label">Correo</label>
+                                    <label for="Correo" class="form-label">User</label>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="bi bi-person-fill"></i></span>
-                                    <input type="text" class="form-control" placeholder="Ingresa tu correo"
+                                    <input type="text" class="form-control" placeholder="Ingresa tu correo o usuario"
                                         aria-label="Name" aria-describedby="basic-addon1" name="Correo" id="Correo">
                                 </div>
                                 <div class="mb-3">

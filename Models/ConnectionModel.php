@@ -73,6 +73,29 @@ abstract class ConnectionModel
         return $generated_code;
     }
 
+
+    public function generateCodeUsersDate($nameComplete = '', $lastnameComplete = '') {
+        $generated_code = '';
+        do {
+            // Generamos un número aleatorio de dos cifras
+            $numero_aleatorio = rand(10, 99);
+    
+            // Obtenemos la primera letra del nombre y apellido
+            $nombre = strtoupper(substr($nameComplete, 0, 1));
+            $apellido = strtoupper(substr($lastnameComplete, 0, 1));
+            $year = date('y');
+            // Concatenamos las primeras letras, el número aleatorio y el código
+            $generated_code = $nombre . $apellido . $year.$numero_aleatorio;
+    
+            // Verificamos si el código ya existe en la base de datos
+            $query = "SELECT COUNT(*) FROM usuarios WHERE Id_Usuario = ?";
+            $result = $this->get_query($query, [$generated_code]);
+        } while ($result[0]["COUNT(*)"] > 0); // Mientras el código exista, seguimos generando uno nuevo
+    
+        return $generated_code;
+    }
+    
+
     //Generar codigo para Departamentos
     public function generateCodeDeparments(){
         $generated_code = '';

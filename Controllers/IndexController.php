@@ -38,10 +38,6 @@ class IndexController extends Controller{
             {
                 array_push($errores,"Debes ingresar un correo");
             }
-            elseif(!esMail($Correo))
-            {
-              array_push($errores,"Correo no válido");
-            }
             if(!isset($Clave)||isEmpty($Clave))
             {
                 array_push($errores,"Debes ingresar tu clave");

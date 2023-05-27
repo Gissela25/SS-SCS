@@ -48,7 +48,9 @@ class UsersModel extends ConnectionModel{
     }
 
     public function getDataUser($user = array()){
-        $query = "SELECT * FROM usuarios WHERE Correo=:Correo AND Clave=SHA2(:Clave,256) AND Id_Estado='1'";
+        $query = "SELECT * FROM usuarios WHERE Correo=:Correo OR  Id_Usuario=:Correo
+        AND Clave=SHA2(:Clave,256) AND Id_Estado='1'
+        ";
         return $this->get_query($query,$user);
     }
     //Declaramos un arreglo en donde vendrán las variables que guardaremos
@@ -93,11 +95,18 @@ class UsersModel extends ConnectionModel{
             return $this->get_query($query);
     }
 
+    
     public function getCode()
     {
-        $codigo = $this->generateCodeUsers();
+        $codigo = $this->getCodeUser();
         return $codigo;
     }
+
+    public function getCodeUser($nombre='',$apellido=''){
+        $codigo = $this->generateCodeUsersDate($nombre,$apellido);
+        return $codigo;
+    }
+    
 
     public function reactivate($id)
     {
