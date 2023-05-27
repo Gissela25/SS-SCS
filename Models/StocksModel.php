@@ -31,6 +31,18 @@ class StocksModel extends ConnectionModel{
             return $this->get_query($query,[":Id_Existencia"=>$id]);
         }
     }
+
+    public function getArticlesByArea($idArea = '')
+    {
+        $query='';
+        if($idArea!='')
+        {
+        $query = "SELECT existencias.Id_Existencia, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, existencias.Saldo, existencias.F_LastUpdate, articulos.Id_Area 
+        FROM existencias JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo
+        WHERE Id_Estado ='1' AND articulos.Id_Area=:Id_Area;";
+        return $this->get_query($query,[":Id_Area"=>$idArea]);
+        }
+    }
     //Declaramos un arreglo en donde vendrán las variables que guardaremos
      public function create($arreglo = array())
      {

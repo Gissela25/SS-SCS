@@ -4,11 +4,11 @@ include_once "./Core/config.php";
 include_once "./Controllers/UsersController.php";
 include_once "./Core/validaciones.php";
 include_once "./Models/UsersModel.php";
+include_once "./Models/ArticlesModel.php";
 
 class IndexController extends Controller{
 
     private $modelo;
-
     public function __construct()
     {
         $this->modelo = new UsersModel();
@@ -52,6 +52,7 @@ class IndexController extends Controller{
             }
             if(count($errores)>0){
                 $viewBag['errores'] = $errores;
+                $viewBag['areas']=$this->modelo->getArea();
                 $this->render("SignUpScreen.php",$viewBag);
             }
             else{
@@ -67,8 +68,10 @@ class IndexController extends Controller{
                     }
                 }
                 else{
-                    $user['Result']="Failed";
-                    var_dump($user);
+                    array_push($errores,"Algo salió mal");
+                    $viewBag['errores'] = $errores;
+                    $viewBag['areas']=$this->modelo->getArea();
+                    $this->render("SignUpScreen.php",$viewBag);
                 }
             }
         }

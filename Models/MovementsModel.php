@@ -40,6 +40,23 @@ class MovementsModel extends ConnectionModel{
         }
     }
 
+    public function getArticlesByArea($id='')
+    {
+        $query='';
+        if($id!='')
+        {
+            $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, 
+            departamentos.NombreD, existencias.NoComprobante FROM existencias
+            JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo 
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
+            JOIN areas ON articulos.Id_Area = areas.Id_Area 
+            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento
+            WHERE articulos.Id_Estado  = '1' AND  existencias.Saldo > '0'
+            AND articulos.Id_Area=:Id_Area;";
+            return $this->get_query($query,[":Id_Area"=>$id]);
+        }
+    }
+
 
     public function getMovements($id='')
     {
@@ -71,6 +88,27 @@ class MovementsModel extends ConnectionModel{
             WHERE articulos.Id_Articulo=:Id_Articulo ORDER BY movimientos.F_Movimiento DESC;;";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
+        }
+    }
+
+    public function getMovementsByArea($id='')
+    {
+        //Creamos una variable en donde almacenaremos la consulta que haremos
+        $query='';
+        //Comprobaremos si la variable id que traifa get() este vacíía o no
+        if($id!='')
+        {
+            //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo
+            , articulos.Codigo FROM movimientos 
+            JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
+            JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
+            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento    
+            WHERE articulos.Id_Area=:Id_Area
+            GROUP BY articulos.Id_Articulo ;";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query,[":Id_Area"=>$id]);
         }
     }
 
@@ -161,6 +199,16 @@ class MovementsModel extends ConnectionModel{
         JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia
         ORDER BY movimientos.F_Movimiento DESC;";
         return $this->get_query($query);
+    }
+
+    public function searchMovementsByArea($id=''){
+        $query = "SELECT  articulos.Id_Articulo, articulos.NombreA, movimientos.Id_Correlativo, movimientos.F_Movimiento
+        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, articulos.Codigo FROM movimientos
+        JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+        JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia
+        WHERE articulos.Id_Area=:Id_Area
+        ORDER BY movimientos.F_Movimiento DESC;";
+        return $this->get_query($query,[":Id_Area"=>$id] );
     }
 
     public function verifyItem($item = array()){

@@ -17,7 +17,7 @@ class MovementsController extends Controller{
     {
         $viewBag = [];
         //en la variable empleados pondremos los datos que obtengamos de la consulta get() de UsersModel
-        $viewBag['productos'] = $this->modelo->get();
+        $viewBag['productos'] = $this->modelo->getArticlesByArea($_SESSION['area']);
         $id_session = $_SESSION['dataBuffer']['Id_Usuario'];
         $viewBag['quantity'] = $this->modelo->getMovementsTemp(sha1($id_session));
         $viewBag['movimientos']=$this->modelo->getMovementsTemp(sha1($id_session));
@@ -26,13 +26,13 @@ class MovementsController extends Controller{
 
     public function Index(){
         $viewBag = [];
-        $viewBag['movimientos']=$this->modelo->searchMovements();
+        $viewBag['movimientos']=$this->modelo->searchMovementsByArea($_SESSION['area']);
         $this->render("index.php",$viewBag);
     }
 
     public function KardexByArticle(){
         $viewBag = [];
-        $viewBag["productos"] = $this->modelo->getMovements();
+        $viewBag["productos"] = $this->modelo->getMovementsByArea($_SESSION['area']);
         $this->render("kardex.php",$viewBag);
     }
 

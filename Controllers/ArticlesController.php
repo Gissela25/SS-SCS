@@ -27,7 +27,8 @@ class ArticlesController extends Controller{
     {
         $viewBag = [];
         //en la variable empleados pondremos los datos que obtengamos de la consulta get() de UsersModel
-        $viewBag['productos'] = $this->modelo->get();
+        $specificArea = $_SESSION['area'];
+        $viewBag['productos'] = $this->modelo->getArticlesByArea($specificArea);
         $this->render("index.php",$viewBag);
     }
 
@@ -74,7 +75,7 @@ class ArticlesController extends Controller{
             $articulo['NombreA']=$Nombre;
             $articulo['Id_Presentacion']=$Id_Presentacion;
             $articulo['Id_Departamento']=$Id_Departamento;
-            $articulo['Id_Area']=$Id_Area;
+            $articulo['Id_Area']=$_SESSION['area'];
             //$articulo['Id_Existencia']=$code2;
             //Comprobamos si el arreglo errores está vacío o no
             if(count($errores)>0)
