@@ -63,31 +63,43 @@ class StocksController extends Controller{
                 }
                 else{
                     $correctivo = abs($SaldoActual - $Saldo);
-                    $correlativo = $this->modelo->generateCodeCorrelative();
 
-                    $correlative['Id_Correlativo'] = $correlativo;
-                    //Este dato se obtendra de la sesión, por ahora ocuparemos este.
-                    $correlative["Id_Usuario"] = "U00005";
-                    $existencia["Id_Existencia"] = $id;
-                    $existencia["Saldo"] = $Saldo;
-                    $existencia['F_LastUpdate']=date('Y-m-d');
-                    $movimiento['Id_Correlativo'] = $correlativo;
-                    $movimiento['Id_Articulo'] = $Id_Articulo;
-                    $movimiento["Id_Existencia"] = $id;
-                    $movimiento["Correctivo"] = $correctivo;
-                    $movimiento["SaldoResultante"] = $Saldo;
-                    $movimiento["F_Movimiento"] = date('Y-m-d');
-                    if($this->modelo->UpdateBalance($existencia,$correlative,$movimiento)>0)
+                    if($correctivo == $SaldoActual)
                     {
-                        header('Location: '.PATH.'Stocks');
+                        $correlativo = $this->modelo->generateCodeCorrelative();
+
+                        $correlative['Id_Correlativo'] = $correlativo;
+                        //Este dato se obtendra de la sesión, por ahora ocuparemos este.
+                        $correlative["Id_Usuario"] = "U00005";
+                        $existencia["Id_Existencia"] = $id;
+                        $existencia["Saldo"] = $Saldo;
+                        $existencia['F_LastUpdate']=date('Y-m-d');
+                        $movimiento['Id_Correlativo'] = $correlativo;
+                        $movimiento['Id_Articulo'] = $Id_Articulo;
+                        $movimiento["Id_Existencia"] = $id;
+                        $movimiento["Correctivo"] = $correctivo;
+                        $movimiento["SaldoResultante"] = $Saldo;
+                        $movimiento["F_Movimiento"] = date('Y-m-d');
+                        if($this->modelo->UpdateBalance($existencia,$correlative,$movimiento)>0)
+                        {
+                            header('Location: '.PATH.'Stocks');
+                        }
+                        else{ 
+                            array_push($errores, "Ha ocurrido un error al intentar actualizar el saldo");
+                         $viewBag['errores'] = $errores;
+                         $viewBag['stock'] = $this->modelo->get($id);
+                         $this->render("update.php",$viewBag);
+        
+                        }
                     }
                     else{ 
-                        array_push($errores, "Ha ocurrido un error al intentar actualizar el saldo");
+                        array_push($errores, "No haz realizado ningún cambio");
                      $viewBag['errores'] = $errores;
                      $viewBag['stock'] = $this->modelo->get($id);
                      $this->render("update.php",$viewBag);
     
                     }
+                   
                 }
                 
             }
@@ -110,11 +122,14 @@ class StocksController extends Controller{
               array_push($errores,"Solo puedes ingresar cantidades entereas.");
             }
 
-            if(!isset($Id_Articulo)||isEmpty($Id_Articulo))
+            if(!isset($NoComprobante)||isEmpty($NoComprobante))
             {
-                array_push($errores,"¡Oh, vaya! Ha ocurrido un error. 2");
+                array_push($errores,"Ingresa tu comprobante.");
             }
-
+            elseif(!isCode($NoComprobante))
+            {
+              array_push($errores,"El comprobante debe tener entre 8 a 15 caracteres numéricos.");
+            }
 
 
             if(count($errores)>0){
@@ -129,6 +144,7 @@ class StocksController extends Controller{
                    //Este dato se obtendra de la sesión, por ahora ocuparemos este.
                    $correlative["Id_Usuario"] = "U00005";
                    $existencia["Id_Existencia"] = $id;
+                   $existencia["NoComprobante"] = $NoComprobante;
                    $existencia["Saldo"] = $NuevoSaldo;
                    $existencia["SaldoInicial"] = $NuevoSaldo;
                    $existencia['F_LastUpdate']=date('Y-m-d');
@@ -157,6 +173,7 @@ class StocksController extends Controller{
                     //Este dato se obtendra de la sesión, por ahora ocuparemos este.
                     $correlative["Id_Usuario"] = "U00005";
                     $existencia["Id_Existencia"] = $id;
+                    $existencia["NoComprobante"] = $NoComprobante;
                     $existencia["Saldo"] = $saldoAcumulado;
                     $existencia['F_LastUpdate']=date('Y-m-d');
                     $movimiento['Id_Correlativo'] = $correlativo;

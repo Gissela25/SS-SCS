@@ -48,9 +48,9 @@ include_once "./Core/config.php"
                         ?>
 
                             <tr id="id_<?=$movimiento['Id_Articulo']?>">
-                                <td class="text-center"><?=$movimiento['Id_Articulo']?></td>
+                                <td class="text-center"><?=$movimiento['Codigo']?></td>
                                 <td class="text-center"><?=$movimiento['NombreA']?></td>
-                                <td class="text-center"><?=$movimiento['Id_Correlativo']?></td>
+                                <td class="text-center"><?=$movimiento['Codigo']?></td>
                                 <td class="text-center"><?=$movimiento['F_Movimiento']?></td>
                                 <td class="text-center"><?=$movimiento['Entrada']?></td>
                                 <td class="text-center"><?=$movimiento['Correctivo']?></td>

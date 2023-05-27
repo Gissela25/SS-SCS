@@ -16,14 +16,17 @@ class StocksModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT existencias.Id_Existencia, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, existencias.Saldo, existencias.F_LastUpdate FROM existencias JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo
+            $query = "SELECT existencias.Id_Existencia, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, existencias.Saldo, existencias.F_LastUpdate 
+            FROM existencias JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo
             WHERE Id_Estado ='1';";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT * FROM existencias WHERE Id_Existencia=:Id_Existencia";
+            $query = "SELECT * FROM existencias 
+             JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo
+             WHERE Id_Existencia=:Id_Existencia";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Existencia"=>$id]);
         }
@@ -102,7 +105,7 @@ class StocksModel extends ConnectionModel{
         extract($correlative);
         extract($movimiento);
         // Actualizamos y colocamos las variables que realmente se actualizarán
-        $query = "UPDATE existencias SET Saldo=:Saldo, SaldoInicial=:SaldoInicial, F_LastUpdate=:F_LastUpdate,  EsSaldoInicial=:EsSaldoInicial WHERE Id_Existencia =:Id_Existencia ;";
+        $query = "UPDATE existencias SET NoComprobante=:NoComprobante, Saldo=:Saldo, SaldoInicial=:SaldoInicial, F_LastUpdate=:F_LastUpdate,  EsSaldoInicial=:EsSaldoInicial WHERE Id_Existencia =:Id_Existencia ;";
         $firsResult =  $this->set_query($query,$existencia);
         if($firsResult){
             $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
@@ -132,7 +135,7 @@ class StocksModel extends ConnectionModel{
         extract($correlative);
         extract($movimiento);
         // Actualizamos y colocamos las variables que realmente se actualizarán
-        $query = "UPDATE existencias SET Saldo=:Saldo, F_LastUpdate=:F_LastUpdate WHERE Id_Existencia =:Id_Existencia ;";
+        $query = "UPDATE existencias SET NoComprobante=:NoComprobante ,Saldo=:Saldo, F_LastUpdate=:F_LastUpdate WHERE Id_Existencia =:Id_Existencia ;";
         $firsResult =  $this->set_query($query,$existencia);
         if($firsResult){
             $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";

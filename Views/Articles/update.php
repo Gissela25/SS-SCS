@@ -22,7 +22,9 @@ include_once "./Core/config.php"
                     //Para recorrer el arreglo de datos del usuario ingresado
             foreach($productos as $producto){
             ?>
-                    <form method="post" action="<?=PATH?>Articles/SetArticle" enctype="multipart/form-data" role="form">
+                    <form method="post"
+                        action="<?=PATH?>Articles/SetArticle/<?=isset($producto)?$producto['Id_Articulo']:''?>"
+                        enctype="multipart/form-data" role="form">
                         <?php
                    if(isset($errores))
                    {
@@ -36,8 +38,7 @@ include_once "./Core/config.php"
                        }
                    }
                    ?>
-                        <input type="hidden" name="Id_Articulo" id="Id_Articulo"
-                            value="<?=$producto['Id_Articulo']?>">
+                        <input type="hidden" name="Id_Articulo" id="Id_Articulo" value="<?=$producto['Id_Articulo']?>">
                         <div class="form-group text-center my-1">
                             <h3 class="text" style="color:#FF0032">Actualizar Articulo</h3>
                         </div>
@@ -69,7 +70,7 @@ include_once "./Core/config.php"
                             <label for="exampleInputPassword1" class="form-label">Departamento</label>
                         </div>
                         <div class="input-group mb-3">
-                        <select class="form-select" name="Id_Departamento" id="Id_Departamento"
+                            <select class="form-select" name="Id_Departamento" id="Id_Departamento"
                                 aria-label="Floating label select example">
                                 <?php
 							foreach($lugares as $lugar)
@@ -87,7 +88,7 @@ include_once "./Core/config.php"
 							else
 							{
 								?>
-                                
+
                                 <option value="<?=$lugar['Id_Departamento']?>"><?=$lugar['NombreD']?></option>
                                 <?php
 							}
@@ -102,7 +103,7 @@ include_once "./Core/config.php"
                             <label for="exampleInputPassword1" class="form-label">Presentacion</label>
                         </div>
                         <div class="input-group mb-3">
-                        <select class="form-select" name="Id_Presentacion" id="Id_Presentacion"
+                            <select class="form-select" name="Id_Presentacion" id="Id_Presentacion"
                                 aria-label="Floating label select example">
                                 <?php
 							foreach($formas as $forma)
@@ -120,7 +121,7 @@ include_once "./Core/config.php"
 							else
 							{
 								?>
-                                
+
                                 <option value="<?=$forma['Id_Presentacion']?>"><?=$forma['NombreP']?></option>
                                 <?php
 							}

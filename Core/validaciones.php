@@ -33,6 +33,11 @@
         return preg_match('/^[0-9]+$/',$var);
     }
 
+    function isCode($var)
+    {
+        return preg_match('/^[0-9]{8,15}$/',$var);
+    }
+
     function esFloat($var)
     {
         return preg_match('/^[0-9]+([.]?[0-9]+)?$/',$var);

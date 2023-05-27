@@ -115,7 +115,7 @@ class ArticlesController extends Controller{
     
 
     //Funcion para actualizar los datos generales de un usuario
-    public function SetArticle()
+    public function SetArticle($id)
     {
          //Comprobamos el submit del formuario con el nombre del botón
          if(isset($_POST['Actualizar']))
@@ -158,8 +158,10 @@ class ArticlesController extends Controller{
                      else{
                          array_push($errores, "Nos haz realizado ningún cambio 👀");
                          $viewBag['errores']=$errores;
-                         $viewBag['productos']=$this->modelo->get($Id_Articulo);
-                         
+                         $viewBag["productos"]=$this->modelo->get($id);
+                         $viewBag['lugares'] = $this->deparmentsModel->getactive();
+                         $viewBag['formas'] = $this->presentationsModel->getactive();
+                         $viewBag['zonas'] = $this->areasModel->getactive($id);
                          $this->render("update.php",$viewBag);
                      }
                  }

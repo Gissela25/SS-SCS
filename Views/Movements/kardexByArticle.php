@@ -43,7 +43,7 @@ include_once "./Core/config.php"
                                 <th class="text-center">Codigo Art.</th>
                                 <th class="text-center">Presentacion</th>
                                 <th class="text-center">Responsable</th>
-                                <th class="text-center">Comprobante</th>
+                                <th class="text-center">No. Comprobante</th>
                                 <th class="text-center">Fecha</th>
                                 <th class="text-center">Entrada</th>
                                 <th class="text-center">Correctivo</th>
@@ -60,10 +60,10 @@ include_once "./Core/config.php"
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
                             <tr id="id_<?=$producto['Id_Articulo']?>">
-                                <td class="text-center"><?=$producto['Id_Articulo']?></td>
+                                <td class="text-center"><?=$producto['Codigo']?></td>
                                 <td class="text-center"><?=$producto['NombreP']?></td>
                                 <td class="text-center"><?=$producto['Nombre']?> <?=$producto['Apellido']?></td>
-                                <td class="text-center"><?=$producto['Id_Correlativo']?></td>
+                                <td class="text-center"><?=$producto['NoComprobante']?></td>
                                 <td class="text-center"><?=$producto['F_Movimiento']?></td>
                                 <td class="text-center"><?=$producto['Entrada']?></td>
                                 <td class="text-center"><?=$producto['Correctivo']?></td>

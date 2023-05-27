@@ -33,7 +33,7 @@ include_once "./Core/config.php";
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-    <h5 style="text-align:center">Salida de Insumos</h5>
+        <h5 style="text-align:center">Salida de Insumos</h5>
         <h3>Centro de Sangre: <?=$_SESSION['usuario']?> </h3>
         <div class="col ml-5">
 
@@ -43,6 +43,7 @@ include_once "./Core/config.php";
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
                                 <th class="text-center">Codigo</th>
+                                <th class="text-center">No. Comprobante</th>
                                 <th class="text-center">Artículo</th>
                                 <th class="text-center">Saldo Actual</th>
                                 <th class="text-center">Presentación</th>
@@ -59,7 +60,8 @@ include_once "./Core/config.php";
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
                             <tr id="id_<?=$producto['Id_Articulo']?>">
-                                <td class="text-center"><?=$producto['Id_Articulo']?></td>
+                                <td class="text-center"><?=$producto['Codigo']?></td>
+                                <td class="text-center"><?=$producto['NoComprobante']?></td>
                                 <td class="text-center"><?=$producto['NombreA']?></td>
                                 <td class="text-center"><?=$producto['Saldo']?></td>
                                 <td class="text-center"><?=$producto['NombreP']?></td>
@@ -111,6 +113,7 @@ include_once "./Core/config.php";
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
                                 <th class="text-center">Codigo</th>
+                                <th class="text-center">No. Comprobante</th>
                                 <th class="text-center">Artículo</th>
                                 <th class="text-center">Saldo a retirar</th>
                                 <th class="text-center">Presentación</th>
@@ -130,6 +133,7 @@ include_once "./Core/config.php";
                         ?>
                             <tr id="id_<?=$movimiento['Id_Articulo']?>">
                                 <td class="text-center"><?=$movimiento['Id_Articulo']?></td>
+                                <td class="text-center"><?=$movimiento['NoComprobante']?></td>
                                 <td class="text-center"><?=$movimiento['NombreA']?></td>
                                 <td class="text-center"><?=$movimiento['Cantidad']?></td>
                                 <td class="text-center"><?=$movimiento['NombreP']?></td>
@@ -201,7 +205,7 @@ include_once "./Core/config.php";
             var id = button.data('id');
             var operacion = button.data('operacion');
             var url = '<?=PATH?>Movements/Operations/' + id;
-            var cantidadCell = button.closest('tr').find('.text-center:eq(2)');
+            var cantidadCell = button.closest('tr').find('.text-center:eq(3)');
             var cantidad = parseInt(cantidadCell.text());
 
             if (operacion === 'Agregar') {

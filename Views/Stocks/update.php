@@ -37,15 +37,27 @@ include_once "./Core/config.php";
                    }
                    ?>
                         <div class="">
-                            <label for="Id_Existencia" class="form-label">ID</label>
+                            <label for="Codigo" class="form-label">Codigo de Artículo</label>
                         </div>
                         <div class="input-group mb-3 ">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
                             <input type="text" class="form-control" aria-label="Existencia"
-                                aria-describedby="basic-addon1" readonly id="Id_Existencia" name="Id_Existencia"
-                                value="<?=isset($existencias)?$existencias['Id_Existencia']:''?>">
+                                aria-describedby="basic-addon1" readonly id="Codigo" name="Codigo"
+                                value="<?=isset($existencias)?$existencias['Codigo']:''?>">
                         </div>
 
+                        <div class="">
+                            <label for="NoComprobante" class="form-label">No. Comprobante</label>
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
+                            <input type="text" class="form-control" aria-label="Existencia"
+                                aria-describedby="basic-addon1" readonly id="NoComprobante" name="NoComprobante"
+                                value="<?=isset($existencias)?$existencias['NoComprobante']:''?>">
+                        </div>
+
+                        <input type="text" name="Id_Existencia" id="SId_Existencia
+                            value=" <?=isset($existencias)?$existencias['Id_Existencia']:''?>" hidden />
                         <input type="text" name="SaldoActual" id="SaldoActual"
                             value="<?=isset($existencias)?$existencias['Saldo']:''?>" hidden />
                         <input type="text" name="EsSaldoInicial" id="EsSaldoInicial"

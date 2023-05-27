@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 26-05-2023 a las 23:18:30
--- Versión del servidor: 8.0.31
--- Versión de PHP: 8.0.26
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 27, 2023 at 12:26 AM
+-- Server version: 5.7.36
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `ss-scs`
+-- Database: `ss-scs`
 --
 
 DELIMITER $$
 --
--- Funciones
+-- Functions
 --
 DROP FUNCTION IF EXISTS `generar_codigo`$$
-CREATE DEFINER=`root`@`localhost` FUNCTION `generar_codigo` () RETURNS VARCHAR(6) CHARSET utf8mb3 COLLATE utf8mb3_unicode_ci  BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `generar_codigo` () RETURNS VARCHAR(6) CHARSET utf8 COLLATE utf8_unicode_ci BEGIN
   DECLARE codigo VARCHAR(6);
   SET codigo = CONCAT('U', LPAD(FLOOR(RAND() * 100000), 5, '0'));
   WHILE EXISTS(SELECT 1 FROM tabla WHERE codigo = codigo) DO
@@ -40,21 +40,21 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `areas`
+-- Table structure for table `areas`
 --
 
 DROP TABLE IF EXISTS `areas`;
 CREATE TABLE IF NOT EXISTS `areas` (
-  `Id_Area` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Nombre` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Estado` int NOT NULL DEFAULT '1',
+  `Id_Area` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Estado` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Area`),
   UNIQUE KEY `Nombre` (`Nombre`),
   KEY `Id_Estado` (`Id_Estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `areas`
+-- Dumping data for table `areas`
 --
 
 INSERT INTO `areas` (`Id_Area`, `Nombre`, `Id_Estado`) VALUES
@@ -64,28 +64,28 @@ INSERT INTO `areas` (`Id_Area`, `Nombre`, `Id_Estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `articulos`
+-- Table structure for table `articulos`
 --
 
 DROP TABLE IF EXISTS `articulos`;
 CREATE TABLE IF NOT EXISTS `articulos` (
-  `Id_Articulo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Codigo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
-  `NombreA` varchar(65) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Presentacion` char(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Departamento` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Area` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Estado` int NOT NULL DEFAULT '1',
+  `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Codigo` char(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `NombreA` varchar(65) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Presentacion` char(4) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Departamento` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Area` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Estado` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Articulo`),
   UNIQUE KEY `Nombre` (`NombreA`),
   KEY `Id_Presentacion` (`Id_Presentacion`),
   KEY `Id_Departamento` (`Id_Departamento`),
   KEY `Id_Area` (`Id_Area`),
   KEY `Id_Estado` (`Id_Estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `articulos`
+-- Dumping data for table `articulos`
 --
 
 INSERT INTO `articulos` (`Id_Articulo`, `Codigo`, `NombreA`, `Id_Presentacion`, `Id_Departamento`, `Id_Area`, `Id_Estado`) VALUES
@@ -99,50 +99,61 @@ INSERT INTO `articulos` (`Id_Articulo`, `Codigo`, `NombreA`, `Id_Presentacion`, 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `correlativos`
+-- Table structure for table `correlativos`
 --
 
 DROP TABLE IF EXISTS `correlativos`;
 CREATE TABLE IF NOT EXISTS `correlativos` (
-  `Id_Correlativo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Usuario` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `Id_Correlativo` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Usuario` char(6) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_Correlativo`),
   KEY `correlativos_ibfk_1` (`Id_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `correlativos`
+-- Dumping data for table `correlativos`
 --
 
 INSERT INTO `correlativos` (`Id_Correlativo`, `Id_Usuario`) VALUES
+('C13468968651569', 'U00005'),
 ('C18460840983884', 'U00005'),
+('C20279423835536', 'U00005'),
 ('C26030649354845', 'U00005'),
+('C32259560581178', 'U00005'),
+('C45262959834893', 'U00005'),
+('C48288958278537', 'U00005'),
+('C59784243779358', 'U00005'),
 ('C61726074887060', 'U00005'),
 ('C64081378727175', 'U00005'),
 ('C65258068617313', 'U00005'),
+('C67721598925531', 'U00005'),
 ('C73075489944345', 'U00005'),
+('C79403376664314', 'U00005'),
+('C84292254216967', 'U00005'),
 ('C86948846408555', 'U00005'),
 ('C87261418159830', 'U00005'),
-('C90385251058411', 'U00005');
+('C90385251058411', 'U00005'),
+('C98173509275333', 'U00005'),
+('C99087588134956', 'U00005');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamentos`
+-- Table structure for table `departamentos`
 --
 
 DROP TABLE IF EXISTS `departamentos`;
 CREATE TABLE IF NOT EXISTS `departamentos` (
-  `Id_Departamento` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `NombreD` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Estado` int NOT NULL DEFAULT '1',
+  `Id_Departamento` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `NombreD` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Estado` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Departamento`),
   UNIQUE KEY `Nombre` (`NombreD`),
   KEY `Id_Estado` (`Id_Estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `departamentos`
+-- Dumping data for table `departamentos`
 --
 
 INSERT INTO `departamentos` (`Id_Departamento`, `NombreD`, `Id_Estado`) VALUES
@@ -153,18 +164,18 @@ INSERT INTO `departamentos` (`Id_Departamento`, `NombreD`, `Id_Estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estados`
+-- Table structure for table `estados`
 --
 
 DROP TABLE IF EXISTS `estados`;
 CREATE TABLE IF NOT EXISTS `estados` (
-  `Id_Estado` int NOT NULL AUTO_INCREMENT,
-  `Estado` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `Id_Estado` int(11) NOT NULL AUTO_INCREMENT,
+  `Estado` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_Estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `estados`
+-- Dumping data for table `estados`
 --
 
 INSERT INTO `estados` (`Id_Estado`, `Estado`) VALUES
@@ -174,18 +185,18 @@ INSERT INTO `estados` (`Id_Estado`, `Estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estados_movimiento`
+-- Table structure for table `estados_movimiento`
 --
 
 DROP TABLE IF EXISTS `estados_movimiento`;
 CREATE TABLE IF NOT EXISTS `estados_movimiento` (
-  `Id_EstadoMov` int NOT NULL AUTO_INCREMENT,
-  `Estado_Movimiento` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `Id_EstadoMov` int(11) NOT NULL AUTO_INCREMENT,
+  `Estado_Movimiento` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_EstadoMov`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `estados_movimiento`
+-- Dumping data for table `estados_movimiento`
 --
 
 INSERT INTO `estados_movimiento` (`Id_EstadoMov`, `Estado_Movimiento`) VALUES
@@ -195,56 +206,57 @@ INSERT INTO `estados_movimiento` (`Id_EstadoMov`, `Estado_Movimiento`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `existencias`
+-- Table structure for table `existencias`
 --
 
 DROP TABLE IF EXISTS `existencias`;
 CREATE TABLE IF NOT EXISTS `existencias` (
-  `Id_Existencia` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Articulo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Saldo` int NOT NULL DEFAULT '0',
-  `SaldoInicial` int DEFAULT NULL,
+  `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `NoComprobante` char(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Saldo` int(11) NOT NULL DEFAULT '0',
+  `SaldoInicial` int(11) DEFAULT NULL,
   `F_LastUpdate` date NOT NULL,
-  `EsSaldoInicial` int NOT NULL DEFAULT '1',
+  `EsSaldoInicial` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Existencia`),
   KEY `existencias_ibfk_1` (`Id_Articulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `existencias`
+-- Dumping data for table `existencias`
 --
 
-INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
-('E26724557571726', 'I89489943973588', 0, NULL, '2023-05-26', 1),
-('E35578389916098', 'I58544007596640', 0, NULL, '2023-05-26', 1),
-('E43321048868076', 'I99745938237056', 0, 25, '2023-05-24', 0),
-('E57328323996558', 'I58872765406360', 0, NULL, '2023-05-26', 1),
-('E81797379711633', 'I17444664310128', 59, 55, '2023-05-24', 0),
-('E95265838413285', 'I48081567842105', 108, 111, '2023-05-26', 0);
+INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `NoComprobante`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
+('E26724557571726', 'I89489943973588', '', 0, NULL, '2023-05-26', 1),
+('E35578389916098', 'I58544007596640', '', 0, NULL, '2023-05-26', 1),
+('E43321048868076', 'I99745938237056', '', 0, 25, '2023-05-24', 0),
+('E57328323996558', 'I58872765406360', '26202305', 6, 5, '2023-05-27', 0),
+('E81797379711633', 'I17444664310128', '26202306', 65, 55, '2023-05-26', 0),
+('E95265838413285', 'I48081567842105', '26202308', 120, 111, '2023-05-26', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `movimientos`
+-- Table structure for table `movimientos`
 --
 
 DROP TABLE IF EXISTS `movimientos`;
 CREATE TABLE IF NOT EXISTS `movimientos` (
-  `Id_Correlativo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Articulo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Existencia` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Entrada` int NOT NULL DEFAULT '0',
-  `Salida` int NOT NULL DEFAULT '0',
-  `Correctivo` int DEFAULT '0',
-  `SaldoResultante` int NOT NULL,
+  `Id_Correlativo` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Entrada` int(11) NOT NULL DEFAULT '0',
+  `Salida` int(11) NOT NULL DEFAULT '0',
+  `Correctivo` int(11) DEFAULT '0',
+  `SaldoResultante` int(11) NOT NULL,
   `F_Movimiento` date NOT NULL,
   KEY `movimientos_ibfk_1` (`Id_Correlativo`),
   KEY `movimientos_ibfk_2` (`Id_Articulo`),
   KEY `movimientos_ibfk_3` (`Id_Existencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `movimientos`
+-- Dumping data for table `movimientos`
 --
 
 INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `Entrada`, `Salida`, `Correctivo`, `SaldoResultante`, `F_Movimiento`) VALUES
@@ -257,46 +269,57 @@ INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `En
 ('C64081378727175', 'I48081567842105', 'E95265838413285', 111, 0, 0, 111, '2023-05-26'),
 ('C90385251058411', 'I48081567842105', 'E95265838413285', 0, 1, 0, 110, '2023-05-26'),
 ('C90385251058411', 'I17444664310128', 'E81797379711633', 0, 1, 0, 59, '2023-05-26'),
-('C61726074887060', 'I48081567842105', 'E95265838413285', 0, 2, 0, 108, '2023-05-26');
+('C61726074887060', 'I48081567842105', 'E95265838413285', 0, 2, 0, 108, '2023-05-26'),
+('C13468968651569', 'I58872765406360', 'E57328323996558', 5, 0, 0, 5, '2023-05-26'),
+('C48288958278537', 'I58872765406360', 'E57328323996558', 0, 2, 0, 3, '2023-05-26'),
+('C84292254216967', 'I48081567842105', 'E95265838413285', 5, 0, 0, 113, '2023-05-26'),
+('C98173509275333', 'I17444664310128', 'E81797379711633', 5, 0, 0, 64, '2023-05-26'),
+('C45262959834893', 'I48081567842105', 'E95265838413285', 2, 0, 0, 115, '2023-05-26'),
+('C67721598925531', 'I48081567842105', 'E95265838413285', 1, 0, 0, 116, '2023-05-26'),
+('C59784243779358', 'I48081567842105', 'E95265838413285', 4, 0, 0, 120, '2023-05-26'),
+('C32259560581178', 'I17444664310128', 'E81797379711633', 1, 0, 0, 65, '2023-05-26'),
+('C99087588134956', 'I58872765406360', 'E57328323996558', 0, 0, 0, 3, '2023-05-27'),
+('C79403376664314', 'I58872765406360', 'E57328323996558', 0, 0, 2, 5, '2023-05-27'),
+('C20279423835536', 'I58872765406360', 'E57328323996558', 0, 0, 1, 6, '2023-05-27');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `movimientos_temp`
+-- Table structure for table `movimientos_temp`
 --
 
 DROP TABLE IF EXISTS `movimientos_temp`;
 CREATE TABLE IF NOT EXISTS `movimientos_temp` (
-  `Id_Session` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Articulo` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Usuario` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Existencia` char(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Cantidad` int NOT NULL,
-  `Id_EstadoMov` int NOT NULL DEFAULT '1',
+  `Id_Session` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Usuario` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Cantidad` int(11) NOT NULL,
+  `Id_EstadoMov` int(11) NOT NULL DEFAULT '1',
   KEY `movimientos_temp_ibfk_1` (`Id_EstadoMov`),
   KEY `movimientos_temp_ibfk_2` (`Id_Articulo`),
   KEY `movimientos_temp_ibfk_3` (`Id_Usuario`),
   KEY `movimientos_temp_ibfk_5` (`Id_Existencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `presentaciones`
+-- Table structure for table `presentaciones`
 --
 
 DROP TABLE IF EXISTS `presentaciones`;
 CREATE TABLE IF NOT EXISTS `presentaciones` (
-  `Id_Presentacion` char(4) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `NombreP` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Id_Estado` int NOT NULL DEFAULT '1',
+  `Id_Presentacion` char(4) COLLATE utf8_unicode_ci NOT NULL,
+  `NombreP` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Id_Estado` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Presentacion`),
   UNIQUE KEY `Presentacion` (`NombreP`),
   KEY `Id_Estado` (`Id_Estado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `presentaciones`
+-- Dumping data for table `presentaciones`
 --
 
 INSERT INTO `presentaciones` (`Id_Presentacion`, `NombreP`, `Id_Estado`) VALUES
@@ -306,18 +329,18 @@ INSERT INTO `presentaciones` (`Id_Presentacion`, `NombreP`, `Id_Estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipos_usuario`
+-- Table structure for table `tipos_usuario`
 --
 
 DROP TABLE IF EXISTS `tipos_usuario`;
 CREATE TABLE IF NOT EXISTS `tipos_usuario` (
-  `Id_Tipo` int NOT NULL,
-  `Tipo` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `Id_Tipo` int(11) NOT NULL,
+  `Tipo` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Id_Tipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `tipos_usuario`
+-- Dumping data for table `tipos_usuario`
 --
 
 INSERT INTO `tipos_usuario` (`Id_Tipo`, `Tipo`) VALUES
@@ -327,25 +350,25 @@ INSERT INTO `tipos_usuario` (`Id_Tipo`, `Tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `Id_Usuario` char(6) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Nombre` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Apellido` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Correo` varchar(75) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Clave` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
-  `Tipo_Usuario` int NOT NULL DEFAULT '1',
-  `Id_Estado` int NOT NULL DEFAULT '1',
+  `Id_Usuario` char(6) COLLATE utf8_unicode_ci NOT NULL,
+  `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Apellido` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Correo` varchar(75) COLLATE utf8_unicode_ci NOT NULL,
+  `Clave` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Tipo_Usuario` int(11) NOT NULL DEFAULT '1',
+  `Id_Estado` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`Id_Usuario`),
   KEY `Id_Estado` (`Id_Estado`),
   KEY `Tipo_Usuario` (`Tipo_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `Tipo_Usuario`, `Id_Estado`) VALUES
@@ -356,17 +379,17 @@ INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `
 ('U31988', 'Kelly', 'Wakasa', 'wakasi@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1);
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `areas`
+-- Constraints for table `areas`
 --
 ALTER TABLE `areas`
   ADD CONSTRAINT `areas_ibfk_1` FOREIGN KEY (`Id_Estado`) REFERENCES `estados` (`Id_Estado`);
 
 --
--- Filtros para la tabla `articulos`
+-- Constraints for table `articulos`
 --
 ALTER TABLE `articulos`
   ADD CONSTRAINT `articulos_ibfk_1` FOREIGN KEY (`Id_Presentacion`) REFERENCES `presentaciones` (`Id_Presentacion`),
@@ -375,25 +398,25 @@ ALTER TABLE `articulos`
   ADD CONSTRAINT `articulos_ibfk_4` FOREIGN KEY (`Id_Estado`) REFERENCES `estados` (`Id_Estado`);
 
 --
--- Filtros para la tabla `correlativos`
+-- Constraints for table `correlativos`
 --
 ALTER TABLE `correlativos`
   ADD CONSTRAINT `correlativos_ibfk_1` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuarios` (`Id_Usuario`);
 
 --
--- Filtros para la tabla `departamentos`
+-- Constraints for table `departamentos`
 --
 ALTER TABLE `departamentos`
   ADD CONSTRAINT `departamentos_ibfk_1` FOREIGN KEY (`Id_Estado`) REFERENCES `estados` (`Id_Estado`);
 
 --
--- Filtros para la tabla `existencias`
+-- Constraints for table `existencias`
 --
 ALTER TABLE `existencias`
   ADD CONSTRAINT `existencias_ibfk_1` FOREIGN KEY (`Id_Articulo`) REFERENCES `articulos` (`Id_Articulo`);
 
 --
--- Filtros para la tabla `movimientos`
+-- Constraints for table `movimientos`
 --
 ALTER TABLE `movimientos`
   ADD CONSTRAINT `movimientos_ibfk_1` FOREIGN KEY (`Id_Correlativo`) REFERENCES `correlativos` (`Id_Correlativo`),
@@ -401,7 +424,7 @@ ALTER TABLE `movimientos`
   ADD CONSTRAINT `movimientos_ibfk_3` FOREIGN KEY (`Id_Existencia`) REFERENCES `existencias` (`Id_Existencia`);
 
 --
--- Filtros para la tabla `movimientos_temp`
+-- Constraints for table `movimientos_temp`
 --
 ALTER TABLE `movimientos_temp`
   ADD CONSTRAINT `movimientos_temp_ibfk_1` FOREIGN KEY (`Id_EstadoMov`) REFERENCES `estados_movimiento` (`Id_EstadoMov`),
@@ -410,13 +433,13 @@ ALTER TABLE `movimientos_temp`
   ADD CONSTRAINT `movimientos_temp_ibfk_5` FOREIGN KEY (`Id_Existencia`) REFERENCES `existencias` (`Id_Existencia`);
 
 --
--- Filtros para la tabla `presentaciones`
+-- Constraints for table `presentaciones`
 --
 ALTER TABLE `presentaciones`
   ADD CONSTRAINT `presentaciones_ibfk_1` FOREIGN KEY (`Id_Estado`) REFERENCES `estados` (`Id_Estado`);
 
 --
--- Filtros para la tabla `usuarios`
+-- Constraints for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`Id_Estado`) REFERENCES `estados` (`Id_Estado`),

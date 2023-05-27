@@ -12,7 +12,7 @@ include_once "./Core/config.php";
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-        <!--
+    <!--
         DataTable 
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
@@ -52,13 +52,23 @@ include_once "./Core/config.php";
                             <h3 class="text" style="color:#FF0032"><?=isset($producto)?$producto['NombreA']:''?></h3>
                         </div>
                         <div class="">
-                            <label for="Id_Existencia" class="form-label">Codigo</label>
+                            <label for="Codigo" class="form-label">Código de Artículo</label>
                         </div>
                         <div class="input-group mb-3 ">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
                             <input type="text" class="form-control" aria-label="Existencia"
-                                aria-describedby="basic-addon1" readonly id="Id_Existencia" name="Id_Existencia"
-                                value="<?=isset($producto)?$producto['Id_Articulo']:''?>">
+                                aria-describedby="basic-addon1" readonly id="Codigo" name="Codigo"
+                                value="<?=isset($producto)?$producto['Codigo']:''?>">
+                        </div>
+
+                        <div class="">
+                            <label for="Comprobante" class="form-label">No. Comprobante</label>
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
+                            <input type="text" class="form-control" aria-label="Existencia"
+                                aria-describedby="basic-addon1" readonly id="Comprobante" name="Comprobante"
+                                value="<?=isset($producto)?$producto['NoComprobante']:''?>">
                         </div>
 
                         <input type="text" name="Id_Existencia" id="Id_Existencia"
@@ -89,7 +99,7 @@ include_once "./Core/config.php";
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-        <script>
+    <script>
     $(document).ready(function() {
         $('#datatable').DataTable();
     });

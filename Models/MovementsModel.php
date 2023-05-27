@@ -16,7 +16,8 @@ class MovementsModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD FROM existencias
+            $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD,
+            existencias.NoComprobante FROM existencias
             JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN areas ON articulos.Id_Area = areas.Id_Area 
@@ -27,7 +28,8 @@ class MovementsModel extends ConnectionModel{
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD FROM existencias
+            $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD
+            , articulos.Codigo, existencias.NoComprobante, existencias.NoComprobante FROM existencias
             JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN areas ON articulos.Id_Area = areas.Id_Area 
@@ -47,7 +49,8 @@ class MovementsModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD FROM movimientos 
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo, existencias.NoComprobante
+            , articulos.Codigo FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
@@ -59,7 +62,7 @@ class MovementsModel extends ConnectionModel{
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
             $query = "SELECT articulos.Id_Articulo, articulos.NombreA, existencias.SaldoInicial, presentaciones.NombreP, correlativos.Id_Correlativo, movimientos.*,
-            usuarios.Nombre, usuarios.Apellido FROM movimientos 
+            usuarios.Nombre, usuarios.Apellido, existencias.NoComprobante, articulos.Codigo FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
@@ -133,6 +136,7 @@ class MovementsModel extends ConnectionModel{
     {
         $query='';
         $query = "SELECT * FROM movimientos_temp 
+         JOIN existencias ON movimientos_temp.Id_Existencia = existencias.Id_Existencia
         JOIN articulos ON movimientos_temp.Id_Articulo = articulos.Id_Articulo
         JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
         JOIN areas ON articulos.Id_Area = areas.Id_Area 
@@ -151,8 +155,9 @@ class MovementsModel extends ConnectionModel{
 
     public function searchMovements(){
         $query = "SELECT  articulos.Id_Articulo, articulos.NombreA, movimientos.Id_Correlativo, movimientos.F_Movimiento
-        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante FROM movimientos
+        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, articulos.Codigo, existencias.NoComprobante FROM movimientos
         JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+        JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia
         ORDER BY movimientos.F_Movimiento DESC;";
         return $this->get_query($query);
     }
