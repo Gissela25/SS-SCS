@@ -62,10 +62,15 @@ include_once "./Core/config.php"
                         <?=$_SESSION['dataBuffer']['Nombre'];?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item"
+                                href="<?=PATH?>Users/Update/<?=$_SESSION['dataBuffer']['Id_Usuario'];?>">Editar
+                                Cuenta</a></li>
+                        <li><a class="dropdown-item"
+                                href="<?=PATH?>Users/UpdatePassword/<?=$_SESSION['dataBuffer']['Id_Usuario'];?>">Editar
+                                Clave</a></li>
                         <li><a class="dropdown-item" href="<?=PATH?>Index/LogOut">Cerrar Sesión</a></li>
+                    </ul>
                 </li>
-            </ul>
-            </li>
             </ul>
         </div>
     </div>

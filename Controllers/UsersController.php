@@ -126,12 +126,84 @@ class UsersController extends Controller{
         }
     }
 
+    public function UpdatePassword()
+    {
+        $viewBag["empleados"]=$this->modelo->get($_SESSION['dataBuffer']['Id_Usuario']);
+        $this->render("updatePwd.php",$viewBag);
+    }
+
+    public function SetPassword()
+    {
+        if(isset($_POST['Actualizar']))
+         {
+             //Extraemos los datos del POST
+             extract($_POST);
+             $errores=array();
+             $viewBag=array();
+             if(!isset($Clave)||isEmpty($Clave))
+             {
+                 array_push($errores,"Debes ingresar tu contraseña");
+             }
+             if(!isset($NuevaClave)||isEmpty($NuevaClave))
+             {
+                 array_push($errores,"Debes ingresar la nueva contraseña");
+             }
+             elseif(!isPassword($NuevaClave))
+             {
+               array_push($errores,"Correo no válido");
+             }
+             $Id_Usuario = $_SESSION['dataBuffer']['Id_Usuario'];
+             $usuario['Id_Usuario']=$Id_Usuario;
+             $usuario['Clave']=hash('sha256',$NuevaClave);
+             //Comprobamos si el arreglo errores está vacío o no
+             if(count($errores)>0)
+                 {
+ 
+                     $viewBag['empleados']=$this->modelo->get($Id_Usuario);
+                     $viewBag['errores']=$errores;
+                     $this->render("updatePwd.php",$viewBag);
+                 }
+                 else
+                 {
+                    if(hash('sha256',$Clave) == $CurrentPassword)
+                    {
+                        if($this->modelo->setPassword($usuario))
+                        {
+                            header('Location: '.PATH.'Articles');
+                        }
+                        else{
+                            array_push($errores,"Algo salió mal al intentar guardar la contraseña.");
+                            $viewBag['errores']=$errores;
+                            $viewBag["empleados"]=$this->modelo->get($_SESSION['dataBuffer']['Id_Usuario']);
+                            $this->render("updatePwd.php",$viewBag);
+                        }
+                    }
+                    else{
+                        array_push($errores,"La contraseña actual ingresada es incorrecta.");
+                        $viewBag['errores']=$errores;
+                        $viewBag["empleados"]=$this->modelo->get($_SESSION['dataBuffer']['Id_Usuario']);
+                        $this->render("updatePwd.php",$viewBag);
+                 }
+                    }
+                     
+                 }
+             
+            
+    }
+
     //Rendirzamos la vista de actualizacion de perfil
     public function Update($id)
     {
         $viewBag = [];
-        $viewBag["empleados"]=$this->modelo->get($id);
-        $this->render("update.php",$viewBag);
+        if($_SESSION['dataBuffer']['Id_Usuario'] == $id || ($_SESSION['dataBuffer']['Tipo_Usuario']==0))
+        {
+            $viewBag["empleados"]=$this->modelo->get($id);
+            $this->render("update.php",$viewBag);
+        }
+        else{
+            header('Location: '.PATH.'Articles');
+        }
+
     }
 
     //Funcion para actualizar los datos generales de un usuario

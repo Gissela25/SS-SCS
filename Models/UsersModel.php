@@ -67,6 +67,15 @@ class UsersModel extends ConnectionModel{
         $query = "UPDATE usuarios SET Nombre=:Nombre, Apellido=:Apellido, Correo=:Correo WHERE Id_Usuario=:Id_Usuario;";
         return $this->set_query($query,$arreglo);
     }
+
+    public function setPassword($arreglo=array())
+    {
+        extract($arreglo);
+        // Actualizamos y colocamos las variables que realmente se actualizarán
+        $query = "UPDATE usuarios SET  Clave=:Clave WHERE Id_Usuario=:Id_Usuario;";
+        return $this->set_query($query,$arreglo);
+    }
+
     public function delete($id='')
     {
         //Creamos una consulta donde eliminamos un solo registro
