@@ -55,7 +55,6 @@ include_once "./Core/config.php";
                                 aria-describedby="basic-addon1" readonly id="NoComprobante" name="NoComprobante"
                                 value="<?=isset($existencias)?$existencias['NoComprobante']:''?>">
                         </div>
-
                         <input type="text" name="Id_Existencia" id="SId_Existencia
                             value=" <?=isset($existencias)?$existencias['Id_Existencia']:''?>" hidden />
                         <input type="text" name="SaldoActual" id="SaldoActual"

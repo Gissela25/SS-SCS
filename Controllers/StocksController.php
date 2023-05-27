@@ -64,7 +64,7 @@ class StocksController extends Controller{
                 else{
                     $correctivo = abs($SaldoActual - $Saldo);
 
-                    if($correctivo == $SaldoActual)
+                    if($Saldo != $SaldoActual)
                     {
                         $correlativo = $this->modelo->generateCodeCorrelative();
 
@@ -72,11 +72,13 @@ class StocksController extends Controller{
                         //Este dato se obtendra de la sesión, por ahora ocuparemos este.
                         $correlative["Id_Usuario"] = "U00005";
                         $existencia["Id_Existencia"] = $id;
+                        $existencia["NoComprobante"] = $NoComprobante;
                         $existencia["Saldo"] = $Saldo;
                         $existencia['F_LastUpdate']=date('Y-m-d');
                         $movimiento['Id_Correlativo'] = $correlativo;
                         $movimiento['Id_Articulo'] = $Id_Articulo;
                         $movimiento["Id_Existencia"] = $id;
+                        $movimiento["NoComprobante"] = $NoComprobante;
                         $movimiento["Correctivo"] = $correctivo;
                         $movimiento["SaldoResultante"] = $Saldo;
                         $movimiento["F_Movimiento"] = date('Y-m-d');
@@ -152,6 +154,7 @@ class StocksController extends Controller{
                    $movimiento['Id_Correlativo'] = $correlativo;
                    $movimiento['Id_Articulo'] = $Id_Articulo;
                    $movimiento["Id_Existencia"] = $id;
+                   $movimiento["NoComprobante"] = $NoComprobante;
                    $movimiento["Entrada"] = $NuevoSaldo;
                    $movimiento["SaldoResultante"] = $NuevoSaldo;
                    $movimiento["F_Movimiento"] = date('Y-m-d');
@@ -179,6 +182,7 @@ class StocksController extends Controller{
                     $movimiento['Id_Correlativo'] = $correlativo;
                     $movimiento['Id_Articulo'] = $Id_Articulo;
                     $movimiento["Id_Existencia"] = $id;
+                    $movimiento["NoComprobante"] = $NoComprobante;
                     $movimiento["Entrada"] = $NuevoSaldo;
                     $movimiento["SaldoResultante"] = $saldoAcumulado;
                     $movimiento["F_Movimiento"] = date('Y-m-d');

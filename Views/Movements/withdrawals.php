@@ -43,7 +43,6 @@ include_once "./Core/config.php";
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
                                 <th class="text-center">Codigo</th>
-                                <th class="text-center">No. Comprobante</th>
                                 <th class="text-center">Artículo</th>
                                 <th class="text-center">Saldo Actual</th>
                                 <th class="text-center">Presentación</th>
@@ -61,7 +60,6 @@ include_once "./Core/config.php";
                         ?>
                             <tr id="id_<?=$producto['Id_Articulo']?>">
                                 <td class="text-center"><?=$producto['Codigo']?></td>
-                                <td class="text-center"><?=$producto['NoComprobante']?></td>
                                 <td class="text-center"><?=$producto['NombreA']?></td>
                                 <td class="text-center"><?=$producto['Saldo']?></td>
                                 <td class="text-center"><?=$producto['NombreP']?></td>

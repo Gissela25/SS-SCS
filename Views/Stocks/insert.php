@@ -53,7 +53,7 @@ include_once "./Core/config.php";
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
                             <input type="text" class="form-control" aria-label="Existencia"
                                 aria-describedby="basic-addon1" id="NoComprobante" name="NoComprobante"
-                                value="<?=isset($existencias)?$existencias['NoComprobante']:''?>">
+                                placeholder="Comprobante">
                         </div>
 
                         <input type="text" name="Id_Existencia" id="Id_Existencia"

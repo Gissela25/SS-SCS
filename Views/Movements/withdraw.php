@@ -62,12 +62,12 @@ include_once "./Core/config.php";
                         </div>
 
                         <div class="">
-                            <label for="Comprobante" class="form-label">No. Comprobante</label>
+                            <label for="NoComprobante" class="form-label">No. Comprobante</label>
                         </div>
                         <div class="input-group mb-3 ">
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
                             <input type="text" class="form-control" aria-label="Existencia"
-                                aria-describedby="basic-addon1" readonly id="Comprobante" name="Comprobante"
+                                aria-describedby="basic-addon1" readonly id="NoComprobante" name="NoComprobante"
                                 value="<?=isset($producto)?$producto['NoComprobante']:''?>">
                         </div>
 

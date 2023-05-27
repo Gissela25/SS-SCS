@@ -135,7 +135,8 @@ class MovementsController extends Controller{
                     }
                 }  
                 else{
-                    $this->renderWithDrawals("Algo salió mal al intentar coompletar el retiro");
+                    array_push($errores,"Algo salió mal al intentar coompletar el retiro");
+                    $this->renderWithDrawals($errores);
                 }  
             }
             else{
@@ -189,6 +190,7 @@ class MovementsController extends Controller{
                     $op = "notFirst";
                     $withdraw['Id_Session']=$_SESSION['id_session'];
                     $withdraw['Id_Articulo']=$id;
+                    $withdraw['NoComprobante']=$NoComprobante;
                     $withdraw['Cantidad']= $Salida + $Cantidad; 
                 }
                 else{
@@ -198,6 +200,7 @@ class MovementsController extends Controller{
                     $withdraw['Id_Articulo']=$id;
                     $withdraw['Id_Usuario']=$_SESSION['id_usuario'];
                     $withdraw['Id_Existencia']=$Id_Existencia;
+                    $withdraw['NoComprobante']=$NoComprobante;
                     $withdraw['Cantidad']=$cantidad;
                 }         
                 if($this->modelo->createOrModifyWithDrawal($withdraw,$op))

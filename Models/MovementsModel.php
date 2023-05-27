@@ -16,8 +16,8 @@ class MovementsModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD,
-            existencias.NoComprobante FROM existencias
+            $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, 
+            departamentos.NombreD, existencias.NoComprobante FROM existencias
             JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN areas ON articulos.Id_Area = areas.Id_Area 
@@ -29,7 +29,7 @@ class MovementsModel extends ConnectionModel{
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
             $query = "SELECT  existencias.Id_Existencia, existencias.Saldo, articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD
-            , articulos.Codigo, existencias.NoComprobante, existencias.NoComprobante FROM existencias
+            , articulos.Codigo, existencias.NoComprobante FROM existencias
             JOIN articulos ON existencias.Id_Articulo = articulos.Id_Articulo 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN areas ON articulos.Id_Area = areas.Id_Area 
@@ -49,7 +49,7 @@ class MovementsModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo, existencias.NoComprobante
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo, movimientos.NoComprobante
             , articulos.Codigo FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
@@ -62,7 +62,7 @@ class MovementsModel extends ConnectionModel{
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
             $query = "SELECT articulos.Id_Articulo, articulos.NombreA, existencias.SaldoInicial, presentaciones.NombreP, correlativos.Id_Correlativo, movimientos.*,
-            usuarios.Nombre, usuarios.Apellido, existencias.NoComprobante, articulos.Codigo FROM movimientos 
+            usuarios.Nombre, usuarios.Apellido, movimientos.NoComprobante, articulos.Codigo FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
@@ -79,7 +79,8 @@ class MovementsModel extends ConnectionModel{
         {
             $query = "SELECT movimientos_temp.Id_Articulo, movimientos_temp.Id_Existencia, 
             movimientos_temp.Cantidad as 'Salida', 
-            (existencias.Saldo - movimientos_temp.Cantidad) as 'SaldoResultante' 
+            (existencias.Saldo - movimientos_temp.Cantidad) as 'SaldoResultante' ,
+            movimientos_temp.NoComprobante
             FROM movimientos_temp
             JOIN existencias ON movimientos_temp.Id_Existencia = existencias.Id_Existencia
             WHERE movimientos_temp.Id_Session=:Id_Session;";
@@ -115,8 +116,8 @@ class MovementsModel extends ConnectionModel{
 
     public function completeWithDrawals($withDrawal = array()){
         extract($withDrawal);
-        $query = "INSERT INTO movimientos( Id_Correlativo, Id_Articulo, Id_Existencia, Salida, SaldoResultante, F_Movimiento ) 
-        VALUES( :Id_Correlativo, :Id_Articulo, :Id_Existencia, :Salida, :SaldoResultante , :F_Movimiento );";
+        $query = "INSERT INTO movimientos( Id_Correlativo, Id_Articulo, Id_Existencia, NoComprobante,Salida, SaldoResultante, F_Movimiento ) 
+        VALUES( :Id_Correlativo, :Id_Articulo, :Id_Existencia, :NoComprobante, :Salida, :SaldoResultante , :F_Movimiento );";
         return $this->set_query($query,$withDrawal);
     }
 
@@ -155,7 +156,7 @@ class MovementsModel extends ConnectionModel{
 
     public function searchMovements(){
         $query = "SELECT  articulos.Id_Articulo, articulos.NombreA, movimientos.Id_Correlativo, movimientos.F_Movimiento
-        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, articulos.Codigo, existencias.NoComprobante FROM movimientos
+        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, articulos.Codigo, movimientos.NoComprobante FROM movimientos
         JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
         JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia
         ORDER BY movimientos.F_Movimiento DESC;";
@@ -172,7 +173,7 @@ class MovementsModel extends ConnectionModel{
     public function createOrModifyWithDrawal($withDrawal=array(), $op=''){
         extract($withDrawal);
         if($op=="firts"){
-            $query = "INSERT INTO movimientos_temp( Id_Session, Id_Articulo, Id_Usuario, Id_Existencia, Cantidad ) VALUES( :Id_Session, :Id_Articulo, :Id_Usuario, :Id_Existencia, :Cantidad  )";
+            $query = "INSERT INTO movimientos_temp( Id_Session, Id_Articulo, Id_Usuario, Id_Existencia, NoComprobante, Cantidad ) VALUES( :Id_Session, :Id_Articulo, :Id_Usuario, :Id_Existencia, :NoComprobante, :Cantidad  )";
             return $this->set_query($query,$withDrawal);
         }
         else if($op=="notFirst"){
