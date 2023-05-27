@@ -31,6 +31,8 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
+        <h3 style="text-align:center">Áreas</h3>
+        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Areas/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Area</a>
@@ -53,8 +55,7 @@ include_once "./Core/config.php"
                             // if($departamento['Id_Estado']==1)
                             // {
                             ?>
-                            <tr id="id_<?=$area['Id_Area']?>"
-                            class="<?=($area['Id_Estado']==2)?"text-danger":""?>">
+                            <tr id="id_<?=$area['Id_Area']?>" class="<?=($area['Id_Estado']==2)?"text-danger":""?>">
                                 <td class="text-center"><?=$area['Id_Area']?></td>
                                 <td class="text-center"><?=$area['Nombre']?></td>
                                 <td class="text-center">

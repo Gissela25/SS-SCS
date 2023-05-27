@@ -2,25 +2,78 @@
 include_once "./Controllers/Controller.php";
 include_once "./Core/config.php";
 include_once "./Controllers/UsersController.php";
+include_once "./Core/validaciones.php";
+include_once "./Models/UsersModel.php";
+
 class IndexController extends Controller{
+
+    private $modelo;
+
     public function __construct()
     {
-        
+        $this->modelo = new UsersModel();
     }
 
     public function Index()
     {
-        $this->render("SignUpScreen.php");
+        $viewBag = [];
+        $viewBag['areas']=$this->modelo->getArea();
+        $this->render("SignUpScreen.php",$viewBag);
+    }
+
+    public function LogOut(){
+        session_unset();
+        session_destroy();
+        header('Location: '.PATH.'Index');
     }
 
     public function Login()
     {
-        extract($_POST);
-        if(isset($_POST['login']))
+        if(isset($_POST['Ingresar']))
         {
-            header('Location:  '.PATH.'Users/Index');
+            extract($_POST);
+            $errores = array();
+            $viewBag = [];
+            if(!isset($Correo)||isEmpty($Correo))
+            {
+                array_push($errores,"Debes ingresar un correo");
+            }
+            elseif(!esMail($Correo))
+            {
+              array_push($errores,"Correo no válido");
+            }
+            if(!isset($Clave)||isEmpty($Clave))
+            {
+                array_push($errores,"Debes ingresar tu clave");
+            }
+            if(!isset($area)||isEmpty($area))
+            {
+                array_push($errores,"Debes seleccionar un área");
+            }
+            if(count($errores)>0){
+                $viewBag['errores'] = $errores;
+                $this->render("SignUpScreen.php",$viewBag);
+            }
+            else{
+                $user['Correo']=$Correo;
+                $user['Clave']=$Clave;
+                if($this->modelo->getDataUser($user))
+                {
+                    $dataUser = $this->modelo->getDataUser($user);
+                    if(count($dataUser)>0){
+                        $_SESSION['dataBuffer']=$dataUser[0];
+                        $_SESSION['area']=$area;
+                        header('Location: '.PATH.'Articles/Index');
+                    }
+                }
+                else{
+                    $user['Result']="Failed";
+                    var_dump($user);
+                }
+            }
         }
-        $this->render("SignUpScreen.php");
+                   
     }
+
 }
 ?>

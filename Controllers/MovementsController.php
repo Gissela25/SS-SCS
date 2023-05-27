@@ -18,8 +18,9 @@ class MovementsController extends Controller{
         $viewBag = [];
         //en la variable empleados pondremos los datos que obtengamos de la consulta get() de UsersModel
         $viewBag['productos'] = $this->modelo->get();
-        $viewBag['quantity'] = $this->modelo->getMovementsTemp($_SESSION['id_session']);
-        $viewBag['movimientos']=$this->modelo->getMovementsTemp($_SESSION['id_session']);
+        $id_session = $_SESSION['dataBuffer']['Id_Usuario'];
+        $viewBag['quantity'] = $this->modelo->getMovementsTemp(sha1($id_session));
+        $viewBag['movimientos']=$this->modelo->getMovementsTemp(sha1($id_session));
         $this->render("withdrawals.php",$viewBag);
     }
 
@@ -76,7 +77,9 @@ class MovementsController extends Controller{
     if(isset($_POST['Eliminar']))
     {
         extract($_POST);   
-        if($this->modelo->deleteSpecificTemporaryWithDrawalData($id))
+        $buffer['Id_Articulo']=$id;
+        $buffer['Id_Session']= sha1($_SESSION['dataBuffer']['Id_Usuario']);
+        if($this->modelo->deleteSpecificTemporaryWithDrawalData($buffer))
         {
             header('Location: '.PATH.'Movements/WithDrawals');
         }
@@ -90,12 +93,12 @@ class MovementsController extends Controller{
         if(isset($_POST['Completar'])){
             extract($_POST);
             $errores = array();
-            $id_session = $_SESSION['id_session'];
+            $id_session = sha1($_SESSION['dataBuffer']['Id_Usuario']);
             $correlativo = $this->modelo->generateCorrelative();
             $checkTempData = $this->modelo->checkWithDrawalAmount();
             $tempData = $this->modelo->getTemporaryWithDrawalData($id_session);
             $correlative['Id_Correlativo'] = $correlativo;
-            $correlative['Id_Usuario']=$_SESSION['id_usuario'];
+            $correlative['Id_Usuario']=$_SESSION['dataBuffer']['Id_Usuario'];
             $erroresVag = [];
             $counter=0;
             $negativeCounter=0;
@@ -154,8 +157,9 @@ class MovementsController extends Controller{
         $viewBag = [];
         $viewBag['errores'] = $errores;
         $viewBag['productos'] = $this->modelo->get();
-        $viewBag['quantity'] = $this->modelo->getMovementsTemp($_SESSION['id_session']);
-        $viewBag['movimientos']=$this->modelo->getMovementsTemp($_SESSION['id_session']);
+        $id_session = $_SESSION['dataBuffer']['Id_Usuario'];
+        $viewBag['quantity'] = $this->modelo->getMovementsTemp(sha1($id_session));
+        $viewBag['movimientos']=$this->modelo->getMovementsTemp(sha1($id_session));
         $this->render("withdrawals.php",$viewBag);
     }
 
@@ -180,7 +184,7 @@ class MovementsController extends Controller{
             else{
                 //Las variables que estamos obteniendo por $_SESSION se definiran cuando esté el login
                 $item['Id_Articulo']=$id;
-                $item['Id_Session']=$_SESSION['id_session'];
+                $item['Id_Session']=sha1($_SESSION['dataBuffer']['Id_Usuario']);
                 $cantidad = 0 ;
                 $op = "";
                 if(count($this->modelo->verifyItem($item)) >0)
@@ -188,16 +192,16 @@ class MovementsController extends Controller{
                     $article = $this->modelo->verifyItem($item);
                     extract($article[0]);
                     $op = "notFirst";
-                    $withdraw['Id_Session']=$_SESSION['id_session'];
+                    $withdraw['Id_Session']= sha1($_SESSION['dataBuffer']['Id_Usuario']);
                     $withdraw['Id_Articulo']=$id;
                     $withdraw['Cantidad']= $Salida + $Cantidad; 
                 }
                 else{
                     $cantidad= $Salida;
                     $op = "firts";
-                    $withdraw['Id_Session']=$_SESSION['id_session'];
+                    $withdraw['Id_Session']= sha1($_SESSION['dataBuffer']['Id_Usuario']);
                     $withdraw['Id_Articulo']=$id;
-                    $withdraw['Id_Usuario']=$_SESSION['id_usuario'];
+                    $withdraw['Id_Usuario']= $_SESSION['dataBuffer']['Id_Usuario'];
                     $withdraw['Id_Existencia']=$Id_Existencia;
                     $withdraw['Cantidad']=$cantidad;
                 }         

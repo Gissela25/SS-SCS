@@ -24,7 +24,6 @@ include_once "./Core/config.php";
     <!--
         DataTable 
     -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Articulos - Cruz Roja</title>
 </head>
 
@@ -33,8 +32,8 @@ include_once "./Core/config.php";
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h5 style="text-align:center">Salida de Insumos</h5>
-        <h3>Centro de Sangre: <?=$_SESSION['usuario']?> </h3>
+        <h3 style="text-align:center">Salida de Insumos</h3>
+        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
         <div class="col ml-5">
 
             <div class="row mt-3">
@@ -89,7 +88,7 @@ include_once "./Core/config.php";
     {
     ?>
     <div class="row mx-5 mt-5">
-        <h5 style="text-align:center">Artículos por Retirar</h5>
+        <h3 style="text-align:center">Artículos por Retirar</h3>
         <?php
                    if(isset($errores))
                    {
@@ -195,7 +194,16 @@ include_once "./Core/config.php";
     <!--
                 Script para el datatable
             -->
-
+    <script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#datatable2').DataTable();
+    });
+    </script>
     <script>
     $(document).ready(function() {
         $('.btn-operacion').click(function() {
@@ -221,16 +229,6 @@ include_once "./Core/config.php";
                 }
             });
         });
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $('#datatable').DataTable();
-    });
-    </script>
-    <script>
-    $(document).ready(function() {
-        $('#datatable2').DataTable();
     });
     </script>
 </body>

@@ -31,6 +31,8 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
+        <h3 style="text-align:center">Presentaciones</h3>
+        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Presentations/Insert" style="color: #FF0032"><i
                     class="bi bi-plus-circle"></i>Agregar Presentación</a>
@@ -54,11 +56,11 @@ include_once "./Core/config.php"
                             // {
                             ?>
                             <tr id="id_<?=$presentacion['Id_Presentacion']?>"
-                            class="<?=($presentacion['Id_Estado']==2)?"text-danger":""?>">
+                                class="<?=($presentacion['Id_Estado']==2)?"text-danger":""?>">
                                 <td class="text-center"><?=$presentacion['Id_Presentacion']?></td>
                                 <td class="text-center"><?=$presentacion['NombreP']?></td>
                                 <td class="text-center">
-                                     <?php
+                                    <?php
                                 if($presentacion['Id_Estado']==1)
                                 {
                                 ?>
@@ -73,17 +75,18 @@ include_once "./Core/config.php"
                                 ?>
                                 </td>
                                 <td class="text-center">
-                                        <a name="editar"
-                                            href="<?=PATH?>Presentations/Update/<?=$presentacion['Id_Presentacion']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil">
-                                            </a></i></td>
+                                    <a name="editar"
+                                        href="<?=PATH?>Presentations/Update/<?=$presentacion['Id_Presentacion']?>"
+                                        id="editar" class="btn btn-dark"><i class="bi bi-pencil">
+                                    </a></i>
+                                </td>
                                 <td class="text-center">
 
-                                <?php
+                                    <?php
                                 if($presentacion['Id_Estado']==1)
                                 {
                                 ?>
-                                 <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
                                             class="bi bi-dash-lg" data-bs-toggle="modal"
                                             data-bs-target="#setModalStateOf_<?=$presentacion['Id_Presentacion']?>"
                                             title="Desactivar"> </button></i>
@@ -98,7 +101,7 @@ include_once "./Core/config.php"
                                     <?php
                                 }
                                 ?>
-                            
+
                                 </td>
                             </tr>
                             <?php include 'deactivate_modal.php'; ?>
@@ -109,7 +112,7 @@ include_once "./Core/config.php"
                         </tbody>
                     </table>
 
-                    
+
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

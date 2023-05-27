@@ -8,6 +8,25 @@ class UsersModel extends ConnectionModel{
 
     //Anexamos las funciones get(), create(), update() y delete() que son las heredadas de ConnectionModel, aunque podemos añadir funciones más específicas 
 
+    public function getArea($id='')
+    {
+        $query='';
+   
+        if($id=='')
+        {
+       
+            $query = "SELECT * FROM areas WHERE Id_Estado='1';";
+
+            return $this->get_query($query);
+        }
+        else{
+
+            $query = "SELECT * FROM areas WHERE Id_Area=:Id_Area AND Id_Estado='1'";
+
+            return $this->get_query($query,[":Id_Area"=>$id]);
+        }
+    }
+
     public function get($id='')
     {
         //Creamos una variable en donde almacenaremos la consulta que haremos
@@ -26,6 +45,11 @@ class UsersModel extends ConnectionModel{
             //Retornamos el registro
             return $this->get_query($query,[":Id_Usuario"=>$id]);
         }
+    }
+
+    public function getDataUser($user = array()){
+        $query = "SELECT * FROM usuarios WHERE Correo=:Correo AND Clave=SHA2(:Clave,256) AND Id_Estado='1'";
+        return $this->get_query($query,$user);
     }
     //Declaramos un arreglo en donde vendrán las variables que guardaremos
     public function create($arreglo = array())
