@@ -10,6 +10,7 @@ class MovementsController extends Controller{
 
     public function __construct()
     {
+        Auth::checkAuth();
         $this->modelo = new MovementsModel();
     }
 

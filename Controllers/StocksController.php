@@ -10,6 +10,7 @@ class StocksController extends Controller{
 
     public function __construct()
     {
+        Auth::checkAuth();
         $this->modelo = new StocksModel();
     }
 

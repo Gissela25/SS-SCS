@@ -11,6 +11,7 @@ class AreasController extends Controller{
 
     public function __construct()
     {
+        Auth::checkAuth();
         $this->modelo = new AreasModel();
     }
 

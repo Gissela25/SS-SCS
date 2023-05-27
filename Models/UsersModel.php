@@ -21,7 +21,7 @@ class UsersModel extends ConnectionModel{
         }
         else{
 
-            $query = "SELECT * FROM areas WHERE Id_Area=:Id_Area AND Id_Estado='1'";
+            $query = "SELECT * FROM areas WHERE Id_Area=:Id_Area";
 
             return $this->get_query($query,[":Id_Area"=>$id]);
         }

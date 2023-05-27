@@ -9,11 +9,13 @@ class UsersController extends Controller{
     public function __construct()
     {
         //Creamos una instania del modelo UsersModel
+        Auth::checkAuth();
         $this->modelo = new UsersModel();
     }
 
     public function Index()
     {
+        Auth::checkUser();
         //Creamos un arreglo en donde podremos cargar variables al renderizar las vistas
         $viewBag = [];
         //en la variable empleados pondremos los datos que obtengamos de la consulta get() de UsersModel
@@ -26,12 +28,14 @@ class UsersController extends Controller{
     //Renderizado del formulario de agregar usuarios
     public function Insert()
     {
+        Auth::checkUser();
         $this->render("insert.php");
     }
 
     //Función para añadir un registro a la tabla usuarios
     public function AddUser()
     {
+        Auth::checkUser();
         //Comprobamos el submit del formuario con el nombre del botón
         if(isset($_POST['Guardar']))
         {
@@ -109,6 +113,7 @@ class UsersController extends Controller{
     //Activar o Desactivar registros (usuarios)
     public function Operations($id)
     {
+        Auth::checkUser();
         if(isset($_POST['Desactivar']))
         {
             if($this->modelo->delete($id))

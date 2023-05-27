@@ -9,6 +9,7 @@ include_once "./Controllers/DeparmentsController.php";
 include_once "./Controllers/StocksController.php";
 include_once "./Controllers/PresentationsController.php";
 include_once "./Controllers/MovementsController.php";
+include_once "./Middleware/Auth.php";
 $router = new Routing();
 $controller = $router->controller;
 $method = $router->method;

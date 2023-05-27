@@ -11,6 +11,7 @@ class DeparmentsController extends Controller{
 
     public function __construct()
     {
+        Auth::checkAuth();
         $this->modelo = new DeparmentsModel();
     }
 

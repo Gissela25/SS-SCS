@@ -17,6 +17,7 @@ class ArticlesController extends Controller{
 
     public function __construct()
     {
+        Auth::checkAuth();
         $this->modelo = new ArticlesModel();
         $this->deparmentsModel = new DeparmentsModel();
         $this->presentationsModel = new PresentationsModel();

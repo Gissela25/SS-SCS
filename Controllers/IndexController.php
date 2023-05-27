@@ -56,9 +56,11 @@ class IndexController extends Controller{
                 $user['Clave']=$Clave;
                 if($this->modelo->getDataUser($user))
                 {
+                    $areaBuffer= $this->modelo->getArea($area);
                     $dataUser = $this->modelo->getDataUser($user);
                     if(count($dataUser)>0){
                         $_SESSION['dataBuffer']=$dataUser[0];
+                        $_SESSION['areaBuffer']=$areaBuffer[0];
                         $_SESSION['area']=$area;
                         header('Location: '.PATH.'Articles/Index');
                     }
