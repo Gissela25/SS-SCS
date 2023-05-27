@@ -32,8 +32,8 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h5 style="text-align:center">Ingreso de Nuevo Producto</h5>
-        <h3>Centro de Sangre: <?=$_SESSION['usuario']?></h3>
+        <h3 style="text-align:center">Ingreso de Nuevo Producto</h3>
+        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Articles/Insert" style="color: #FF0032"><i
                     class="bi bi-plus-circle"></i>Agregar
@@ -119,23 +119,22 @@ include_once "./Core/config.php"
             </div>
         </div>
     </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous">
-            </script>
-            <!--
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!--
                 Script para el datatable
             -->
-            <script>
-            $(document).ready(function() {
-                $('#datatable').DataTable();
-            });
-            </script>
-            <script>
-            $(document).ready(function() {
-                $('#datatable2').DataTable();
-            });
-            </script>
+    <script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('#datatable2').DataTable();
+    });
+    </script>
 </body>
 
 </html>

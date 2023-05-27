@@ -26,6 +26,8 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
+        <h3 style="text-align:center">Historial de Salida de Insumos</h3>
+        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
         <div class="col ml-5">
             <div class="row mt-3">
                 <div class="table-responsive">

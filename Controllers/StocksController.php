@@ -16,7 +16,8 @@ class StocksController extends Controller{
     public function Index()
     {
         $viewBag = [];
-        $viewBag['stock'] = $this->modelo->get();
+        $idArea = $_SESSION['area'];
+        $viewBag['stock'] = $this->modelo->getArticlesByArea($idArea);
         $this->render("index.php",$viewBag);
     }
 

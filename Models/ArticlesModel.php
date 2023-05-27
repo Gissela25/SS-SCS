@@ -16,15 +16,39 @@ class ArticlesModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento;";
+            $query = "SELECT articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, 
+            articulos.Id_Estado, areas.Id_Area FROM articulos 
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
+            JOIN areas ON articulos.Id_Area = areas.Id_Area 
+            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);
         }
-        else{
+        else if($id!=''){
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT articulos.Codigo, articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, articulos.Id_Estado FROM articulos JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN areas ON articulos.Id_Area = areas.Id_Area JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE Id_Articulo=:Id_Articulo";
+            $query = "SELECT articulos.Codigo, articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, 
+            departamentos.NombreD, articulos.Id_Estado FROM articulos 
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
+            JOIN areas ON articulos.Id_Area = areas.Id_Area 
+            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento 
+            WHERE Id_Articulo=:Id_Articulo";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
+        }
+    }
+
+    public function getArticlesByArea($idArea='')
+    {
+        $query='';
+        if($idArea!='')
+        {
+            $query = "SELECT articulos.Id_Articulo, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, areas.Nombre, departamentos.NombreD, 
+            articulos.Id_Estado, areas.Id_Area FROM articulos 
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
+            JOIN areas ON articulos.Id_Area = areas.Id_Area 
+            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento
+            WHERE articulos.Id_Area=:Id_Area";
+            return $this->get_query($query,[":Id_Area"=>$idArea]);
         }
     }
     //Declaramos un arreglo en donde vendrán las variables que guardaremos

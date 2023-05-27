@@ -32,6 +32,8 @@ include_once "./Core/config.php"
 ?>
     <div class="row mx-5 mt-5">
         <div class="col ml-5">
+            <h3 style="text-align:center">Departamentos</h3>
+            <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
             <a class="edit" href="<?=PATH?>Deparments/Insert" style="color: #FF0032"><i
                     class="bi bi-plus-circle"></i>Agregar Departamento</a>
             <div class="row mt-3">
@@ -73,9 +75,9 @@ include_once "./Core/config.php"
                                 ?>
                                 </td>
                                 <td class="text-center">
-                                        <a name="editar"
-                                            href="<?=PATH?>Deparments/Update/<?=$departamento['Id_Departamento']?>"
-                                            id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
+                                    <a name="editar"
+                                        href="<?=PATH?>Deparments/Update/<?=$departamento['Id_Departamento']?>"
+                                        id="editar" class="btn btn-dark"><i class="bi bi-pencil"> </a></i>
 
                                 </td>
 

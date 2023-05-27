@@ -35,6 +35,7 @@ include_once "./Core/config.php"
     -->
     <div class="row mx-5 mt-5">
         <h3 style="text-align:center">Usuarios Activos</h3>
+        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Users/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Usuario</a>

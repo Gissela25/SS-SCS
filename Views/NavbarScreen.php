@@ -55,6 +55,17 @@ include_once "./Core/config.php"
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a style="color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?=$_SESSION['dataBuffer']['Nombre'];?>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="<?=PATH?>Index/LogOut">Cerrar Sesión</a></li>
+                </li>
+            </ul>
+            </li>
             </ul>
         </div>
     </div>

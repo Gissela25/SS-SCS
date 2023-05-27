@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 27, 2023 at 03:42 AM
+-- Generation Time: May 27, 2023 at 07:51 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -58,8 +58,11 @@ CREATE TABLE IF NOT EXISTS `areas` (
 --
 
 INSERT INTO `areas` (`Id_Area`, `Nombre`, `Id_Estado`) VALUES
-('A12343', 'Serologia', 2),
-('A12345', 'Tamizaje', 1);
+('A12343', 'Serologia', 1),
+('A12345', 'Tamizaje', 1),
+('A27215', 'Celulares', 1),
+('A48672', 'Jefatura', 1),
+('A59165', 'Sangria', 1);
 
 -- --------------------------------------------------------
 
@@ -90,9 +93,11 @@ CREATE TABLE IF NOT EXISTS `articulos` (
 
 INSERT INTO `articulos` (`Id_Articulo`, `Codigo`, `NombreA`, `Id_Presentacion`, `Id_Departamento`, `Id_Area`, `Id_Estado`) VALUES
 ('I17444664310128', '20212129', 'Agua Mineral', 'P123', 'D32551', 'A12343', 1),
+('I33172199242160', '202226023', 'Agua Deshidratada', 'P123', 'D96937', 'A59165', 1),
 ('I48081567842105', '20212125', 'Gasas', 'P123', 'D44522', 'A12343', 1),
 ('I58544007596640', '20129091', 'PCR', 'P123', 'D44522', 'A12343', 1),
 ('I58872765406360', '20128999', 'Kit de tamizaje', 'P123', 'D44522', 'A12345', 1),
+('I83045535656790', '202226056', 'Mascarilla', 'P123', 'D96937', 'A59165', 1),
 ('I89489943973588', '20129094', 'Prueba de Sifilis', 'P123', 'D44522', 'A12343', 1),
 ('I99745938237056', '20212127', 'Jeringas', 'P123', 'D44522', 'A12345', 1);
 
@@ -115,6 +120,10 @@ CREATE TABLE IF NOT EXISTS `correlativos` (
 --
 
 INSERT INTO `correlativos` (`Id_Correlativo`, `Id_Usuario`) VALUES
+('202305272270', 'U00001'),
+('202305273344', 'U00005'),
+('202305276614', 'U00005'),
+('202305276945', 'U00005'),
 ('202305277276', 'U00005'),
 ('202305277799', 'U00005'),
 ('2305274366', 'U00005'),
@@ -253,10 +262,12 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 
 INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `NoComprobante`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
 ('E26724557571726', 'I89489943973588', '', 0, NULL, '2023-05-26', 1),
-('E35578389916098', 'I58544007596640', '26202306', 25, 40, '2023-05-27', 1),
+('E35578389916098', 'I58544007596640', '26202306', 15, 40, '2023-05-27', 1),
 ('E43321048868076', 'I99745938237056', '', 0, 25, '2023-05-24', 1),
-('E57328323996558', 'I58872765406360', '26202308', 26, 5, '2023-05-27', 1),
+('E57328323996558', 'I58872765406360', '26202308', 20, 5, '2023-05-27', 1),
+('E62304667623815', 'I33172199242160', NULL, 0, NULL, '2023-05-27', 1),
 ('E81797379711633', 'I17444664310128', '26202311', 5, 5, '2023-05-27', 1),
+('E87038057115618', 'I83045535656790', NULL, 0, NULL, '2023-05-27', 1),
 ('E95265838413285', 'I48081567842105', '26202305', 0, 5, '2023-05-27', 1);
 
 -- --------------------------------------------------------
@@ -285,7 +296,8 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
 --
 
 INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `Entrada`, `Salida`, `Correctivo`, `SaldoResultante`, `F_Movimiento`) VALUES
-('202305277276', 'I58544007596640', 'E35578389916098', 0, 5, 0, 25, '2023-05-27');
+('202305276614', 'I58544007596640', 'E35578389916098', 0, 5, 0, 20, '2023-05-27'),
+('202305272270', 'I58544007596640', 'E35578389916098', 0, 5, 0, 15, '2023-05-27');
 
 -- --------------------------------------------------------
 
@@ -306,14 +318,6 @@ CREATE TABLE IF NOT EXISTS `movimientos_temp` (
   KEY `movimientos_temp_ibfk_3` (`Id_Usuario`),
   KEY `movimientos_temp_ibfk_5` (`Id_Existencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `movimientos_temp`
---
-
-INSERT INTO `movimientos_temp` (`Id_Session`, `Id_Articulo`, `Id_Usuario`, `Id_Existencia`, `Cantidad`, `Id_EstadoMov`) VALUES
-('ea8913dffd88d99556a07b13d95843d0d4d221e8', 'I58872765406360', 'U00005', 'E57328323996558', 0, 1),
-('ea8913dffd88d99556a07b13d95843d0d4d221e8', 'I58544007596640', 'U00005', 'E35578389916098', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -385,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Id_Usuario`, `Nombre`, `Apellido`, `Correo`, `Clave`, `Tipo_Usuario`, `Id_Estado`) VALUES
-('U00001', 'Jony Edenilson', 'Morales', 'jony25lopezml@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
+('U00001', 'Jony', 'Morales', 'jony25lopezml@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00002', 'Gissela', 'Serrano', 'gissela25serrano@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00003', 'Susan', 'Selaya', 'susan23selaya@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 1, 1),
 ('U00005', 'John', 'Doe', 'johndoe@gmail.com', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 0, 1),

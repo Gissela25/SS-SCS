@@ -96,25 +96,8 @@ include_once "./Core/config.php"
                             ?>
                             </select>
                         </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Area</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <select class="form-select" name="Id_Area" id="floatingSelect"
-                                aria-label="Floating label select example">
-                                <option selected value=""></option>
-                                <?php
-                            foreach($zonas as $area)
-                            {
-                            ?>
-                                <option value="<?=$area['Id_Area']?>"><?=$area['Nombre']?></option>
-                                <?php
-                            }
-                            ?>
-                            </select>
-                        </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="submit" class="btn btn-danger" name="Guardar" id="Guardar">Guardar
+                            <button type="submit" class="btn btn-danger" name="Guardar" id="Guardar">Guardar
                             </button>
                         </div>
                     </form>
