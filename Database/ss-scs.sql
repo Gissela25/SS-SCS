@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 27, 2023 at 01:46 AM
+-- Generation Time: May 27, 2023 at 03:42 AM
 -- Server version: 5.7.36
 -- PHP Version: 8.0.13
 
@@ -115,6 +115,11 @@ CREATE TABLE IF NOT EXISTS `correlativos` (
 --
 
 INSERT INTO `correlativos` (`Id_Correlativo`, `Id_Usuario`) VALUES
+('202305277276', 'U00005'),
+('202305277799', 'U00005'),
+('2305274366', 'U00005'),
+('2305276167', 'U00005'),
+('2305278315', 'U00005'),
 ('C13080614701803', 'U00005'),
 ('C13468968651569', 'U00005'),
 ('C14593576747086', 'U00005'),
@@ -248,11 +253,11 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 
 INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `NoComprobante`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
 ('E26724557571726', 'I89489943973588', '', 0, NULL, '2023-05-26', 1),
-('E35578389916098', 'I58544007596640', '26202306', 35, 40, '2023-05-27', 0),
+('E35578389916098', 'I58544007596640', '26202306', 25, 40, '2023-05-27', 1),
 ('E43321048868076', 'I99745938237056', '', 0, 25, '2023-05-24', 1),
-('E57328323996558', 'I58872765406360', '26202308', 26, 5, '2023-05-27', 0),
-('E81797379711633', 'I17444664310128', '26202311', 5, 5, '2023-05-27', 0),
-('E95265838413285', 'I48081567842105', '26202305', 5, 5, '2023-05-27', 0);
+('E57328323996558', 'I58872765406360', '26202308', 26, 5, '2023-05-27', 1),
+('E81797379711633', 'I17444664310128', '26202311', 5, 5, '2023-05-27', 1),
+('E95265838413285', 'I48081567842105', '26202305', 0, 5, '2023-05-27', 1);
 
 -- --------------------------------------------------------
 
@@ -265,7 +270,6 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
   `Id_Correlativo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
-  `NoComprobante` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Entrada` int(11) NOT NULL DEFAULT '0',
   `Salida` int(11) NOT NULL DEFAULT '0',
   `Correctivo` int(11) DEFAULT '0',
@@ -280,17 +284,8 @@ CREATE TABLE IF NOT EXISTS `movimientos` (
 -- Dumping data for table `movimientos`
 --
 
-INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `NoComprobante`, `Entrada`, `Salida`, `Correctivo`, `SaldoResultante`, `F_Movimiento`) VALUES
-('C97539601338373', 'I58872765406360', 'E57328323996558', '26202308', 5, 0, 0, 5, '2023-05-27'),
-('C52377747428241', 'I58872765406360', 'E57328323996558', '26202311', 5, 0, 0, 10, '2023-05-27'),
-('C26704507025914', 'I17444664310128', 'E81797379711633', '26202311', 5, 0, 0, 5, '2023-05-27'),
-('C48045038019342', 'I48081567842105', 'E95265838413285', '26202305', 5, 0, 0, 5, '2023-05-27'),
-('C77989877777040', 'I58544007596640', 'E35578389916098', '26202306', 40, 0, 0, 40, '2023-05-27'),
-('C83868221395246', 'I58872765406360', 'E57328323996558', '201289313', 5, 0, 0, 15, '2023-05-27'),
-('C45560858706462', 'I58872765406360', 'E57328323996558', '201289313', 0, 0, 5, 25, '2023-05-27'),
-('C95182200816605', 'I58872765406360', 'E57328323996558', '26202308', 5, 0, 0, 30, '2023-05-27'),
-('C40988094803670', 'I58544007596640', 'E35578389916098', '26202306', 0, 5, 0, 35, '2023-05-27'),
-('C40988094803670', 'I58872765406360', 'E57328323996558', '26202308', 0, 4, 0, 26, '2023-05-27');
+INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `Entrada`, `Salida`, `Correctivo`, `SaldoResultante`, `F_Movimiento`) VALUES
+('202305277276', 'I58544007596640', 'E35578389916098', 0, 5, 0, 25, '2023-05-27');
 
 -- --------------------------------------------------------
 
@@ -304,7 +299,6 @@ CREATE TABLE IF NOT EXISTS `movimientos_temp` (
   `Id_Articulo` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Usuario` char(6) COLLATE utf8_unicode_ci NOT NULL,
   `Id_Existencia` char(15) COLLATE utf8_unicode_ci NOT NULL,
-  `NoComprobante` char(15) COLLATE utf8_unicode_ci NOT NULL,
   `Cantidad` int(11) NOT NULL,
   `Id_EstadoMov` int(11) NOT NULL DEFAULT '1',
   KEY `movimientos_temp_ibfk_1` (`Id_EstadoMov`),
@@ -312,6 +306,14 @@ CREATE TABLE IF NOT EXISTS `movimientos_temp` (
   KEY `movimientos_temp_ibfk_3` (`Id_Usuario`),
   KEY `movimientos_temp_ibfk_5` (`Id_Existencia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `movimientos_temp`
+--
+
+INSERT INTO `movimientos_temp` (`Id_Session`, `Id_Articulo`, `Id_Usuario`, `Id_Existencia`, `Cantidad`, `Id_EstadoMov`) VALUES
+('ea8913dffd88d99556a07b13d95843d0d4d221e8', 'I58872765406360', 'U00005', 'E57328323996558', 0, 1),
+('ea8913dffd88d99556a07b13d95843d0d4d221e8', 'I58544007596640', 'U00005', 'E35578389916098', 5, 1);
 
 -- --------------------------------------------------------
 

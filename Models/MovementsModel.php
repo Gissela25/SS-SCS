@@ -79,8 +79,7 @@ class MovementsModel extends ConnectionModel{
         {
             $query = "SELECT movimientos_temp.Id_Articulo, movimientos_temp.Id_Existencia, 
             movimientos_temp.Cantidad as 'Salida', 
-            (existencias.Saldo - movimientos_temp.Cantidad) as 'SaldoResultante' ,
-            movimientos_temp.NoComprobante
+            (existencias.Saldo - movimientos_temp.Cantidad) as 'SaldoResultante'
             FROM movimientos_temp
             JOIN existencias ON movimientos_temp.Id_Existencia = existencias.Id_Existencia
             WHERE movimientos_temp.Id_Session=:Id_Session;";
@@ -116,8 +115,8 @@ class MovementsModel extends ConnectionModel{
 
     public function completeWithDrawals($withDrawal = array()){
         extract($withDrawal);
-        $query = "INSERT INTO movimientos( Id_Correlativo, Id_Articulo, Id_Existencia, NoComprobante,Salida, SaldoResultante, F_Movimiento ) 
-        VALUES( :Id_Correlativo, :Id_Articulo, :Id_Existencia, :NoComprobante, :Salida, :SaldoResultante , :F_Movimiento );";
+        $query = "INSERT INTO movimientos( Id_Correlativo, Id_Articulo, Id_Existencia,Salida, SaldoResultante, F_Movimiento ) 
+        VALUES( :Id_Correlativo, :Id_Articulo, :Id_Existencia, :Salida, :SaldoResultante , :F_Movimiento );";
         return $this->set_query($query,$withDrawal);
     }
 
@@ -156,7 +155,7 @@ class MovementsModel extends ConnectionModel{
 
     public function searchMovements(){
         $query = "SELECT  articulos.Id_Articulo, articulos.NombreA, movimientos.Id_Correlativo, movimientos.F_Movimiento
-        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, articulos.Codigo, movimientos.NoComprobante FROM movimientos
+        ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, articulos.Codigo FROM movimientos
         JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
         JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia
         ORDER BY movimientos.F_Movimiento DESC;";
@@ -173,7 +172,7 @@ class MovementsModel extends ConnectionModel{
     public function createOrModifyWithDrawal($withDrawal=array(), $op=''){
         extract($withDrawal);
         if($op=="firts"){
-            $query = "INSERT INTO movimientos_temp( Id_Session, Id_Articulo, Id_Usuario, Id_Existencia, NoComprobante, Cantidad ) VALUES( :Id_Session, :Id_Articulo, :Id_Usuario, :Id_Existencia, :NoComprobante, :Cantidad  )";
+            $query = "INSERT INTO movimientos_temp( Id_Session, Id_Articulo, Id_Usuario, Id_Existencia, Cantidad ) VALUES( :Id_Session, :Id_Articulo, :Id_Usuario, :Id_Existencia, :Cantidad  )";
             return $this->set_query($query,$withDrawal);
         }
         else if($op=="notFirst"){

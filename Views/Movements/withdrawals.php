@@ -130,7 +130,7 @@ include_once "./Core/config.php";
                         // con $empleado['campo'] entramos al campo o variable que queremos imprimir
                         ?>
                             <tr id="id_<?=$movimiento['Id_Articulo']?>">
-                                <td class="text-center"><?=$movimiento['Id_Articulo']?></td>
+                                <td class="text-center"><?=$movimiento['Codigo']?></td>
                                 <td class="text-center"><?=$movimiento['NoComprobante']?></td>
                                 <td class="text-center"><?=$movimiento['NombreA']?></td>
                                 <td class="text-center"><?=$movimiento['Cantidad']?></td>
@@ -208,7 +208,7 @@ include_once "./Core/config.php";
 
             if (operacion === 'Agregar') {
                 cantidad++;
-            } else if (operacion === 'Quitar') {
+            } else if (operacion === 'Quitar' && cantidad > 0) {
                 cantidad--;
             }
 

@@ -34,7 +34,7 @@ include_once "./Core/config.php"
                             <tr>
                                 <th class="text-center">Codigo</th>
                                 <th class="text-center">Artículo</th>
-                                <th class="text-center">Correlativo</th>
+                                <th class="text-center">Correlativo Interno</th>
                                 <th class="text-center">Fecha</th>
                                 <th class="text-center">Entrada</th>
                                 <th class="text-center">Correctivo</th>
@@ -50,7 +50,7 @@ include_once "./Core/config.php"
                             <tr id="id_<?=$movimiento['Id_Articulo']?>">
                                 <td class="text-center"><?=$movimiento['Codigo']?></td>
                                 <td class="text-center"><?=$movimiento['NombreA']?></td>
-                                <td class="text-center"><?=$movimiento['NoComprobante']?></td>
+                                <td class="text-center"><?=$movimiento['Id_Correlativo']?></td>
                                 <td class="text-center"><?=$movimiento['F_Movimiento']?></td>
                                 <td class="text-center"><?=$movimiento['Entrada']?></td>
                                 <td class="text-center"><?=$movimiento['Correctivo']?></td>

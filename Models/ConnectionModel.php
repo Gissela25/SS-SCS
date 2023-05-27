@@ -133,14 +133,16 @@ abstract class ConnectionModel
 
     public function generateCodeCorrelative(){
         $generated_code = '';
+        $date = date('Ymd'); // Obtiene la fecha actual en el formato "ymd"
         do {
-            $code = rand(10000000000000, 99999999999999);
-            $generated_code = 'C' . $code;
+            $random_digits = mt_rand(1000, 9999); // Genera 4 números aleatorios
+            $generated_code = $date . $random_digits;
             $query = "SELECT COUNT(*) FROM correlativos WHERE Id_Correlativo = ?";
             $result = $this->get_query($query, [$generated_code]);
         } while ($result[0]["COUNT(*)"] > 0);
         return $generated_code;
     }
+    
 
     
     
