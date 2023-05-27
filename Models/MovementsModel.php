@@ -49,7 +49,7 @@ class MovementsModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo, movimientos.NoComprobante
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo
             , articulos.Codigo FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
@@ -62,7 +62,7 @@ class MovementsModel extends ConnectionModel{
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
             $query = "SELECT articulos.Id_Articulo, articulos.NombreA, existencias.SaldoInicial, presentaciones.NombreP, correlativos.Id_Correlativo, movimientos.*,
-            usuarios.Nombre, usuarios.Apellido, movimientos.NoComprobante, articulos.Codigo FROM movimientos 
+            usuarios.Nombre, usuarios.Apellido, articulos.Codigo FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
