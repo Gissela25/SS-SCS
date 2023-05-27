@@ -93,8 +93,8 @@ class StocksModel extends ConnectionModel{
             $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
             $secondResult =  $this->set_query($query,$correlative);
             if($secondResult){
-                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, NoComprobante, Correctivo, SaldoResultante, F_Movimiento)
-                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :NoComprobante, :Correctivo, :SaldoResultante, :F_Movimiento)";
+                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, Correctivo, SaldoResultante, F_Movimiento)
+                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :Correctivo, :SaldoResultante, :F_Movimiento)";
                 $thirdResult =  $this->set_query($query,$movimiento);
                 if($thirdResult){
                     return true;
@@ -117,14 +117,15 @@ class StocksModel extends ConnectionModel{
         extract($correlative);
         extract($movimiento);
         // Actualizamos y colocamos las variables que realmente se actualizarán
-        $query = "UPDATE existencias SET NoComprobante=:NoComprobante, Saldo=:Saldo, SaldoInicial=:SaldoInicial, F_LastUpdate=:F_LastUpdate,  EsSaldoInicial=:EsSaldoInicial WHERE Id_Existencia =:Id_Existencia ;";
+        $query = "UPDATE existencias SET NoComprobante=:NoComprobante, Saldo=:Saldo, SaldoInicial=:SaldoInicial, F_LastUpdate=:F_LastUpdate,  EsSaldoInicial=:EsSaldoInicial 
+        WHERE Id_Existencia =:Id_Existencia ;";
         $firsResult =  $this->set_query($query,$existencia);
         if($firsResult){
             $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
             $secondResult =  $this->set_query($query,$correlative);
             if($secondResult){
-                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, NoComprobante, Entrada, SaldoResultante, F_Movimiento)
-                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :NoComprobante, :Entrada, :SaldoResultante, :F_Movimiento)";
+                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, Entrada, SaldoResultante, F_Movimiento)
+                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :Entrada, :SaldoResultante, :F_Movimiento)";
                 $thirdResult =  $this->set_query($query,$movimiento);
                 if($thirdResult){
                     return true;
@@ -153,8 +154,8 @@ class StocksModel extends ConnectionModel{
             $query = "INSERT INTO correlativos(Id_Correlativo, Id_Usuario) VALUES(:Id_Correlativo, :Id_Usuario)";
             $secondResult =  $this->set_query($query,$correlative);
             if($secondResult){
-                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, NoComprobante, Entrada, SaldoResultante, F_Movimiento)
-                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :NoComprobante, :Entrada, :SaldoResultante, :F_Movimiento)";
+                $query = "INSERT INTO movimientos(Id_Correlativo, Id_Articulo, Id_Existencia, Entrada, SaldoResultante, F_Movimiento)
+                 VALUES(:Id_Correlativo, :Id_Articulo, :Id_Existencia, :Entrada, :SaldoResultante, :F_Movimiento)";
                 $thirdResult =  $this->set_query($query,$movimiento);
                 if($thirdResult){
                     return true;

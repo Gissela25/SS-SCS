@@ -79,7 +79,6 @@ class StocksController extends Controller{
                         $movimiento['Id_Correlativo'] = $correlativo;
                         $movimiento['Id_Articulo'] = $Id_Articulo;
                         $movimiento["Id_Existencia"] = $id;
-                        $movimiento["NoComprobante"] = $NoComprobante;
                         $movimiento["Correctivo"] = $correctivo;
                         $movimiento["SaldoResultante"] = $Saldo;
                         $movimiento["F_Movimiento"] = date('Y-m-d');
@@ -145,7 +144,7 @@ class StocksController extends Controller{
                    $correlativo = $this->modelo->generateCodeCorrelative();
                    $correlative['Id_Correlativo'] = $correlativo;
                    //Este dato se obtendra de la sesión, por ahora ocuparemos este.
-                   $correlative["Id_Usuario"] = "U00005";
+                   $correlative["Id_Usuario"] = $_SESSION['dataBuffer']['Id_Usuario'];
                    $existencia["Id_Existencia"] = $id;
                    $existencia["NoComprobante"] = $NoComprobante;
                    $existencia["Saldo"] = $NuevoSaldo;
@@ -155,7 +154,6 @@ class StocksController extends Controller{
                    $movimiento['Id_Correlativo'] = $correlativo;
                    $movimiento['Id_Articulo'] = $Id_Articulo;
                    $movimiento["Id_Existencia"] = $id;
-                   $movimiento["NoComprobante"] = $NoComprobante;
                    $movimiento["Entrada"] = $NuevoSaldo;
                    $movimiento["SaldoResultante"] = $NuevoSaldo;
                    $movimiento["F_Movimiento"] = date('Y-m-d');
@@ -175,7 +173,7 @@ class StocksController extends Controller{
                     $correlativo = $this->modelo->generateCodeCorrelative();
                     $correlative['Id_Correlativo'] = $correlativo;
                     //Este dato se obtendra de la sesión, por ahora ocuparemos este.
-                    $correlative["Id_Usuario"] = "U00005";
+                    $correlative["Id_Usuario"] = $_SESSION['dataBuffer']['Id_Usuario'];
                     $existencia["Id_Existencia"] = $id;
                     $existencia["NoComprobante"] = $NoComprobante;
                     $existencia["Saldo"] = $saldoAcumulado;
@@ -183,7 +181,6 @@ class StocksController extends Controller{
                     $movimiento['Id_Correlativo'] = $correlativo;
                     $movimiento['Id_Articulo'] = $Id_Articulo;
                     $movimiento["Id_Existencia"] = $id;
-                    $movimiento["NoComprobante"] = $NoComprobante;
                     $movimiento["Entrada"] = $NuevoSaldo;
                     $movimiento["SaldoResultante"] = $saldoAcumulado;
                     $movimiento["F_Movimiento"] = date('Y-m-d');
