@@ -7,7 +7,7 @@ include_once "./Core/config.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Actualizar artículo - Cruz roja</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -36,11 +36,14 @@ include_once "./Core/config.php";
                        }
                    }
                    ?>
+                        <div class="form-group text-center my-1">
+                            <h3 class="text" style="color:#FF0032">Actualizar artículo</h3>
+                        </div>
                         <div class="">
                             <label for="Codigo" class="form-label">Codigo de Artículo</label>
                         </div>
                         <div class="input-group mb-3 ">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-clipboard2-data-fill"></i></span>
                             <input type="text" class="form-control" aria-label="Existencia"
                                 aria-describedby="basic-addon1" readonly id="Codigo" name="Codigo"
                                 value="<?=isset($existencias)?$existencias['Codigo']:''?>">
@@ -50,7 +53,7 @@ include_once "./Core/config.php";
                             <label for="NoComprobante" class="form-label">No. Comprobante</label>
                         </div>
                         <div class="input-group mb-3 ">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar3"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-clipboard2-data-fill"></i></span>
                             <input type="text" class="form-control" aria-label="Existencia"
                                 aria-describedby="basic-addon1" readonly id="NoComprobante" name="NoComprobante"
                                 value="<?=isset($existencias)?$existencias['NoComprobante']:''?>">
@@ -67,7 +70,7 @@ include_once "./Core/config.php";
                             <label for="Saldo" class="form-label">Saldo</label>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-basket"></i></span>
                             <input type="text" class="form-control" placeholder="Saldo" aria-label="Saldo" name="Saldo"
                                 id="Saldo" value="<?=isset($existencias)?$existencias['Saldo']:''?>"
                                 aria-describedby="basic-addon1">

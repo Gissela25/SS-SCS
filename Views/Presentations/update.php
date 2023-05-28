@@ -8,7 +8,7 @@ include_once "./Core/config.php"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Actualizar presentación - Cruz Roja</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -49,10 +49,10 @@ include_once "./Core/config.php"
                                 aria-describedby="basic-addon1" readonly>
                         </div> -->
                         <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Prsentación</label>
+                            <label for="exampleInputPassword1" class="form-label">Presentación</label>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-basket"></i></span>
                             <input type="text" class="form-control" placeholder="Agregar Presentacion"
                                 aria-label="Name" aria-describedby="basic-addon1" name="Nombre" id="nombre"
                                 value="<?=isset($presentacion)?$presentacion['NombreP']:''?>">
