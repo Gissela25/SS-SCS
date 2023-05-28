@@ -40,6 +40,25 @@ class MovementsModel extends ConnectionModel{
         }
     }
 
+    public function getWithdrawalArticlesReport($id='')
+    {
+        $query='';
+   
+        if($id=='')
+        {
+       
+            $query = "SELECT * FROM movimientos;";
+
+            return $this->get_query($query);
+        }
+        else{
+
+            $query = "SELECT movimientos.Id_Correlativo, articulos.Codigo, movimientos.Salida, articulos.NombreA, presentaciones.NombreP FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion WHERE Id_Correlativo=:Id_Correlativo;";
+
+            return $this->get_query($query,[":Id_Correlativo"=>$id]);
+        }
+    }
+
     public function getArticlesByArea($id='')
     {
         $query='';
@@ -66,19 +85,13 @@ class MovementsModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo
-            , articulos.Codigo FROM movimientos 
-            JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
-            JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
-            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
-            JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento 
-            GROUP BY articulos.Id_Articulo";
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, presentaciones.NombreP, departamentos.NombreD, articulos.Codigo, existencias.NoComprobante , articulos.Codigo FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento GROUP BY articulos.Id_Articulo";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, existencias.SaldoInicial, presentaciones.NombreP, correlativos.Id_Correlativo, movimientos.*,
+            $query = "SELECT articulos.Id_Articulo, articulos.NombreA, existencias.NoComprobante, existencias.SaldoInicial, presentaciones.NombreP, correlativos.Id_Correlativo, movimientos.*,
             usuarios.Nombre, usuarios.Apellido, articulos.Codigo FROM movimientos 
             JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo 
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
