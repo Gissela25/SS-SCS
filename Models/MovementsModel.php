@@ -153,7 +153,7 @@ class MovementsModel extends ConnectionModel{
         if($id!='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT articulos.Id_Articulo, departamentos.Id_Departamento, departamentos.NombreD, articulos.Codigo, articulos.NombreA FROM articulos JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE articulos.Id_Area=:Id_Area GROUP BY departamentos.Id_Departamento;";
+            $query = "SELECT articulos.Id_Articulo, departamentos.Id_Departamento, departamentos.NombreD, articulos.Codigo, articulos.NombreA FROM articulos JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento JOIN movimientos ON articulos.Id_Articulo = movimientos.Id_Articulo WHERE articulos.Id_Area = :Id_Area AND (movimientos.Entrada <> 0 OR movimientos.Salida <> 0) GROUP BY departamentos.Id_Departamento;";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query,[":Id_Area"=>$id]);
         }

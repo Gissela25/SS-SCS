@@ -35,8 +35,8 @@ include_once "./Core/config.php"
                             <tr>
                                 <th class="text-center">Id_Departamento</th>
                                 <th class="text-center">Departamento</th>
-                                <th class="text-center">Codigo</th>
-                                <th class="text-center">Articulo</th>
+                                <!-- <th class="text-center">Codigo</th>
+                                <th class="text-center">Articulo</th> -->
                                 <th class="text-center">Movimientos/Departamento</th>
                                 <th class="text-center">Reporte</th>
                             </tr>
@@ -52,8 +52,8 @@ include_once "./Core/config.php"
                             <tr id="id_<?=$producto['Id_Articulo']?>">
                                 <td class="text-center"><?=$producto['Id_Departamento']?></td>
                                 <td class="text-center"><?=$producto['NombreD']?></td>
-                                <td class="text-center"><?=$producto['Codigo']?></td>
-                                <td class="text-center"><?=$producto['NombreA']?></td>
+                                <!-- <td class="text-center"><?=$producto['Codigo']?></td>
+                                <td class="text-center"><?=$producto['NombreA']?></td> -->
                                 <td class="text-center"><a title="Movimientos"
                                         href="<?=PATH?>Movements/SeeSpecificMovementsforDeparment/<?=$producto['Id_Departamento']?>"
                                         name="Agregar" id="Agregar" class="btn btn-dark"><i
