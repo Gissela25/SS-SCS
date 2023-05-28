@@ -117,7 +117,7 @@ include_once "./Core/config.php"
                         </tr>
 
                         <td></td>
-                        <td></td>
+                        
                         
                         
                         
