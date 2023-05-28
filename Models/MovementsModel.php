@@ -104,6 +104,26 @@ class MovementsModel extends ConnectionModel{
         }
     }
 
+    public function getMovementsByDeparment($id='')
+    {
+        //Creamos una variable en donde almacenaremos la consulta que haremos
+        $query='';
+        //Comprobaremos si la variable id que traifa get() este vacíía o no
+        if($id=='')
+        {
+            //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
+            $query = "SELECT departamentos.Id_Departamento, departamentos.NombreD, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, usuarios.Nombre, usuarios.Apellido, movimientos.Id_Correlativo, existencias.NoComprobante, movimientos.F_Movimiento, movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, existencias.SaldoInicial FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo JOIN departamentos ON departamentos.Id_Departamento = articulos.Id_Departamento JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN correlativos ON correlativos.Id_Correlativo = movimientos.Id_Correlativo JOIN usuarios ON usuarios.Id_Usuario = correlativos.Id_Usuario JOIN existencias ON existencias.Id_Existencia = movimientos.Id_Existencia WHERE departamentos.Id_Departamento = :Id_Departamento;";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query);
+        }
+        else{
+            //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
+            $query = "SELECT departamentos.Id_Departamento, departamentos.NombreD, articulos.Codigo, articulos.NombreA, presentaciones.NombreP, usuarios.Nombre, usuarios.Apellido, movimientos.Id_Correlativo, existencias.NoComprobante, movimientos.F_Movimiento, movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, existencias.SaldoInicial FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo JOIN departamentos ON departamentos.Id_Departamento = articulos.Id_Departamento JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion JOIN correlativos ON correlativos.Id_Correlativo = movimientos.Id_Correlativo JOIN usuarios ON usuarios.Id_Usuario = correlativos.Id_Usuario JOIN existencias ON existencias.Id_Existencia = movimientos.Id_Existencia WHERE departamentos.Id_Departamento = :Id_Departamento;";
+            //Retornamos el registro
+            return $this->get_query($query,[":Id_Departamento"=>$id]);
+        }
+    }
+
     public function getMovementsByArea($id='')
     {
         //Creamos una variable en donde almacenaremos la consulta que haremos
@@ -120,6 +140,20 @@ class MovementsModel extends ConnectionModel{
             JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento    
             WHERE articulos.Id_Area=:Id_Area
             GROUP BY articulos.Id_Articulo ;";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query,[":Id_Area"=>$id]);
+        }
+    }
+
+    public function getMovementsDeparmentByArea($id='')
+    {
+        //Creamos una variable en donde almacenaremos la consulta que haremos
+        $query='';
+        //Comprobaremos si la variable id que traifa get() este vacíía o no
+        if($id!='')
+        {
+            //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
+            $query = "SELECT articulos.Id_Articulo, departamentos.Id_Departamento, departamentos.NombreD, articulos.Codigo, articulos.NombreA FROM articulos JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento WHERE articulos.Id_Area=:Id_Area GROUP BY departamentos.Id_Departamento;";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query,[":Id_Area"=>$id]);
         }

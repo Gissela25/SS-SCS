@@ -37,16 +37,34 @@ class MovementsController extends Controller{
         $this->render("kardex.php",$viewBag);
     }
 
+    public function MovementsByDeparment(){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovementsDeparmentByArea($_SESSION['area']);
+        $this->render("Movements.php",$viewBag);
+    }
+
     public function SeeSpecificKardex($id){
         $viewBag = [];
         $viewBag["productos"] = $this->modelo->getMovements($id);
         $this->render("kardexByArticle.php",$viewBag);
     }
 
+    public function SeeSpecificMovementsforDeparment($id){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovementsByDeparment($id);
+        $this->render("MovementsByDeparment.php",$viewBag);
+    }
+
     public function KardexByArticleReport($id){
         $viewBag = [];
         $viewBag["productos"] = $this->modelo->getMovements($id);
         $this->render("kardexByArticleReport.php",$viewBag);
+    }
+
+    public function MovementsByDeparmentReport($id){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovementsByDeparment($id);
+        $this->render("MovementsByDeparmentReport.php",$viewBag);
     }
 
     public function WithdrawalArticlesReport($id){
