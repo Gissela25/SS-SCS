@@ -27,7 +27,6 @@ ob_start();
 </head>
 
 <body>
-    <h3 style="text-align:left">CENTRO DE SANGRE : : : AREA DE <?=$_SESSION['areaBuffer']['Nombre']?> </h3>
     <h3 style="text-align:left">IMPRESION DE MOVIMIENTOS POR DEPARTAMENTO</h3>
     <?php
     date_default_timezone_set('America/El_Salvador');
