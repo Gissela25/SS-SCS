@@ -15,11 +15,7 @@ include_once "./Core/config.php"
 </head>
 
 <body>
-    <div class="row justify-content-center pt-5 mt-5 ">
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" action="<?=PATH?>Articles/AddArticle" enctype="multipart/form-data" role="form">
+<form method="post" action="<?=PATH?>Articles/AddArticle" enctype="multipart/form-data" role="form">
                         <?php
                    if(isset($errores))
                    {
@@ -33,35 +29,52 @@ include_once "./Core/config.php"
                        }
                    }
                    ?>
-                        <div class="form-group text-center my-1">
-                            <h3 class="text" style="color:#FF0032">Agregar Artículo</h3>
-                        </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Codigo</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"></span>
-                            <input type="text" class="form-control" placeholder="Agregue codigo" aria-label="Username"
-                                aria-describedby="basic-addon1" name="Codigo" id="Codigo"
-                                value="<?=isset($producto)?$producto['Codigo']:''?>">
-                        </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Artículo</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-basket"></i></span>
-                            <input type="text" class="form-control" placeholder="Agregue artículo" aria-label="Username"
+    <div class="row mx-5 mt-5 my-4">
+        <div class="col ml-5">
+            <div class="row mt-3">
+            
+
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                        
+                            <th scope="col"></th>
+                            <th scope="col"style="color:#b32821">AGREGAR ARTICULO</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>
+                                <div class="form-group mx-sm-4 pt-3">
+                                    <label for="exampleInputPassword1" class="form-label">Articulo</label>
+                                    <input type="text" class="form-control" placeholder="Agregue artículo" aria-label="Username"
                                 aria-describedby="basic-addon1" name="Nombre" id="Nombre"
                                 value="<?=isset($producto)?$producto['NombreP']:''?>">
-                        </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Departamento</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <!-- <span class="input-group-text" id="basic-addon1"><i class="bi bi-bar-chart-steps"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregue Mìnimo" aria-label="Username"
-                            aria-describedby="basic-addon1"> -->
-                            <select class="form-select" name="Id_Departamento" id="floatingSelect"
+                                </div>
+                            </td>
+                            <td></td>
+                            <td>
+                                <div class="form-group mx-sm-4 pt-3">
+                                    <label for="exampleInputPassword1" class="form-label">Codigo</label>
+                                    <input type="text" class="form-control" placeholder="Agregue codigo" aria-label="Username"
+                                aria-describedby="basic-addon1" name="Codigo" id="Codigo"
+                                value="<?=isset($producto)?$producto['Codigo']:''?>">
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+
+                        <td></td>
+                            <td>
+                                <div class="form-group mx-sm-4 pt-3">
+                                    <label for="exampleInputPassword1" class="form-label">Departamento</label>
+                                    <select class="form-select" name="Id_Departamento" id="floatingSelect"
                                 aria-label="Floating label select example">
                                 <option selected value=""></option>
                                 <?php
@@ -74,15 +87,19 @@ include_once "./Core/config.php"
                             }
                             ?>
                             </select>
-                        </div>
-                        <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Presentación</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <!-- <span class="input-group-text" id="basic-addon1"><i class="bi bi-bar-chart-steps"></i></span>
-                        <input type="text" class="form-control" placeholder="Agregue Mìnimo" aria-label="Username"
-                            aria-describedby="basic-addon1"> -->
-                            <select class="form-select" name="Id_Presentacion" id="floatingSelect"
+                       
+                                </div>
+                            </td>
+                        </tr>
+
+                        
+                    
+                    </td>
+                            <td></td>
+                            <td>
+                                <div class="form-group mx-sm-4 pt-3">
+                                    <label for="exampleInputPassword1" class="form-label">Presentacion</label>
+                                    <select class="form-select" name="Id_Presentacion" id="floatingSelect"
                                 aria-label="Floating label select example">
                                 <option selected value=""></option>
                                 <?php
@@ -95,20 +112,39 @@ include_once "./Core/config.php"
                             }
                             ?>
                             </select>
-                        </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button type="submit" class="btn btn-danger" name="Guardar" id="Guardar">Guardar
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                                </div>
+                            </td>
+                        </tr>
+
+                        <td></td>
+                        <td></td>
+                        
+                        
+                        
+                            <td>
+                                <a href="" class="btn btn-danger btn-block boton mx-5">Ingresar</a>
+                            </td>
+                            
+                        </tr>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
