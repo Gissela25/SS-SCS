@@ -38,6 +38,7 @@ include_once "./Core/config.php"
                                 <th class="text-center">Presentacion</th>
                                 <th class="text-center">Departamento</th>
                                 <th class="text-center">Kardex/Articulo</th>
+                                <th class="text-center">Reporte</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +58,10 @@ include_once "./Core/config.php"
                                         href="<?=PATH?>Movements/SeeSpecificKardex/<?=$producto['Id_Articulo']?>"
                                         name="Agregar" id="Agregar" class="btn btn-dark"><i
                                             class="bi bi-clipboard2-data-fill"></i></a>
+                                </td>
+                                <td class="text-center"><a title="KardexReport"
+                                        href="<?=PATH?>Movements/KardexByArticleReport/<?=$producto['Id_Articulo']?>"
+                                        name="Agregar" id="Agregar" class="btn btn-dark"><i class="bi bi-file-earmark-pdf-fill"></i></a>
                                 </td>
                             </tr>
                             <?php

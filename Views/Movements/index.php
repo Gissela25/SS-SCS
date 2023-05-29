@@ -42,6 +42,8 @@ include_once "./Core/config.php"
                                 <th class="text-center">Correctivo</th>
                                 <th class="text-center">Salida</th>
                                 <th class="text-center">Saldo Resultante</th>
+                                <th class="text-center">Reporte</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -58,6 +60,10 @@ include_once "./Core/config.php"
                                 <td class="text-center"><?=$movimiento['Correctivo']?></td>
                                 <td class="text-center"><?=$movimiento['Salida']?></td>
                                 <td class="text-center"><?=$movimiento['SaldoResultante']?></td>
+                                <td class="text-center"><a title="KardexReport"
+                                        href="<?=PATH?>Movements/WithdrawalArticlesReport/<?=$movimiento['Id_Correlativo']?>"
+                                        name="Agregar" id="Agregar" class="btn btn-dark"><i class="bi bi-file-earmark-pdf-fill"></i></a>
+                                </td>
                             </tr>
                             <?php
                         }
