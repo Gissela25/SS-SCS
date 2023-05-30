@@ -43,10 +43,28 @@ class MovementsController extends Controller{
         $this->render("Movements.php",$viewBag);
     }
 
+    public function EntryByDate(){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getEntryByDate($_SESSION['area']);
+        $this->render("EntryDate.php",$viewBag);
+    }
+
     public function SeeSpecificKardex($id){
         $viewBag = [];
         $viewBag["productos"] = $this->modelo->getMovements($id);
         $this->render("kardexByArticle.php",$viewBag);
+    }
+
+    public function SeeSpecificEntryByDate($id){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovementsEntryByArea($id, $_SESSION['area']);
+        $this->render("EntryDateByDate.php",$viewBag);
+    }
+
+    public function EntryByDateReport($id){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovementsEntryByArea($id, $_SESSION['area']);
+        $this->render("EntryDateByDateReport.php",$viewBag);
     }
 
     public function SeeSpecificMovementsforDeparment($id){

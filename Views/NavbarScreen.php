@@ -59,7 +59,9 @@ include_once "./Core/config.php"
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="<?=PATH?>Movements/Index">Kardex</a></li>
                         <li><a class="dropdown-item" href="<?=PATH?>Movements/KardexByArticle">Kardex por Artículo</a>
-                        <li><a class="dropdown-item" href="<?=PATH?>Movements/MovementsByDeparment">Movimiento por Departamento</a>
+                        <li><a class="dropdown-item" href="<?=PATH?>Movements/MovementsByDeparment">Movimientos por Departamento</a>
+                        </li>
+                        <li><a class="dropdown-item" href="<?=PATH?>Movements/EntryByDate">Ingresos por rango de fecha</a>
                         </li>
                     </ul>
                 </li>
