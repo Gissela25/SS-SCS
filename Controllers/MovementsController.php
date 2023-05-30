@@ -49,6 +49,12 @@ class MovementsController extends Controller{
         $this->render("EntryDate.php",$viewBag);
     }
 
+    public function WithdrawalByDate(){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getWithdrawalByDate($_SESSION['area']);
+        $this->render("WithdrawalDate.php",$viewBag);
+    }
+
     public function SeeSpecificKardex($id){
         $viewBag = [];
         $viewBag["productos"] = $this->modelo->getMovements($id);
@@ -59,6 +65,18 @@ class MovementsController extends Controller{
         $viewBag = [];
         $viewBag["productos"] = $this->modelo->getMovementsEntryByArea($id, $_SESSION['area']);
         $this->render("EntryDateByDate.php",$viewBag);
+    }
+
+    public function SeeSpecificWithdrawelByDate($id){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovementsWithdrawalByArea($id, $_SESSION['area']);
+        $this->render("WithdrawalDateByDate.php",$viewBag);
+    }
+
+    public function WithdrawalByDateReport($id){
+        $viewBag = [];
+        $viewBag["productos"] = $this->modelo->getMovementsWithdrawalByArea($id, $_SESSION['area']);
+        $this->render("WithdrawalDateByDateReport.php",$viewBag);
     }
 
     public function EntryByDateReport($id){

@@ -124,7 +124,25 @@ class MovementsModel extends ConnectionModel{
         }
     }
     
-    
+    public function getMovementsWithdrawalByArea($id = '')
+    {
+        //Creamos una variable en donde almacenaremos la consulta que haremos
+        $query='';
+        //Comprobaremos si la variable id que traifa get() este vacía o no
+        if($id=='')
+        {
+            //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hacer consultas con INNER JOIN
+            $query = "SELECT movimientos.Id_Correlativo, movimientos.F_Movimiento, areas.Id_Area, movimientos.Id_Articulo, articulos.NombreA, movimientos.Salida, movimientos.SaldoResultante, movimientos.Correctivo, articulos.Codigo, presentaciones.NombreP, usuarios.Nombre, usuarios.Apellido FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo JOIN areas ON areas.Id_Area = articulos.Id_Area JOIN correlativos ON correlativos.Id_Correlativo = movimientos.Id_Correlativo JOIN usuarios ON usuarios.Id_Usuario = correlativos.Id_Usuario JOIN presentaciones ON presentaciones.Id_Presentacion = articulos.Id_Presentacion WHERE movimientos.F_Movimiento = :F_Movimiento AND movimientos.Salida > 0 AND areas.Id_Area = :Id_Area;";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query, [":F_Movimiento" => $_SESSION['F_Movimiento'], ":Id_Area" => $_SESSION['area']]);
+        }
+        else{
+            //En caso de que la variable no esté vacía, creamos la consulta utilizando WHERE para indicar el registro que traeremos
+            $query = "SELECT movimientos.Id_Correlativo, movimientos.F_Movimiento, areas.Id_Area, movimientos.Id_Articulo, articulos.NombreA, movimientos.Salida, movimientos.SaldoResultante, movimientos.Correctivo, articulos.Codigo, presentaciones.NombreP, usuarios.Nombre, usuarios.Apellido FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo JOIN areas ON areas.Id_Area = articulos.Id_Area JOIN correlativos ON correlativos.Id_Correlativo = movimientos.Id_Correlativo JOIN usuarios ON usuarios.Id_Usuario = correlativos.Id_Usuario JOIN presentaciones ON presentaciones.Id_Presentacion = articulos.Id_Presentacion WHERE movimientos.F_Movimiento = :F_Movimiento AND movimientos.Salida > 0 AND areas.Id_Area = :Id_Area;";
+            //Retornamos el registro
+            return $this->get_query($query, [":F_Movimiento" => $id, ":Id_Area" => $_SESSION['area']]);
+        }
+    }
     
 
     public function getMovementsByDeparment($id='')
@@ -191,6 +209,28 @@ class MovementsModel extends ConnectionModel{
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
             $query = "SELECT movimientos.Id_Correlativo, movimientos.F_Movimiento, SUM(movimientos.Entrada) AS TotalEntradas FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo JOIN areas ON areas.Id_Area = articulos.Id_Area WHERE articulos.Id_Area = :Id_Area GROUP BY movimientos.F_Movimiento HAVING SUM(movimientos.Entrada) > 0 ORDER BY movimientos.F_Movimiento;";
+            //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
+            return $this->get_query($query,[":Id_Area"=>$id]);
+        }
+    }
+
+    public function getWithdrawalByDate($id='')
+    {
+        //Creamos una variable en donde almacenaremos la consulta que haremos
+        $query='';
+        //Comprobaremos si la variable id que traifa get() este vacíía o no
+        if($id!='')
+        {
+            //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
+            $query = "SELECT movimientos.Id_Correlativo, movimientos.F_Movimiento, SUM(movimientos.Salida) AS TotalSalida
+            FROM movimientos
+            JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            JOIN areas ON areas.Id_Area = articulos.Id_Area
+            WHERE articulos.Id_Area = :Id_Area
+            GROUP BY movimientos.F_Movimiento
+            HAVING TotalSalida > 0
+            ORDER BY movimientos.F_Movimiento;
+            ";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query,[":Id_Area"=>$id]);
         }

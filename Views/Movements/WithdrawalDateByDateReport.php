@@ -22,14 +22,14 @@ ob_start();
     }
     th, td {
         text-align: center;
-        padding: 15px;
+        padding: 25px;
     }
     </style>
 </head>
 
 <body>
     <h3 style="text-align:left">CENTRO DE SANGRE : : : AREA DE <?=$_SESSION['areaBuffer']['Nombre']?> </h3>
-    <h3 style="text-align:left">IMPRESION DE INGRESO POR RANGO DE FECHA</h3>
+    <h3 style="text-align:left">IMPRESION DE SALIDAS POR RANGO DE FECHA</h3>
     <?php
     date_default_timezone_set('America/El_Salvador');
     $hora_actual = date('Y-m-d H:i:s');
@@ -39,7 +39,7 @@ ob_start();
     $nombreA = $productos[0]['F_Movimiento'];
     ?>
     <div style="display: flex; justify-content: space-between;">
-        <h3 style="text-align:left">Fecha de Entrada: <?=$nombreA?></h3>
+        <h3 style="text-align:left">Fecha de Salida: <?=$nombreA?></h3>
         <!-- <h3 style="text-align:right">Saldo Inicial: <?=$productos[0]['SaldoInicial']?> </h3> -->
     </div>
 
@@ -50,8 +50,7 @@ ob_start();
                 <th>Nombre del Articulo</th>
                 <th>Presentación</th>
                 <th>Responsable</th>
-                <th>Entrada</th>
-                <th>Correctivo</th>
+                <th>Salida</th>
                 <th>Saldo</th>
             </tr>
         </thead>
@@ -68,8 +67,7 @@ ob_start();
                 <td><?=$producto['NombreA']?></td>
                 <td><?=$producto['NombreP']?></td>
                 <td><?=$producto['Nombre']?> <?=$producto['Apellido']?></td>
-                <td><?=$producto['Entrada']?></td>
-                <td><?=$producto['Correctivo']?></td>
+                <td><?=$producto['Salida']?></td>
                 <td><?=$producto['SaldoResultante']?></td>
             </tr>
             <?php
@@ -91,5 +89,5 @@ $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
 $dompdf->setPaper('letter');
 $dompdf->render();
-$dompdf->stream("Ingresos_".$producto['F_Movimiento'].".pdf", array("Attachment"=>false))
+$dompdf->stream("Salidas_".$producto['F_Movimiento'].".pdf", array("Attachment"=>false))
 ?>
