@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once "./Core/config.php"
 ?>
 <!DOCTYPE html>
@@ -20,27 +20,35 @@ include_once "./Core/config.php"
             <div class="card">
                 <div class="card-body">
                     <?php
-                    //Para recorrer el arreglo de datos del usuario ingresado
-            foreach($empleados as $empleado){
-            ?>
+//Para recorrer el arreglo de datos del usuario ingresado
+foreach ($empleados as $empleado) {
+    ?>
                     <form method="post" action="<?=PATH?>Users/SetUser" role="form">
                         <?php
-                   if(isset($errores))
-                   {
-                       if(count($errores)>0)
-                       {
-                        echo "<div class='alert alert-danger' style='color:#343a40' ><ul>";
-                           foreach ($errores as $error) {
-                               echo "<li style='color:#343a40'>$error</li>";
-                           }
-                           echo "</ul></div>";
-                       }
-                   }
-                   ?>
+if (isset($errores)) {
+        if (count($errores) > 0) {
+            echo "<div class='alert alert-danger' style='color:#343a40' ><ul>";
+            foreach ($errores as $error) {
+                echo "<li style='color:#343a40'>$error</li>";
+            }
+            echo "</ul></div>";
+        }
+    }
+    ?>
                         <input hidden name="Id_Usuario" id="Id_Usuario"
-                            value="<?=isset($empleado)?$empleado['Id_Usuario']:''?>">
+                            value="<?=isset($empleado) ? $empleado['Id_Usuario'] : ''?>">
                         <div class="form-group text-center my-1">
                             <h3 class="text" style="color:#FF0032">Actualizar Datos Generales</h3>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="User" class="form-label">Usuario</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" class="form-control" placeholder="Agregue nombre" aria-label="Name"
+                                aria-describedby="basic-addon1" name="User" id="User"
+                                value="<?=isset($empleado) ? $empleado['Id_Usuario'] : ''?>" readonly>
                         </div>
                         <div class="mb-2">
                             <label for="Nombre" class="form-label">Nombre</label>
@@ -49,7 +57,7 @@ include_once "./Core/config.php"
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregue nombre" aria-label="Name"
                                 aria-describedby="basic-addon1" name="Nombre" id="Nombre"
-                                value="<?=isset($empleado)?$empleado['Nombre']:''?>">
+                                value="<?=isset($empleado) ? $empleado['Nombre'] : ''?>">
                         </div>
                         <div class="mb-2">
                             <label for="Apellido" class="form-label">Apellido</label>
@@ -58,7 +66,7 @@ include_once "./Core/config.php"
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregue apellido" aria-label="Lastname"
                                 aria-describedby="basic-addon1" name="Apellido" id="Apellido"
-                                value="<?=isset($empleado)?$empleado['Apellido']:''?>">
+                                value="<?=isset($empleado) ? $empleado['Apellido'] : ''?>">
                         </div>
                         <div class="mb-2">
                             <label for="" class="form-label">E-mail</label>
@@ -68,7 +76,7 @@ include_once "./Core/config.php"
                                     class="bi bi-envelope-at-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregue E-mail" aria-label="Email"
                                 aria-describedby="basic-addon1" name="Correo" id="Correo"
-                                value="<?=isset($empleado)?$empleado['Correo']:''?>">
+                                value="<?=isset($empleado) ? $empleado['Correo'] : ''?>">
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-danger" name="Actualizar" id="Actualizar">Actualizar
@@ -76,7 +84,7 @@ include_once "./Core/config.php"
                         </div>
                     </form>
                     <?php }
-                    ?>
+?>
                 </div>
             </div>
         </div>

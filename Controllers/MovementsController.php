@@ -205,7 +205,7 @@ class MovementsController extends Controller{
                     }
                 }  
                 else{
-                    array_push($errores,"Algo salió mal al intentar coompletar el retiro");
+                    array_push($errores,"Algo salió mal al intentar completar el retiro");
                     $this->renderWithDrawals($errores);
                 }  
             }

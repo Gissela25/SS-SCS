@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once "./Core/config.php"
 ?>
 <!DOCTYPE html>
@@ -21,29 +21,28 @@ include_once "./Core/config.php"
                 <div class="card-body">
                     <form method="post" action="<?=PATH?>Articles/AddArticle" enctype="multipart/form-data" role="form">
                         <?php
-                   if(isset($errores))
-                   {
-                       if(count($errores)>0)
-                       {
-                        echo "<div class='alert alert-danger' style='color:#343a40' ><ul>";
-                           foreach ($errores as $error) {
-                               echo "<li style='color:#343a40'>$error</li>";
-                           }
-                           echo "</ul></div>";
-                       }
-                   }
-                   ?>
+                               if (isset($errores)) {
+                                   if (count($errores) > 0) {
+                                       echo "<div class='alert alert-danger' style='color:#343a40' ><ul>";
+                                       foreach ($errores as $error) {
+                                           echo "<li style='color:#343a40'>$error</li>";
+                                       }
+                                       echo "</ul></div>";
+                                   }
+                               }
+                         ?>
                         <div class="form-group text-center my-1">
                             <h3 class="text" style="color:#FF0032">Agregar Artículo</h3>
                         </div>
                         <div class="mb-2">
-                            <label for="exampleInputPassword1" class="form-label">Código</label>
+                            <label for="Codigo" class="form-label">Código</label>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-clipboard2-data-fill"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i
+                                    class="bi bi-clipboard2-data-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregue codigo" aria-label="Username"
                                 aria-describedby="basic-addon1" name="Codigo" id="Codigo"
-                                value="<?=isset($producto)?$producto['Codigo']:''?>">
+                                value="<?=isset($productos[0])?$productos[0]['Codigo']:''?>">
                         </div>
                         <div class="mb-2">
                             <label for="exampleInputPassword1" class="form-label">Artículo</label>
@@ -52,7 +51,7 @@ include_once "./Core/config.php"
                             <span class="input-group-text" id="basic-addon1"><i class="bi bi-basket"></i></span>
                             <input type="text" class="form-control" placeholder="Agregue artículo" aria-label="Username"
                                 aria-describedby="basic-addon1" name="Nombre" id="Nombre"
-                                value="<?=isset($producto)?$producto['NombreP']:''?>">
+                                value="<?=isset($productos[0])?$productos[0]['NombreP']:''?>">
                         </div>
                         <div class="mb-2">
                             <label for="exampleInputPassword1" class="form-label">Departamento</label>
@@ -61,18 +60,18 @@ include_once "./Core/config.php"
                             <!-- <span class="input-group-text" id="basic-addon1"><i class="bi bi-bar-chart-steps"></i></span>
                         <input type="text" class="form-control" placeholder="Agregue Mìnimo" aria-label="Username"
                             aria-describedby="basic-addon1"> -->
-                            <select class="form-select" name="Id_Departamento" id="floatingSelect"
+                            <select class="form-select" name="Id_Departamento" id="Id_Departamento"
                                 aria-label="Floating label select example">
                                 <option selected value=""></option>
                                 <?php
-                            foreach($lugares as $departamento)
-                            {
-                            ?>
+                               foreach ($lugares as $departamento) 
+                               {
+                                   ?>
                                 <option value="<?=$departamento['Id_Departamento']?>"><?=$departamento['NombreD']?>
                                 </option>
                                 <?php
-                            }
-                            ?>
+                               }
+                               ?>
                             </select>
                         </div>
                         <div class="mb-2">
@@ -86,14 +85,13 @@ include_once "./Core/config.php"
                                 aria-label="Floating label select example">
                                 <option selected value=""></option>
                                 <?php
-                            foreach($formas as $presentacion)
-                            {
-                            ?>
+                                 foreach ($formas as $presentacion) {
+                                     ?>
                                 <option value="<?=$presentacion['Id_Presentacion']?>"><?=$presentacion['NombreP']?>
                                 </option>
                                 <?php
-                            }
-                            ?>
+                                   }
+                                   ?>
                             </select>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
