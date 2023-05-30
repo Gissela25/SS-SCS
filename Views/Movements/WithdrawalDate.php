@@ -34,7 +34,7 @@ include_once "./Core/config.php"
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
                                 <th class="text-center">Fecha de Salida</th>
-                                <th class="text-center">Total de Entrada</th>
+                                <th class="text-center">Total de Salidas</th>
                                 <th class="text-center">Salidas/Fecha</th>
                                 <th class="text-center">Reporte</th>
                             </tr>
