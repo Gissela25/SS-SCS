@@ -52,7 +52,7 @@ include_once "./Core/config.php"
                                 <label for="Codigo" class="form-label">Código</label>
                             <div class="input-group mb-3">
                             
-                            <span class="input-group-text" id="basic-addon1"></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-123"></i></span>
                             <input type="text" class="form-control" placeholder="Agregue codigo" aria-label="Username"
                                 aria-describedby="basic-addon1" name="Codigo" id="Codigo"
                                 value="<?=isset($productos[0])?$productos[0]['Codigo']:''?>">
@@ -63,7 +63,7 @@ include_once "./Core/config.php"
 <label for="exampleInputPassword1" class="form-label">Artículo</label>
                             <div class="input-group mb-3">
                             
-                            <span class="input-group-text" id="basic-addon1"></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-clipboard-plus-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregue artículo" aria-label="Username"
                                 aria-describedby="basic-addon1" name="Nombre" id="Nombre"
                                 value="<?=isset($productos[0])?$productos[0]['NombreP']:''?>">
@@ -78,6 +78,7 @@ include_once "./Core/config.php"
 
                                 <select class="form-select" name="Id_Departamento" id="Id_Departamento"
                                 aria-label="Floating label select example">
+                                
                                 <option selected value=""></option>
                                 <?php
                                foreach ($lugares as $departamento) 
