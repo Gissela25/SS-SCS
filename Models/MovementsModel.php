@@ -98,7 +98,7 @@ class MovementsModel extends ConnectionModel{
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN correlativos ON movimientos.Id_Correlativo = correlativos.Id_Correlativo
             JOIN usuarios ON correlativos.Id_Usuario = usuarios.Id_Usuario
-            WHERE articulos.Id_Articulo=:Id_Articulo ORDER BY movimientos.F_Movimiento DESC;;";
+            WHERE articulos.Id_Articulo=:Id_Articulo ORDER BY movimientos.F_Movimiento DESC;";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
         }
@@ -179,7 +179,7 @@ class MovementsModel extends ConnectionModel{
             JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia 
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN departamentos ON articulos.Id_Departamento = departamentos.Id_Departamento    
-            WHERE articulos.Id_Area=:Id_Area
+            WHERE articulos.Id_Area=:Id_Area AND movimientos.Entrada > 0 OR movimientos.Salida > 0
             GROUP BY articulos.Id_Articulo ;";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query,[":Id_Area"=>$id]);
@@ -330,7 +330,7 @@ class MovementsModel extends ConnectionModel{
         ,movimientos.Entrada, movimientos.Correctivo, movimientos.Salida, movimientos.SaldoResultante, articulos.Codigo FROM movimientos
         JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
         JOIN existencias ON movimientos.Id_Existencia = existencias.Id_Existencia
-        WHERE articulos.Id_Area=:Id_Area
+        WHERE articulos.Id_Area=:Id_Area AND movimientos.Salida > 0
         ORDER BY movimientos.F_Movimiento DESC;";
         return $this->get_query($query,[":Id_Area"=>$id] );
     }
