@@ -70,7 +70,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="bi bi-person-lock"></i></span>
-                                    <input type="password" class="form-control" placeholder="Ingresa tu correo"
+                                    <input type="password" class="form-control" placeholder="Ingresa tu contraseña"
                                         aria-label="Name" aria-describedby="basic-addon1" name="Clave" id="Clave">
                                 </div>
                                 <div class="d-grid gap-2 col-6 mx-auto">
