@@ -98,7 +98,8 @@ class MovementsModel extends ConnectionModel{
             JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion 
             JOIN correlativos ON movimientos.Id_Correlativo = correlativos.Id_Correlativo
             JOIN usuarios ON correlativos.Id_Usuario = usuarios.Id_Usuario
-            WHERE articulos.Id_Articulo=:Id_Articulo ORDER BY movimientos.F_Movimiento DESC;";
+            WHERE articulos.Id_Articulo=:Id_Articulo AND movimientos.Correctivo < 1 
+            ORDER BY movimientos.F_Movimiento DESC;";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Articulo"=>$id]);
         }
