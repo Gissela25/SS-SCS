@@ -24,12 +24,13 @@ ob_start();
     th,
     td {
         text-align: center;
+        padding: 25px;
     }
     </style>
 </head>
 
 <body>
-    <h3 style="text-align:left">REQUESION INSUMOS PARA USUARIOS DEL CENTRO DE SANGRE</h3>
+    <h3 style="text-align:left">REQUESICION INSUMOS PARA USUARIOS DEL CENTRO DE SANGRE</h3>
     <h4 style="text-align:left">Para ser Usado En: <?=$_SESSION['areaBuffer']['Nombre']?> </h4>
     <?php
     date_default_timezone_set('America/El_Salvador');
@@ -45,10 +46,10 @@ ob_start();
     <table style="margin: 0 auto;">
         <thead>
             <tr>
-                <th style="padding: 15px;">Código</th>
-                <th style="padding: 15px;">Cantidad</th>
-                <th style="padding: 15px;">Nombre del Articulo</th>
-                <th style="padding: 15px;">Presentación</th>
+                <th>Código</th>
+                <th>Cantidad</th>
+                <th>Nombre del Articulo</th>
+                <th>Presentación</th>
             </tr>
         </thead>
         <tbody>
@@ -60,10 +61,10 @@ ob_start();
             // con $empleado['campo'] entramos al campo o variable que queremos imprimir
             ?>
             <tr id="id_<?=$movimiento['Id_Correlativo']?>">
-                <td style="padding: 15px;"><?=$movimiento['Codigo']?></td>
-                <td style="padding: 15px;"><?=$movimiento['Salida']?></td>
-                <td style="padding: 15px;"><?=$movimiento['NombreA']?></td>
-                <td style="padding: 15px;"><?=$movimiento['NombreP']?></td>
+                <td><?=$movimiento['Codigo']?></td>
+                <td><?=$movimiento['Salida']?></td>
+                <td><?=$movimiento['NombreA']?></td>
+                <td><?=$movimiento['NombreP']?></td>
             </tr>
             <?php
         }
@@ -86,7 +87,7 @@ $options = $dompdf->getOptions();
 $options->set(array('isRemoteEnabled'=>true));
 $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
-$dompdf->setPaper('letter');
+$dompdf->setPaper('letter', 'landscape');
 $dompdf->render();
 $dompdf->stream("Retiro_".$movimiento['Id_Correlativo'].".pdf", array("Attachment"=>false))
 ?>

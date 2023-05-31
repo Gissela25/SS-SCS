@@ -18,7 +18,7 @@ include_once "./Core/config.php"
     <div class="row justify-content-center pt-5 mt-5 ">
         <div class="col-md-5">
             <div class="card">
-                <div class="card-body my-3">
+                <div class="card-body">
                     <form method="post" action="<?=PATH?>Users/SetPassword" role="form">
                         <?php
                    if(isset($errores))
@@ -46,10 +46,10 @@ include_once "./Core/config.php"
                         <div class="form-group text-center my-3">
                             <h3 class="text" style="color:#FF0032">Actualizar contraseña</h3>
                         </div>
-                        <input value="<?=isset($empleados)?$empleados[0]['Clave']:''?>" name="CurrentPassword"
-                          hidden  id="CurrentPassword">
+                        <input value="<?=isset($empleados)?$empleados[0]['Clave']:''?>" name="CurrentPassword" hidden
+                            id="CurrentPassword">
                 </div>
-                <div class="mb-3">
+                <div class="mb-2">
                     <label for="Clave" class="form-label">Contraseña Actual</label>
                 </div>
                 <div class="input-group mb-3">
@@ -58,7 +58,7 @@ include_once "./Core/config.php"
                         aria-describedby="basic-addon1" name="Clave" id="Clave">
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-2">
                     <label for="NuevaClave" class="form-label">Nueva Contraseña</label>
                 </div>
                 <div class="input-group mb-3">
@@ -73,8 +73,6 @@ include_once "./Core/config.php"
                 </form>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">

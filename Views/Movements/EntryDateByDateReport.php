@@ -22,7 +22,7 @@ ob_start();
     }
     th, td {
         text-align: center;
-        padding: 15px;
+        padding: 25px;
     }
     </style>
 </head>
@@ -43,7 +43,7 @@ ob_start();
         <!-- <h3 style="text-align:right">Saldo Inicial: <?=$productos[0]['SaldoInicial']?> </h3> -->
     </div>
 
-    <table>
+    <table style="margin: 0 auto;">
         <thead>
             <tr>
                 <th>Codigo</th>
@@ -89,7 +89,7 @@ $options = $dompdf->getOptions();
 $options->set(array('isRemoteEnabled'=>true));
 $dompdf->setOptions($options);
 $dompdf->loadHtml($html);
-$dompdf->setPaper('letter');
+$dompdf->setPaper('letter', 'landscape');
 $dompdf->render();
 $dompdf->stream("Ingresos_".$producto['F_Movimiento'].".pdf", array("Attachment"=>false))
 ?>
