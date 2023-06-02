@@ -48,6 +48,7 @@ include_once "./Core/config.php"
                                 <th class="text-center">Nombre</th>
                                 <th class="text-center">Apellido</th>
                                 <th class="text-center">Correo</th>
+                                <th class="text-center">Area Asignada</th>
                                 <th class="text-center">Estado</th>
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Activar/Desactivar</th>
@@ -67,6 +68,7 @@ include_once "./Core/config.php"
                                 <td class="text-center"><?=$empleado['Nombre']?></td>
                                 <td class="text-center"><?=$empleado['Apellido']?></td>
                                 <td class="text-center"><?=$empleado['Correo']?></td>
+                                <td class="text-center"><?=$empleado['NombreArea']?></td>
                                 <td class="text-center">
                                     <?php
                                 if($empleado['Id_Estado']==1)

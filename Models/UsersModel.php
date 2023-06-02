@@ -35,22 +35,24 @@ class UsersModel extends ConnectionModel{
         if($id=='')
         {
             //Si está vacía retornaremos todos los datos. Aquí si es necesario se pueden hcaer consultas con INNER JOIN
-            $query = "SELECT * FROM usuarios;";
+            $query = "SELECT usuarios.*, areas.Id_Area, areas.Nombre as 'NombreArea' FROM usuarios
+            JOIN areas ON usuarios.Id_Area = areas.Id_Area;";
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query);
         }
         else{
             //En caso de que la variable no esté vacía, cremos la consulta utilizando WHERE para indicar el registro que traeremos
-            $query = "SELECT * FROM usuarios WHERE Id_Usuario=:Id_Usuario";
+            $query = "SELECT usuarios.*, areas.Id_Area, areas.Nombre as 'NombreArea' FROM usuarios 
+            JOIN areas ON usuarios.Id_Area = areas.Id_Area
+            WHERE Id_Usuario=:Id_Usuario";
             //Retornamos el registro
             return $this->get_query($query,[":Id_Usuario"=>$id]);
         }
     }
 
     public function getDataUser($user = array()){
-        $query = "SELECT * FROM usuarios WHERE Correo=:Correo OR  Id_Usuario=:Correo
-        AND Clave=SHA2(:Clave,256) AND Id_Estado='1'
-        ";
+        $query = "SELECT * FROM usuarios WHERE Correo=:Correo AND Clave=SHA2(:Clave,256) AND Id_Estado='1'
+        OR  Id_Usuario=:Correo  AND Clave=SHA2(:Clave,256) AND Id_Estado='1'";
         return $this->get_query($query,$user);
     }
     //Declaramos un arreglo en donde vendrán las variables que guardaremos
@@ -58,7 +60,7 @@ class UsersModel extends ConnectionModel{
     {
        
         //Creamos la consulta para ingresar los datos
-        $query = "INSERT INTO usuarios(Id_Usuario, Nombre , Apellido, Correo, Clave ) VALUES(  :Id_Usuario, :Nombre, :Apellido, :Correo  ,:Clave )";
+        $query = "INSERT INTO usuarios(Id_Usuario, Nombre , Apellido, Correo, Clave, Id_Area ) VALUES(  :Id_Usuario, :Nombre, :Apellido, :Correo  ,:Clave, :Id_Area )";
         //Utilzamos el método set_query para realizar un registro
         return $this->set_query($query,$arreglo);
     }
@@ -66,7 +68,7 @@ class UsersModel extends ConnectionModel{
     {
         extract($arreglo);
         // Actualizamos y colocamos las variables que realmente se actualizarán
-        $query = "UPDATE usuarios SET Nombre=:Nombre, Apellido=:Apellido, Correo=:Correo WHERE Id_Usuario=:Id_Usuario;";
+        $query = "UPDATE usuarios SET Nombre=:Nombre, Apellido=:Apellido, Correo=:Correo, Id_Area=:Id_Area WHERE Id_Usuario=:Id_Usuario;";
         return $this->set_query($query,$arreglo);
     }
 

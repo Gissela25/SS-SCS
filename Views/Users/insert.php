@@ -73,6 +73,25 @@ include_once "./Core/config.php"
                             <input type="password" class="form-control" placeholder="Agregue Contraseña"
                                 aria-label="Password" aria-describedby="basic-addon1" name="Clave" id="Clave">
                         </div>
+
+                        <div class="mb-2">
+                            <label for="Id_Area" class="form-label">Selecciona Area</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="Id_Area" id="Id_Area"
+                                aria-label="Floating label select example">
+                                <option selected value=""></option>
+                                <?php
+                               foreach ($areas as $area) 
+                               {
+                                   ?>
+                                <option value="<?=$area['Id_Area']?>"><?=$area['Nombre']?>
+                                </option>
+                                <?php
+                               }
+                               ?>
+                            </select>
+                        </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-danger" name="Guardar" id="Guardar">Guardar
                             </button>

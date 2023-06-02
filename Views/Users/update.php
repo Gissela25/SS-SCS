@@ -78,6 +78,39 @@ if (isset($errores)) {
                                 aria-describedby="basic-addon1" name="Correo" id="Correo"
                                 value="<?=isset($empleado) ? $empleado['Correo'] : ''?>">
                         </div>
+                        <div class="mb-2">
+                            <label for="Id_Area" class="form-label">Selecciona Area</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="form-select" name="Id_Area" id="Id_Area"
+                                aria-label="Floating label select example">
+                                <?php
+							foreach($areas as $area)
+							{
+							?>
+
+
+                                <?php if($empleado['NombreArea']==$area['Nombre'])
+							{
+
+								?>
+                                <option selected value="<?=$area['Id_Area']?>"><?=$area['Nombre']?></option>
+                                <?php
+							} 
+							else
+							{
+								?>
+
+                                <option value="<?=$area['Id_Area']?>"><?=$area['Nombre']?></option>
+                                <?php
+							}
+							?>
+                                <?php
+                            }
+						
+                        ?>
+                            </select>
+                        </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-danger" name="Actualizar" id="Actualizar">Actualizar
                             </button>

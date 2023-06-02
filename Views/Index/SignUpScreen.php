@@ -39,7 +39,8 @@
                        }
                    }
                    ?>
-                                <div class="input-group mb-3">
+                                <!-- 
+<div class="input-group mb-3">
                                     <select class="form-select" name="area" id="area"
                                         aria-label="Default select example">
                                         <?php
@@ -55,6 +56,9 @@
 
                                     </select>
                                 </div>
+
+                   -->
+
                                 <div class="mb-3">
                                     <label for="Correo" class="form-label">User</label>
                                 </div>

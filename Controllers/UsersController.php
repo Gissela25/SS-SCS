@@ -29,7 +29,9 @@ class UsersController extends Controller{
     public function Insert()
     {
         Auth::checkUser();
-        $this->render("insert.php");
+        $viewBag = [];
+        $viewBag['areas']=$this->modelo->getArea();
+        $this->render("insert.php",$viewBag);
     }
 
     //Función para añadir un registro a la tabla usuarios
@@ -77,18 +79,24 @@ class UsersController extends Controller{
             {
               array_push($errores,"Correo no válido");
             }
+
+            if (!isset($Id_Area) || isEmpty($Id_Area)) {
+                array_push($errores,  "Debes seleccionar el area temporal del usuario.");
+            }
             // Guardamos las variables en un arreglo llamado usuario
             $usuario['Id_Usuario']=$this->modelo->getCodeUser($Nombre,$Apellido);
             $usuario['Nombre']=$Nombre;
             $usuario['Apellido']=$Apellido;
             $usuario['Correo']=$Correo;
             $usuario['Clave']=hash('sha256',$Clave);
+            $usuario['Id_Area']=$Id_Area;
             //Comprobamos si el arreglo errores está vacío o no
             if(count($errores)>0)
                 {
 
                     $viewBag['empleado']=$usuario;
                     $viewBag['errores']=$errores;
+                    $viewBag['areas']=$this->modelo->getArea();
                     $this->render("insert.php",$viewBag);
                 }
                 else
@@ -102,6 +110,7 @@ class UsersController extends Controller{
                         array_push($errores, "Ha ocurrido un error al intentar registrarse");
                         $viewBag['errores']=$errores;
                         $viewBag['empleado']=$usuario;
+                        $viewBag['areas']=$this->modelo->getArea();
                         $this->render("insert.php",$viewBag);
                     }
                 }
@@ -202,6 +211,7 @@ class UsersController extends Controller{
         $viewBag = [];
         if($_SESSION['dataBuffer']['Id_Usuario'] == $id || ($_SESSION['dataBuffer']['Tipo_Usuario']==0))
         {
+            $viewBag['areas']=$this->modelo->getArea();
             $viewBag["empleados"]=$this->modelo->get($id);
             $this->render("update.php",$viewBag);
         }
@@ -247,10 +257,15 @@ class UsersController extends Controller{
              {
                array_push($errores,"Correo no válido");
              }
+
+             if (!isset($Id_Area) || isEmpty($Id_Area)) {
+                array_push($errores,  "Debes seleccionar el area temporal del usuario.");
+            }
              // Guardamos las variables en un arreglo llamado usuario
              $usuario['Nombre']=$Nombre;
              $usuario['Apellido']=$Apellido;
              $usuario['Correo']=$Correo;
+             $usuario['Id_Area']=$Id_Area;
              $usuario['Id_Usuario']=$Id_Usuario;
              //Comprobamos si el arreglo errores está vacío o no
              if(count($errores)>0)
@@ -258,6 +273,7 @@ class UsersController extends Controller{
  
                      $viewBag['empleados']=$this->modelo->get($Id_Usuario);
                      $viewBag['errores']=$errores;
+                     $viewBag['areas']=$this->modelo->getArea();
                      $this->render("update.php",$viewBag);
                  }
                  else
@@ -270,6 +286,7 @@ class UsersController extends Controller{
                      else{
                          array_push($errores, "No haz realizado ningún cambio 👀");
                          $viewBag['errores']=$errores;
+                         $viewBag['areas']=$this->modelo->getArea();
                          $viewBag['empleados']=$this->modelo->get($Id_Usuario);
                          $this->render("update.php",$viewBag);
                      }
