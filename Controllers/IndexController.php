@@ -21,6 +21,13 @@ class IndexController extends Controller{
         $this->render("SignUpScreen.php",$viewBag);
     }
 
+    public function Home()
+    {
+        $viewBag = [];
+        $viewBag['areas']=$this->modelo->getArea();
+        $this->render("Home.php",$viewBag);
+    }
+
     public function LogOut(){
         session_unset();
         session_destroy();
@@ -60,12 +67,13 @@ class IndexController extends Controller{
                         $_SESSION['areaBuffer']=$areaBuffer[0];
                         //En esta variable de sesión se almacena el Id del  Area
                         $_SESSION['area']=$areaBuffer[0]['Id_Area'];
-                       echo "Hello friend, ".$_SESSION['dataBuffer']['Nombre'];
-                       echo "<br>Area:  ".$_SESSION['areaBuffer']['Nombre'];
-                       echo var_dump($areaBuffer);
-                       echo var_dump($dataUser);
-                       echo "<br><a href='".PATH."Articles'> Articulos</a>";
-                       echo "<br><a href='".PATH."Index/Logout/".$_SESSION['dataBuffer']['Id_Usuario']."'> Cerra sesión</a>";
+                    //    echo "Hello friend, ".$_SESSION['dataBuffer']['Nombre'];
+                    //    echo "<br>Area:  ".$_SESSION['areaBuffer']['Nombre'];
+                    //    echo var_dump($areaBuffer);
+                    //    echo var_dump($dataUser);
+                    //    echo "<br><a href='".PATH."Articles'> Articulos</a>";
+                    //    echo "<br><a href='".PATH."Index/Logout/".$_SESSION['dataBuffer']['Id_Usuario']."'> Cerra sesión</a>";
+                    $this->render("Home.php",$viewBag);
                         }
                 }
                 else{
