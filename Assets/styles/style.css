@@ -4,3 +4,11 @@
 select option:hover {
     background-color: #FF8B8B;
 }
+.carousel-inner {
+    height: 500px;
+}
+.custom-carousel {
+    width: 100px; /* Define el ancho deseado */
+    height: 100px; /* Define la altura deseada */
+  }
+  

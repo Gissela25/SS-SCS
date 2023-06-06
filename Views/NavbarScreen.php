@@ -19,6 +19,9 @@ include_once "./Core/config.php"
                 <div class="mx-3" style="color: white">
                     <h3>Cruz Roja Salvadoreña</h3>
                 </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=PATH?>Index/Home" style="color: white">Inicio</a>
+                </li>
                 <?php
                 if($_SESSION['dataBuffer']['Tipo_Usuario']==0)
                 {
