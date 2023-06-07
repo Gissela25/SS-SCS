@@ -12,6 +12,11 @@
         return preg_match('/^(([a-zA-ZÁÉÍÓÚÑáéíóúñ0-9_.\-\,\/()?]+)[ ]?([a-zA-ZÁÉÍÓÚÑáéíóúñ0-9_.\-\,\/()?]+)?)+$/',$variable);
     }
 
+    function isTextAndNmbers($variable)
+    {
+        return preg_match('/^(([a-zA-ZÁÉÍÓÚÑáéíóúñ0-9]+)[ ]?([a-zA-ZÁÉÍÓÚÑáéíóúñ0-9]+)?)+$/',$variable);
+    }
+
     function esVar($var){
         return preg_match('/^[a-zA-Z0-9óáéúíñÁÉÓÍÚÑ ]+$/',$var);
     }

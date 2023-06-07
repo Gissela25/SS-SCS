@@ -14,6 +14,8 @@ $router = new Routing();
 $controller = $router->controller;
 $method = $router->method;
 $param = $router->param;
+error_reporting(0);
+ini_set('display_errors', 0);
 session_start();
 $controller = new $controller;
 $controller->$method($param);

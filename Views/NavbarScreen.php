@@ -62,18 +62,30 @@ include_once "./Core/config.php"
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="<?=PATH?>Movements/Index">Kardex</a></li>
                         <li><a class="dropdown-item" href="<?=PATH?>Movements/KardexByArticle">Kardex por Artículo</a>
-                        <li><a class="dropdown-item" href="<?=PATH?>Movements/MovementsByDeparment">Movimientos por Departamento</a>
+                        <li><a class="dropdown-item" href="<?=PATH?>Movements/MovementsByDeparment">Movimientos por
+                                Departamento</a>
                         </li>
-                        <li><a class="dropdown-item" href="<?=PATH?>Movements/EntryByDate">Ingresos por Rango de Fecha</a>
+                        <li><a class="dropdown-item" href="<?=PATH?>Movements/EntryByDate">Ingresos por Rango de
+                                Fecha</a>
                         </li>
-                        <li><a class="dropdown-item" href="<?=PATH?>Movements/WithdrawalByDate">Salidas por Rango de Fecha</a></li>
+                        <li><a class="dropdown-item" href="<?=PATH?>Movements/WithdrawalByDate">Salidas por Rango de
+                                Fecha</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item dropdown">
                     <a style="color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <?=$_SESSION['dataBuffer']['Nombre'];?>
+                        <?php
+                        
+                        if(isset($_SESSION['dataBuffer']))
+                        {
+                            ?>
+                        <?=$_SESSION['dataBuffer']['Nombre'];?> <?=$_SESSION['dataBuffer']['Apellido'];?>
+
+                        <?php
+                        }
+                        ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item"
