@@ -41,7 +41,7 @@ include_once "./Core/config.php"
                 <table class="table table-bordered " id="datatable">
                     <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
-                            <th class="text-center">Fecha de Entrada</th>
+                            <th class="text-center">Fecha de Salida</th>
                             <th class="text-center">Nombre del Articulo</th>
                             <th class="text-center">Salida</th>
                             <th class="text-center">Saldo Resultante</th>

@@ -12,6 +12,14 @@ include_once "./Core/config.php"
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+    /* Desactivar estilos de :hover en el enlace */
+    a#regresar:hover {
+        background-color: transparent;
+        color: inherit;
+        border-color: transparent;
+    }
+</style>
 </head>
 
 <body>
@@ -48,29 +56,31 @@ include_once "./Core/config.php"
                         </div>
                         <input value="<?=isset($empleados)?$empleados[0]['Clave']:''?>" name="CurrentPassword" hidden
                             id="CurrentPassword">
-                </div>
-                <div class="mb-2">
-                    <label for="Clave" class="form-label">Contraseña Actual</label>
-                </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Agregue Contraseña" aria-label="Password"
-                        aria-describedby="basic-addon1" name="Clave" id="Clave">
-                </div>
+                        <div class="mb-2">
+                            <label for="Clave" class="form-label">Contraseña Actual</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
+                            <input type="password" class="form-control" placeholder="Agregue Contraseña"
+                                aria-label="Password" aria-describedby="basic-addon1" name="Clave" id="Clave">
+                        </div>
 
-                <div class="mb-2">
-                    <label for="NuevaClave" class="form-label">Nueva Contraseña</label>
+                        <div class="mb-2">
+                            <label for="NuevaClave" class="form-label">Nueva Contraseña</label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
+                            <input type="password" class="form-control" placeholder="Agregue Contraseña"
+                                aria-label="Password" aria-describedby="basic-addon1" name="NuevaClave" id="NuevaClave">
+                        </div>
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="submit" class="btn btn-danger" name="Actualizar" id="Actualizar">Actualizar
+                            </button>
+                            <a name="regresar" href="<?=PATH?>Index/Home" id="regresar" class="btn btn-outline-danger"
+                                title="Regresar">Regresar</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Agregue Contraseña" aria-label="Password"
-                        aria-describedby="basic-addon1" name="NuevaClave" id="NuevaClave">
-                </div>
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="submit" class="btn btn-danger" name="Actualizar" id="Actualizar">Actualizar
-                    </button>
-                </div>
-                </form>
             </div>
         </div>
     </div>

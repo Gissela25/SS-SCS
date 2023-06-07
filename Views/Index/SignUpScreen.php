@@ -60,7 +60,7 @@
                    -->
 
                                 <div class="mb-3">
-                                    <label for="Correo" class="form-label">User</label>
+                                    <label for="Correo" class="form-label">Usuario/Correo Eléctronico</label>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i
