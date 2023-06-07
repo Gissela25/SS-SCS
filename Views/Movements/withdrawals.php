@@ -32,8 +32,9 @@ include_once "./Core/config.php";
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Salida de Insumos - <?=$_SESSION['areaBuffer']['Nombre']?></h3>
-        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
+        <h3 style="text-align:center" class="display-6">Salida de Insumos - <?=$_SESSION['areaBuffer']['Nombre']?></h3>
+        <h6 class="display-6"> <?=$_SESSION['areaBuffer']['Nombre'];?>: <?=$_SESSION['dataBuffer']['Nombre']?>
+            <?=$_SESSION['dataBuffer']['Apellido']?></h6>
         <div class="col ml-5">
 
             <div class="row mt-3">
@@ -88,7 +89,7 @@ include_once "./Core/config.php";
     {
     ?>
     <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Artículos por Retirar</h3>
+        <h3 style="text-align:center" class="display-6">Artículos por Retirar</h3>
         <?php
                    if(isset($errores))
                    {
