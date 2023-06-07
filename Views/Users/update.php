@@ -19,7 +19,7 @@ include_once "./Core/config.php"
         color: inherit;
         border-color: transparent;
     }
-</style>
+    </style>
 </head>
 
 <body>
@@ -93,6 +93,11 @@ if (isset($errores)) {
                                             aria-label="Email" aria-describedby="basic-addon1" name="Correo" id="Correo"
                                             value="<?=isset($empleado) ? $empleado['Correo'] : ''?>">
                                     </div>
+                                    <?php
+                                    if(isset($_SESSION['dataBuffer'])){
+                                    if($_SESSION['dataBuffer']['Tipo_Usuario']== 0)
+                                    {
+                                    ?>
                                     <div class="mb-2">
                                         <label for="Id_Area" class="form-label">Selecciona Area</label>
                                     </div>
@@ -126,13 +131,33 @@ if (isset($errores)) {
                         ?>
                                         </select>
                                     </div>
+                                    <?php
+                                        }
+                                        else{
+                                    ?>
+                                    <div class="mb-2">
+                                        <label for="NombreArea" class="form-label">Área actual</label>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i
+                                                class="bi bi-person-fill"></i></span>
+                                        <input type="text" class="form-control" readonly aria-label="NombreArea"
+                                            aria-describedby="basic-addon1" name="NombreArea" id="NombreArea"
+                                            value="<?=isset($empleado) ? $empleado['NombreArea'] : ''?>">
+                                    </div>
+                                    <input type="text" value="<?=isset($empleado) ? $empleado['Id_Area'] : ''?>"
+                                        name="Id_Area" id="Id_Area" hidden>
+                                    <?php
+                                    }
+                                }
+                                    ?>
                                 </div>
                                 <div class="d-grid gap-2 col-6 mx-auto my-4">
                                     <button type="submit" class="btn btn-danger" name="Actualizar"
                                         id="Actualizar">Actualizar
                                     </button>
-                                    <a name="regresar" href="<?=PATH?>Users/Index" id="regresar" class="btn btn-outline-danger"
-                                        title="Regresar">Regresar</a>
+                                    <a name="regresar" href="<?=PATH?>Users/Index" id="regresar"
+                                        class="btn btn-outline-danger" title="Regresar">Regresar</a>
                                 </div>
                             </div>
                         </div>
