@@ -47,10 +47,9 @@ include_once "./Core/config.php"
         <div class="col ml-5">
             <div class="d-grid gap-3 mt-3 mx-1 my-3">
                 <div class="titl">
-                    <h5 class="display-6 carta"> Hola <?=$_SESSION['dataBuffer']['Nombre']?>
-                        <?=$_SESSION['dataBuffer']['Apellido']?>, bienvenid@ al área de
+                    <h3 class="display-6">Área de
                         <?=$_SESSION['areaBuffer']['Nombre'];?>
-                    </h5>
+                    </h3>
                 </div>
             </div>
             <div id="carouselExampleCaptions" class="carousel slide">

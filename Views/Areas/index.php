@@ -31,8 +31,9 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Áreas</h3>
-        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
+        <h3 style="text-align:center" class="display-6">Áreas</h3>
+        <h6 class="display-6"> <?=$_SESSION['areaBuffer']['Nombre'];?>: <?=$_SESSION['dataBuffer']['Nombre']?>
+            <?=$_SESSION['dataBuffer']['Apellido']?></h6>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Areas/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Area</a>
@@ -84,17 +85,17 @@ include_once "./Core/config.php"
                                 if($area['Id_Estado']==1)
                                 {
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-dash-lg" data-bs-toggle="modal"
-                                            data-bs-target="#setModalStateOf_<?=$area['Id_Area']?>" title="Desactivar">
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOf_<?=$area['Id_Area']?>" title="Desactivar"><i
+                                            class="bi bi-dash-lg">
                                     </button></i>
                                     <?php
                                 }
                                 else{
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-plus-lg" data-bs-toggle="modal"
-                                            data-bs-target="#setModalStateOn_<?=$area['Id_Area']?>" title="Activar">
+                                    <button type="button" name="Activar" id="Activar" class="btn btn-dark" data-bs-toggle="modal"
+                                            data-bs-target="#setModalStateOn_<?=$area['Id_Area']?>" title="Activar"><i
+                                            class="bi bi-plus-lg">
                                     </button></i>
                                     <?php
                                 }

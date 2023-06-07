@@ -34,8 +34,9 @@ include_once "./Core/config.php"
        Sección de usuarios activos e inactivos
     -->
     <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Usuarios Activos</h3>
-        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
+        <h3 style="text-align:center" class="display-6">Usuarios Activos</h3>
+        <h6 class="display-6"> <?=$_SESSION['areaBuffer']['Nombre'];?>: <?=$_SESSION['dataBuffer']['Nombre']?>
+            <?=$_SESSION['dataBuffer']['Apellido']?></h6>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Users/Insert" style="color: #FF0032"><i class="bi bi-plus-circle"></i>Agregar
                 Usuario</a>
@@ -94,18 +95,18 @@ include_once "./Core/config.php"
                                 if($empleado['Id_Estado']==1)
                                 {
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-dash-lg" data-bs-toggle="modal"
-                                            data-bs-target="#setModalStateOf_<?=$empleado['Id_Usuario']?>"
-                                            title="Desactivar"> </button></i>
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#setModalStateOf_<?=$empleado['Id_Usuario']?>"
+                                        title="Desactivar"><i class="bi bi-dash-lg"> </button></i>
                                     <?php
                                 }
                                 else{
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-plus-lg" data-bs-toggle="modal"
-                                            data-bs-target="#setModalStateOn_<?=$empleado['Id_Usuario']?>"
-                                            title="Activar"> </button></i>
+                                    <button type="button" name="Activar" id="Activar" class="btn btn-dark"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#setModalStateOn_<?=$empleado['Id_Usuario']?>"
+                                        title="Activar"><i class="bi bi-plus-lg"> </button></i>
                                     <?php
                                 }
                                 ?>
