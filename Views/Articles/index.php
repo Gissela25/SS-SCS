@@ -32,8 +32,9 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Ingreso de Nuevo Producto - <?=$_SESSION['areaBuffer']['Nombre']?></h3>
-        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
+        <h3 style="text-align:center" class="display-6">Ingreso de Nuevo Producto</h3>
+        <h6 class="display-6"> <?=$_SESSION['areaBuffer']['Nombre'];?>: <?=$_SESSION['dataBuffer']['Nombre']?>
+            <?=$_SESSION['dataBuffer']['Apellido']?></h6>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Articles/Insert" style="color: #FF0032"><i
                     class="bi bi-plus-circle"></i>Agregar
@@ -90,17 +91,17 @@ include_once "./Core/config.php"
                                 if($producto['Id_Estado']==1)
                                 {
                                 ?>
-                                <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                        class="bi bi-dash-lg" data-bs-toggle="modal"
+                                <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark" data-bs-toggle="modal"
                                         data-bs-target="#setModalStateOf_<?=$producto['Id_Articulo']?>"
-                                        title="Desactivar"> </button></i>
+                                        title="Desactivar"><i
+                                        class="bi bi-dash-lg"> </button></i>
                                 <?php
                                 }
                                 else{
                                 ?>
-                                <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                        class="bi bi-plus-lg" data-bs-toggle="modal"
-                                        data-bs-target="#setModalStateOn_<?=$producto['Id_Articulo']?>" title="Activar">
+                                <button type="button" name="Activar" id="Activar" class="btn btn-dark" data-bs-toggle="modal"
+                                        data-bs-target="#setModalStateOn_<?=$producto['Id_Articulo']?>" title="Activar"><i
+                                        class="bi bi-plus-lg">
                                 </button></i>
                                 <?php
                                 }

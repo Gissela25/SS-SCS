@@ -12,6 +12,14 @@ include_once "./Core/config.php"
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+    /* Desactivar estilos de :hover en el enlace */
+    a#regresar:hover {
+        background-color: transparent;
+        color: inherit;
+        border-color: transparent;
+    }
+    </style>
 
 <body>
     <div class="row justify-content-center pt-5 mt-5 ">
@@ -46,7 +54,8 @@ include_once "./Core/config.php"
                             <label for="exampleInputPassword1" class="form-label">Código</label>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-clipboard2-data-fill"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i
+                                    class="bi bi-clipboard2-data-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregar Codigo" aria-label="Name"
                                 aria-describedby="basic-addon1" name="Codigo" id="Codigo"
                                 value="<?=isset($producto)?$producto['Codigo']:''?>">
@@ -55,7 +64,8 @@ include_once "./Core/config.php"
                             <label for="exampleInputPassword1" class="form-label">Artículo</label>
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-clipboard2-data-fill"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i
+                                    class="bi bi-clipboard2-data-fill"></i></span>
                             <input type="text" class="form-control" placeholder="Agregar Departamento" aria-label="Name"
                                 aria-describedby="basic-addon1" name="Nombre" id="nombre"
                                 value="<?=isset($producto)?$producto['NombreA']:''?>">
@@ -137,6 +147,8 @@ include_once "./Core/config.php"
                         <div class="d-grid gap-2 col-6 mx-auto">
                             <button type="submit" class="btn btn-danger" name="Actualizar" id="Actualizar">Guardar</a>
                             </button>
+                            <a name="regresar" href="<?=PATH?>Articles/Index" id="regresar"
+                                class="btn btn-outline-danger" title="Regresar">Regresar</a>
                         </div>
                     </form>
                     <?php }

@@ -24,6 +24,7 @@ include_once "./Core/config.php"
     <!--
         DataTable 
     -->
+    
 </head>
 
 <body>
@@ -31,8 +32,9 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Presentaciones</h3>
-        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
+        <h3 style="text-align:center" class="display-6">Presentaciones</h3>
+        <h6 class="display-6"> <?=$_SESSION['areaBuffer']['Nombre'];?>: <?=$_SESSION['dataBuffer']['Nombre']?>
+            <?=$_SESSION['dataBuffer']['Apellido']?></h6>
         <div class="col ml-5">
             <a class="edit" href="<?=PATH?>Presentations/Insert" style="color: #FF0032"><i
                     class="bi bi-plus-circle"></i>Agregar Presentación</a>
@@ -86,18 +88,18 @@ include_once "./Core/config.php"
                                 if($presentacion['Id_Estado']==1)
                                 {
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-dash-lg" data-bs-toggle="modal"
+                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"  data-bs-toggle="modal"
                                             data-bs-target="#setModalStateOf_<?=$presentacion['Id_Presentacion']?>"
-                                            title="Desactivar"> </button></i>
+                                            title="Desactivar"><i
+                                            class="bi bi-dash-lg"> </button></i>
                                     <?php
                                 }
                                 else{
                                 ?>
-                                    <button type="button" name="Desactivar" id="Desactivar" class="btn btn-dark"><i
-                                            class="bi bi-plus-lg" data-bs-toggle="modal"
+                                    <button type="button" name="Activar" id="Activar" class="btn btn-dark"  data-bs-toggle="modal"
                                             data-bs-target="#setModalStateOn_<?=$presentacion['Id_Presentacion']?>"
-                                            title="Activar"> </button></i>
+                                            title="Activar"><i
+                                            class="bi bi-plus-lg"> </button></i>
                                     <?php
                                 }
                                 ?>
