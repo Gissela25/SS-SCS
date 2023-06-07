@@ -32,9 +32,10 @@ include_once "./Core/config.php"
  require_once "./Views/NavbarScreen.php";
 ?>
     <div class="row mx-5 mt-5">
-        <h3 style="text-align:center">Movimientos por Departamento </h3>
-        <h3>Centro de Sangre: <?=$_SESSION['dataBuffer']['Nombre']?> <?=$_SESSION['dataBuffer']['Apellido']?></h3>
-        <h3><?=$productos[0]['NombreD']?> / Saldo Inicial:<?=$productos[0]['SaldoInicial']?> </h3>
+        <h3 style="text-align:center" class="display-6">Movimientos por Departamento </h3>
+        <h6 class="display-6"> <?=$_SESSION['areaBuffer']['Nombre'];?>: <?=$_SESSION['dataBuffer']['Nombre']?>
+            <?=$_SESSION['dataBuffer']['Apellido']?></h6>
+        <h3 class="display-6"><?=$productos[0]['NombreD']?> / Saldo Inicial:<?=$productos[0]['SaldoInicial']?> </h3>
         <div class="col ml-5">
             <div class="row mt-3">
                 <table class="table table-bordered " id="datatable">

@@ -23,6 +23,14 @@ include_once "./Core/config.php";
     <!--
         DataTable 
     -->
+    <style>
+    /* Desactivar estilos de :hover en el enlace */
+    a#regresar:hover {
+        background-color: transparent;
+        color: inherit;
+        border-color: transparent;
+    }
+</style>
 <body>
     <div class="row justify-content-center pt-5 mt-5 ">
         <div class="col-md-5">
@@ -75,6 +83,8 @@ include_once "./Core/config.php";
                             <button type="submit" class="btn btn-danger" title="Aceptar" name="Aceptar"
                                 id="Aceptar">Aceptar
                             </button>
+                            <a name="regresar" href="<?=PATH?>Movements/WithDrawals" id="regresar" class="btn btn-outline-danger"
+                                title="Regresar">Regresar</a>
                         </div>
                     </form>
                     <?php
