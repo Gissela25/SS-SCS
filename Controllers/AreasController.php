@@ -43,7 +43,7 @@ class AreasController extends Controller{
             {
                 array_push($errores,"Debes ingresar una Area");
             }
-            elseif(!isOnlyText($Nombre))
+            elseif(!isText($Nombre))
             {
               array_push($errores,"El campo nombre acepta solo texto");
             }
@@ -121,7 +121,7 @@ class AreasController extends Controller{
              {
                  array_push($errores,"Debes ingresar un area");
              }
-             elseif(!isOnlyText($Nombre))
+             elseif(!isText($Nombre))
              {
                array_push($errores,"El campo area acepta solo texto");
              }

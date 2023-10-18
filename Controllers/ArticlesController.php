@@ -50,7 +50,7 @@ class ArticlesController extends Controller {
             //la validación en el elseif es una validación especial para el campo que utilice
             if (!isset($Nombre) || isEmpty($Nombre)) {
                 array_push($errores, "Debes ingresar un artículo");
-            } elseif (!isOnlyText($Nombre)) {
+            } elseif (!isText($Nombre)) {
                 array_push($errores, "El campo articulo acepta solo texto");
             }
             if (!isset($Id_Presentacion) || isEmpty($Id_Presentacion)) {
@@ -129,7 +129,7 @@ class ArticlesController extends Controller {
             //la validación en el elseif es una validación especial para el campo que utilice
             if (!isset($Nombre) || isEmpty($Nombre)) {
                 array_push($errores, "Debes ingresar un artículo");
-            } elseif (!isOnlyText($Nombre)) {
+            } elseif (!isText($Nombre)) {
                 array_push($errores, "El campo articulo acepta solo texto");
             }
             if (!isset($Id_Presentacion) || isEmpty($Id_Presentacion) || $Id_Presentacion == "" ) {

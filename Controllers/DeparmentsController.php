@@ -43,7 +43,7 @@ class DeparmentsController extends Controller{
             {
                 array_push($errores,"Debes ingresar un departamento");
             }
-            elseif(!isOnlyText($Nombre))
+            elseif(!isText($Nombre))
             {
               array_push($errores,"El campo nombre acepta solo texto");
             }
@@ -122,7 +122,7 @@ class DeparmentsController extends Controller{
              {
                  array_push($errores,"Debes ingresar un departamento");
              }
-             elseif(!isOnlyText($Nombre))
+             elseif(!isText($Nombre))
              {
                array_push($errores,"El campo departamento acepta solo texto");
              }

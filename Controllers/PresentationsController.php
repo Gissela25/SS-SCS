@@ -66,7 +66,7 @@ class PresentationsController extends Controller{
                         header('Location: '.PATH.'Presentations');
                     }
                     else{
-                        array_push($errores, "Ha ocurrido un error al ingresar departamento");
+                        array_push($errores, "Ha ocurrido un error al ingresar una nueva presentación");
                         $viewBag['errores']=$errores;
                         $viewBag['formas']=$presentacion;
                         $this->render("insert.php",$viewBag);
