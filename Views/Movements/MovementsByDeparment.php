@@ -32,7 +32,7 @@ include_once "./Core/config.php"
         <h3 class="display-6"><?=$productos[0]['NombreD']?> / Saldo Inicial:<?=$productos[0]['SaldoInicial']?> </h3>
         <div class="col ml-5">
             <div class="row mt-3">
-                <table class="table table-bordered " id="datatable">
+                <table class="table table-bordered " id="datatable2">
                     <thead class="Te" style="background-color: #FF8B8B">
                         <tr>
                             <th class="text-center">Codigo Art.</th>
@@ -82,7 +82,7 @@ include_once "./Core/config.php"
     <!--
                 Script para el datatable
     -->
-    <?php include_once "./Views/DataTableScript.php"; ?>
+    <?php include_once "./Views/DataTableTwoScript.php"; ?>
 
 </body>
 

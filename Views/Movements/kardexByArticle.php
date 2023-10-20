@@ -16,6 +16,7 @@ include_once "./Core/config.php"
         Scripts and Styles
     -->
     <?php include_once "./Views/NavDataTables.php"; ?>
+
     <!--
         Scripts and Styles
     -->
