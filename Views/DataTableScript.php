@@ -108,6 +108,15 @@ $(document).ready(function() {
                 "extend": "print",
                 "text": "<i class='fas fa-print'></i> PRINT",
                 "titleAttr": "Exportar a PRINT"
+                "titleAttr": "Exportar a PRINT",
+                "customize": function(win) {
+                    // Agregar texto personalizado al documento de impresión
+                    $(win.document.body).find('h1').text(
+                        "CENTRO DE SANGRE : : : " + areaNombre);
+                    $(win.document.body).find('h1').css({
+                        "font-size": "16px",
+                        "font-weight": "bold",
+                        "text-align": "center"
             },
         ],
     });
