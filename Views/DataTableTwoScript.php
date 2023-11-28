@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/El_Salvador');
 // Obtener los valores de PHP que se utilizarán en el PDF
 $areaNombre = $_SESSION['areaBuffer']['Nombre'];
 $hora_actual = date('Y-m-d H:i:s');
@@ -26,6 +27,19 @@ $(document).ready(function() {
                 "extend": "copyHtml5",
                 "text": "<i class='far fa-copy'></i> Copiar",
                 "titleAttr": "Copiar",
+                "title": "",
+                "customize": function(data) {
+                    var fechaLinea = "Fecha Actual: " + hora;
+                    var NombreDepartamento = "Nombre del Departamento:" + nombreD;
+                    var fechaLineaLength = fechaLinea.length;
+                    var SaldoInicial = "Saldo Inicial: " + saldo;
+                    // Agregar espacios para alinear a la derecha
+                    var espacios = ' '.repeat(225 - fechaLineaLength);
+                    var espacios2 = ' '.repeat(260 - fechaLineaLength);
+                    return "IMPRESIONES DE MOVIMIENTOS POR DEPARTAMETO\n" + espacios +
+                        fechaLinea + "\n" + NombreDepartamento + "\n" + espacios2 + SaldoInicial +
+                        "\n" + data;
+                }
             }, {
                 "extend": "excelHtml5",
                 "text": "<i class='fas fa-file-excel'></i> Excel",
