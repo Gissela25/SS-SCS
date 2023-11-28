@@ -109,6 +109,11 @@ $(document).ready(function() {
                 "text": "<i class='fas fa-print'></i> PRINT",
                 "titleAttr": "Exportar a PRINT",
                 "customize": function(win) {
+
+    // Eliminar la función predeterminada que agrega la fecha
+    $(win.document.body).find('title').remove();
+
+
     // Agregar texto personalizado al documento de impresión
     $(win.document.body).find('h1').text(
         "CENTRO DE SANGRE : : : AREA DE " + areaNombre);
@@ -148,6 +153,7 @@ $(document).ready(function() {
     });
     $(win.document.body).append(saldoParagraph);
 }
+
 
 
             },
