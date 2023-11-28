@@ -43,7 +43,7 @@ $(document).ready(function() {
                 "extend": "excelHtml5",
                 "text": "<i class='fas fa-file-excel'></i> Excel",
                 "titleAttr": "Exportar a Excel",
-                "title": "",
+                "title": "IMPRESION DE KARDEX POR ARTICULO",
             }, {
                 "extend": "pdfHtml5",
                 "text": "<i class='fas fa-file-pdf'></i> PDF",
