@@ -107,16 +107,28 @@ $(document).ready(function() {
             }, {
                 "extend": "print",
                 "text": "<i class='fas fa-print'></i> PRINT",
-                "titleAttr": "Exportar a PRINT"
                 "titleAttr": "Exportar a PRINT",
                 "customize": function(win) {
-                    // Agregar texto personalizado al documento de impresión
-                    $(win.document.body).find('h1').text(
-                        "CENTRO DE SANGRE : : : " + areaNombre);
-                    $(win.document.body).find('h1').css({
-                        "font-size": "16px",
-                        "font-weight": "bold",
-                        "text-align": "center"
+    // Agregar texto personalizado al documento de impresión
+    $(win.document.body).find('h1').text(
+        "CENTRO DE SANGRE : : : AREA DE " + areaNombre);
+    $(win.document.body).find('h1').css({
+        "font-size": "16px",
+        "font-weight": "bold",
+        "text-align": "center"
+    });
+
+    // Agregar hora a la derecha
+    var horaParagraph = $("<p>").text("Fecha Actual: " + hora).css({
+        "position": "absolute",
+        "top": "0",
+        "right": "0",
+        "margin": "0",
+        "font-size": "10px"
+    });
+    $(win.document.body).append(horaParagraph);
+}
+
             },
         ],
     });
