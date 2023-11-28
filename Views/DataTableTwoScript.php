@@ -119,7 +119,7 @@ $(document).ready(function() {
     });
 
     // Agregar nombreA debajo de areaNombre a la izquierda
-    var nombreAParagraph = $("<p>").text("Nombre del Articulo: " + nombreA).css({
+    var nombreAParagraph = $("<p>").text("Nombre del departamento: " +  nombreD).css({
         "position": "absolute",
         "top": "12px", // Ajusta según sea necesario
         "left": "0",
