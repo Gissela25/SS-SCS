@@ -127,7 +127,18 @@ $(document).ready(function() {
         "font-size": "10px"
     });
     $(win.document.body).append(horaParagraph);
+
+    // Agregar saldoInicial debajo de hora
+    var saldoParagraph = $("<p>").text("Saldo Inicial: " + saldo).css({
+        "position": "absolute",
+        "top": "14px",
+        "right": "0",
+        "margin": "0px",
+        "font-size": "10px"
+    });
+    $(win.document.body).append(saldoParagraph);
 }
+
 
             },
         ],
