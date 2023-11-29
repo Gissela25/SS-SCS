@@ -43,10 +43,26 @@ class MovementsController extends Controller{
         $this->render("Movements.php",$viewBag);
     }
 
-    public function EntryByDate(){
+    public function EntryByDate() {
         $viewBag = [];
-        $viewBag["productos"] = $this->modelo->getEntryByDate($_SESSION['area']);
-        $this->render("EntryDate.php",$viewBag);
+        $errores = array();
+        $initialDate = isset($_REQUEST['inicial']) ? $_REQUEST['inicial'] : '';
+        $finalDate = isset($_REQUEST['final']) ? $_REQUEST['final'] : '';
+    
+        if (empty($initialDate) || empty($finalDate)) {
+          array_push($errores,"Debes seleccionar un rango de fechas.");
+          $viewBag['errores']=$errores;
+        } else {
+            $viewBag["productos"] = $this->modelo->getEntryByDate($initialDate, $finalDate);
+        }
+    
+        if (isset($_REQUEST['ajax'])) {
+            header('Content-Type: application/json');
+            echo json_encode($viewBag["productos"]);
+            exit;
+        } else {
+            $this->render("EntryDate.php", $viewBag);
+        }
     }
 
     public function WithdrawalByDate(){
