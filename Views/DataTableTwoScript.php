@@ -77,21 +77,8 @@ $(document).ready(function() {
                         alignment: 'right',
                         margin: [0, 0, 0, 18]
                     });
-
-                    // Quitar colores de fondo de las celdas y filas
-                    doc.styles.tableBodyOdd = {
-                        fillColor: 'white',
-                        textColor: 'black',
-                        alignment: 'center'
-                    };
-                    doc.styles.tableBodyEven = {
-                        fillColor: 'white',
-                        textColor: 'black',
-                        alignment: 'center'
-                    };
                     doc.styles.tableHeader = {
-                        fillColor: 'white',
-                        textColor: 'black',
+                        fillColor: '#FF8B8B', // Reemplaza 'yourColor' con el color que desees
                         alignment: 'center'
                     };
                 }

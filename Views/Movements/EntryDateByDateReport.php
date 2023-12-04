@@ -20,9 +20,29 @@ ob_start();
         min-width: 650px;
         font-size: 10;
     }
-    th, td {
+
+    th,
+    td {
         text-align: center;
-        padding: 25px;
+        padding: 12px;
+        /* Adjust the padding as needed */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        /* Adjust the margin as needed */
+    }
+
+    th {
+        background-color: #FF8B8B;
+        /* Optional: Set a background color for header cells */
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+        /* Optional: Set a background color for even rows */
     }
     </style>
 </head>
@@ -43,7 +63,8 @@ ob_start();
         <!-- <h3 style="text-align:right">Saldo Inicial: <?=$productos[0]['SaldoInicial']?> </h3> -->
     </div>
 
-    <table style="margin: 0 auto;">
+
+    <table class="table table-bordered">
         <thead>
             <tr>
                 <th>Codigo</th>
@@ -78,6 +99,7 @@ ob_start();
         </tbody>
     </table>
 </body>
+
 </html>
 <?php
 $html=ob_get_clean();

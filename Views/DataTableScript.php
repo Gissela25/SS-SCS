@@ -82,21 +82,8 @@ $(document).ready(function() {
                         alignment: 'right',
                         margin: [0, 0, 0, 18]
                     });
-
-                    // Quitar colores de fondo de las celdas y filas
-                    doc.styles.tableBodyOdd = {
-                        fillColor: 'white',
-                        textColor: 'black',
-                        alignment: 'center'
-                    };
-                    doc.styles.tableBodyEven = {
-                        fillColor: 'white',
-                        textColor: 'black',
-                        alignment: 'center'
-                    };
                     doc.styles.tableHeader = {
-                        fillColor: 'white',
-                        textColor: 'black',
+                        fillColor: '#FF8B8B', // Reemplaza 'yourColor' con el color que desees
                         alignment: 'center'
                     };
                 }
@@ -110,52 +97,50 @@ $(document).ready(function() {
                 "titleAttr": "Exportar a PRINT",
                 "customize": function(win) {
 
-    // Eliminar la función predeterminada que agrega la fecha
-    $(win.document.body).find('title').remove();
+                    // Eliminar la función predeterminada que agrega la fecha
+                    $(win.document.body).find('title').remove();
 
 
-    // Agregar texto personalizado al documento de impresión
-    $(win.document.body).find('h1').text(
-        "CENTRO DE SANGRE : : : AREA DE " + areaNombre);
-    $(win.document.body).find('h1').css({
-        "font-size": "16px",
-        "font-weight": "bold",
-        "text-align": "center"
-    });
+                    // Agregar texto personalizado al documento de impresión
+                    $(win.document.body).find('h1').text(
+                        "CENTRO DE SANGRE : : : AREA DE " + areaNombre);
+                    $(win.document.body).find('h1').css({
+                        "font-size": "16px",
+                        "font-weight": "bold",
+                        "text-align": "center"
+                    });
 
-    // Agregar nombreA debajo de areaNombre a la izquierda
-    var nombreAParagraph = $("<p>").text("Nombre del Articulo: " + nombreA).css({
-        "position": "absolute",
-        "top": "12px", // Ajusta según sea necesario
-        "left": "0",
-        "margin": "0",
-        "font-size": "10px"
-    });
-    $(win.document.body).append(nombreAParagraph);
+                    // Agregar nombreA debajo de areaNombre a la izquierda
+                    var nombreAParagraph = $("<p>").text("Nombre del Articulo: " + nombreA)
+                        .css({
+                            "position": "absolute",
+                            "top": "12px", // Ajusta según sea necesario
+                            "left": "0",
+                            "margin": "0",
+                            "font-size": "10px"
+                        });
+                    $(win.document.body).append(nombreAParagraph);
 
-    // Agregar hora a la derecha
-    var horaParagraph = $("<p>").text("Fecha Actual: " + hora).css({
-        "position": "absolute",
-        "top": "0",
-        "right": "0",
-        "margin": "0",
-        "font-size": "10px"
-    });
-    $(win.document.body).append(horaParagraph);
+                    // Agregar hora a la derecha
+                    var horaParagraph = $("<p>").text("Fecha Actual: " + hora).css({
+                        "position": "absolute",
+                        "top": "0",
+                        "right": "0",
+                        "margin": "0",
+                        "font-size": "10px"
+                    });
+                    $(win.document.body).append(horaParagraph);
 
-    // Agregar saldoInicial debajo de hora
-    var saldoParagraph = $("<p>").text("Saldo Inicial: " + saldo).css({
-        "position": "absolute",
-        "top": "15px",
-        "right": "0",
-        "margin": "0px",
-        "font-size": "10px"
-    });
-    $(win.document.body).append(saldoParagraph);
-}
-
-
-
+                    // Agregar saldoInicial debajo de hora
+                    var saldoParagraph = $("<p>").text("Saldo Inicial: " + saldo).css({
+                        "position": "absolute",
+                        "top": "15px",
+                        "right": "0",
+                        "margin": "0px",
+                        "font-size": "10px"
+                    });
+                    $(win.document.body).append(saldoParagraph);
+                }
             },
         ],
     });
