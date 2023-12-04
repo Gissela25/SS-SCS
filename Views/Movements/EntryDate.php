@@ -20,6 +20,9 @@ include_once "./Core/config.php"
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
+    <?php
+    include_once "./Views/charts.php";
+    ?>
 </head>
 
 <body>
@@ -47,6 +50,19 @@ include_once "./Core/config.php"
             </div>
             <div class="col ml-5">
                 <div class="row mt-3">
+                    <?php
+                    
+                    if(isset($datos)&& !empty($datos))
+                    {
+                    ?>
+                    <div class="col-md-8 offset-2 mt-3">
+                        <div class="chart" id="chart">
+
+                        </div>
+                    </div>
+                    <?php
+                    }
+                    ?>
                     <table class="table table-bordered " id="datatable">
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
@@ -88,6 +104,10 @@ include_once "./Core/config.php"
     function searchDate() {
         var initialDate = document.getElementById('inicial').value;
         var finalDate = document.getElementById('final').value;
+
+        if (initialDate === '' || finalDate === '') {
+            return;
+        }
 
         $.ajax({
             url: '<?=PATH?>Movements/EntryByDate',
@@ -132,6 +152,60 @@ include_once "./Core/config.php"
         document.getElementById('final').value = '';
         buscarDatos();
     }
+    </script>
+
+
+    <script>
+    Highcharts.chart('chart', {
+        chart: {
+            type: 'pie'
+        },
+        title: {
+            text: ''
+        },
+        tooltip: {
+            valueSuffix: '%'
+        },
+        subtitle: {
+            text: '<?php echo "Productos recibidos durante el periodo de ".$initialDate." al ".$finalDate;  ?>'
+        },
+        plotOptions: {
+            series: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: [{
+                    enabled: true,
+                    distance: 20
+                }, {
+                    enabled: true,
+                    distance: -40,
+                    format: '{point.percentage:.1f}%',
+                    style: {
+                        fontSize: '1.2em',
+                        textOutline: 'none',
+                        opacity: 0.7
+                    },
+                    filter: {
+                        operator: '>',
+                        property: 'percentage',
+                        value: 10
+                    }
+                }]
+            }
+        },
+        series: [{
+            name: 'Percentage',
+            colorByPoint: true,
+            data: [
+                <?php
+                    foreach($datos as $dato)
+                    {
+                        echo "{name:'".$dato['NombreA']."',y:".$dato['CantidadTotal']."},";
+                    }    
+                    ?>
+            ]
+        }]
+    });
     </script>
 </body>
 

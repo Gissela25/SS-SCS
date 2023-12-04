@@ -54,10 +54,13 @@ class MovementsController extends Controller{
           $viewBag['errores']=$errores;
         } else {
             $viewBag["productos"] = $this->modelo->getEntryByDate($initialDate, $finalDate);
+            $viewBag["datos"] = $this->modelo->getProductEntrySummary($initialDate, $finalDate);
+            $viewBag["initialDate"] = date("d-m-Y",strtotime($initialDate));
+            $viewBag["finalDate"] = date("d-m-Y",strtotime($finalDate));
         }
     
         if (isset($_REQUEST['ajax'])) {
-            header('Content-Type: application/json');
+            header('Content-Type: application/json');    
             echo json_encode($viewBag["productos"]);
             exit;
         } else {
@@ -75,6 +78,9 @@ class MovementsController extends Controller{
             $viewBag['errores']=$errores;
           } else {
               $viewBag["productos"] = $this->modelo->getWithdrawalByDate($initialDate, $finalDate);
+              $viewBag["datos"] = $this->modelo->getProductOutputSummary($initialDate, $finalDate);
+              $viewBag["initialDate"] = date("d-m-Y",strtotime($initialDate));
+              $viewBag["finalDate"] = date("d-m-Y",strtotime($finalDate));
         }
         if (isset($_REQUEST['ajax'])) {
             header('Content-Type: application/json');

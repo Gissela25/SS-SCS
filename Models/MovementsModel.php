@@ -259,6 +259,20 @@ class MovementsModel extends ConnectionModel{
         
     }
 
+    public function getProductOutputSummary($initialDate = '', $finalDate ='')
+    {
+        $query = "CALL GetProductOutputSummary('" . $initialDate . "', '" . $finalDate . "')";
+        return $this->get_query($query);
+    }
+
+
+    public function getProductEntrySummary($initialDate = '', $finalDate ='')
+    {
+        $query = "CALL GetProductEntrySummary('" . $initialDate . "', '" . $finalDate . "')";
+        return $this->get_query($query);
+    }
+
+
     /*public function getWithdrawalByDate($id='')
     {
         //Creamos una variable en donde almacenaremos la consulta que haremos

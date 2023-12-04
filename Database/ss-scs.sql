@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 18, 2023 at 12:28 AM
+-- Generation Time: Dec 04, 2023 at 07:09 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -22,6 +22,33 @@ SET time_zone = "+00:00";
 --
 
 DELIMITER $$
+--
+-- Procedures
+--
+DROP PROCEDURE IF EXISTS `GetProductEntrySummary`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetProductEntrySummary` (IN `initialDate` DATE, IN `finalDate` DATE)   BEGIN
+    SELECT 
+        articulos.NombreA,
+        SUM(movimientos.Entrada) AS CantidadTotal,
+        SUM(movimientos.Entrada) / (SELECT SUM(Entrada) FROM movimientos WHERE F_Movimiento BETWEEN initialDate AND finalDate AND Entrada > 0) * 100 AS Porcentaje
+    FROM movimientos 
+    JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+    WHERE F_Movimiento BETWEEN initialDate AND finalDate AND Entrada > 0
+    GROUP BY articulos.NombreA;
+END$$
+
+DROP PROCEDURE IF EXISTS `GetProductOutputSummary`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetProductOutputSummary` (IN `initialDate` DATE, IN `finalDate` DATE)   BEGIN
+    SELECT 
+        articulos.NombreA,
+        SUM(movimientos.Salida) AS CantidadTotal,
+        SUM(movimientos.Salida) / (SELECT SUM(Salida) FROM movimientos WHERE F_Movimiento BETWEEN initialDate AND finalDate AND Salida > 0) * 100 AS Porcentaje
+    FROM movimientos 
+    JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+    WHERE F_Movimiento BETWEEN initialDate AND finalDate AND Salida > 0
+    GROUP BY articulos.NombreA;
+END$$
+
 --
 -- Functions
 --
@@ -98,8 +125,10 @@ INSERT INTO `articulos` (`Id_Articulo`, `Codigo`, `NombreA`, `Id_Presentacion`, 
 ('I44617663365564', '45464547', 'panadol', 'P123', 'D96937', 'A12343', 1),
 ('I45995451110446', '20222699', 'Acetaminofen', 'P123', 'D44522', 'A12343', 1),
 ('I48081567842105', '20212125', 'Gasas', 'P123', 'D44522', 'A12343', 1),
+('I50202109235693', '202309223499', 'panadol', 'P123', 'D44522', 'A12343', 1),
 ('I58544007596640', '20129091', 'PCR', 'P123', 'D44522', 'A12343', 1),
 ('I58872765406360', '20128999', 'Kit de tamizaje', 'P123', 'D44522', 'A12345', 1),
+('I72916666533693', '2022269832342', 'Acetaminofen', 'P123', 'D96937', 'A12343', 1),
 ('I83045535656790', '202226056', 'Mascarilla', 'P123', 'D96937', 'A59165', 1),
 ('I89489943973588', '20129094', 'Prueba de Sifilis', 'P123', 'D44522', 'A12343', 1),
 ('I95770845223092', '87979857', 'Mascarillas', 'P123', 'D44522', 'A12343', 1),
@@ -136,10 +165,19 @@ INSERT INTO `correlativos` (`Id_Correlativo`, `Id_Usuario`) VALUES
 ('202306073922', 'JD0001'),
 ('202306076916', 'JD0001'),
 ('202306077860', 'JD0001'),
+('202310181490', 'JD0001'),
+('202310182718', 'JD0001'),
 ('202310182887', 'JD0001'),
 ('202310183130', 'JD0001'),
+('202310183920', 'JD0001'),
 ('202310184040', 'JD0001'),
-('202310188506', 'JD0001');
+('202310188472', 'JD0001'),
+('202310188506', 'JD0001'),
+('202311273716', 'JD0001'),
+('202311277474', 'JD0001'),
+('202311286331', 'JD0001'),
+('202311287816', 'JD0001'),
+('202311288267', 'JD0001');
 
 -- --------------------------------------------------------
 
@@ -233,14 +271,16 @@ CREATE TABLE IF NOT EXISTS `existencias` (
 --
 
 INSERT INTO `existencias` (`Id_Existencia`, `Id_Articulo`, `NoComprobante`, `Saldo`, `SaldoInicial`, `F_LastUpdate`, `EsSaldoInicial`) VALUES
-('E26724557571726', 'I89489943973588', '26202308', 58, 60, '2023-05-30', 0),
+('E25099010389098', 'I50202109235693', NULL, 0, NULL, '2023-10-18', 1),
+('E26724557571726', 'I89489943973588', '26202308', 60, 60, '2023-11-28', 0),
 ('E33290568337510', 'I45995451110446', NULL, 0, NULL, '2023-06-02', 1),
-('E35578389916098', 'I58544007596640', '23456789', 49, 20, '2023-06-07', 0),
+('E35578389916098', 'I58544007596640', '2620239923', 50, 20, '2023-11-28', 0),
 ('E36742947971538', 'I95770845223092', '23456789', 40, 45, '2023-06-07', 0),
 ('E43321048868076', 'I99745938237056', '', 0, 25, '2023-05-24', 1),
-('E43763801248919', 'I99580613387904', '67564567', 6, 8, '2023-10-18', 0),
+('E43763801248919', 'I99580613387904', '2620231145', 20, 8, '2023-11-27', 0),
 ('E57328323996558', 'I58872765406360', '26202308', 20, 5, '2023-05-27', 1),
 ('E62304667623815', 'I33172199242160', '26202308', 60, 60, '2023-05-27', 1),
+('E69447216263976', 'I72916666533693', NULL, 0, NULL, '2023-10-18', 1),
 ('E70638510411623', 'I10626524267147', NULL, 0, NULL, '2023-06-07', 1),
 ('E73522602520834', 'I44617663365564', NULL, 0, NULL, '2023-10-18', 1),
 ('E81797379711633', 'I17444664310128', '26202311', 5, 5, '2023-05-27', 1),
@@ -290,7 +330,17 @@ INSERT INTO `movimientos` (`Id_Correlativo`, `Id_Articulo`, `Id_Existencia`, `En
 ('202310183130', 'I99580613387904', 'E43763801248919', 9, 0, 0, 17, '2023-10-18'),
 ('202310188506', 'I99580613387904', 'E43763801248919', 0, 9, 0, 8, '2023-10-18'),
 ('202310184040', 'I58544007596640', 'E35578389916098', 0, 1, 0, 49, '2023-10-18'),
-('202310184040', 'I99580613387904', 'E43763801248919', 0, 2, 0, 6, '2023-10-18');
+('202310184040', 'I99580613387904', 'E43763801248919', 0, 2, 0, 6, '2023-10-18'),
+('202310181490', 'I99580613387904', 'E43763801248919', 0, 4, 0, 2, '2023-10-18'),
+('202310188472', 'I99580613387904', 'E43763801248919', 5, 0, 0, 7, '2023-10-18'),
+('202310182718', 'I99580613387904', 'E43763801248919', 6, 0, 0, 13, '2023-10-18'),
+('202310183920', 'I58544007596640', 'E35578389916098', 0, 4, 0, 45, '2023-10-18'),
+('202310183920', 'I89489943973588', 'E26724557571726', 0, 3, 0, 55, '2023-10-18'),
+('202311273716', 'I99580613387904', 'E43763801248919', 0, 0, 2, 15, '2023-11-27'),
+('202311277474', 'I99580613387904', 'E43763801248919', 5, 0, 0, 20, '2023-11-27'),
+('202311286331', 'I58544007596640', 'E35578389916098', 5, 0, 0, 50, '2023-11-28'),
+('202311288267', 'I89489943973588', 'E26724557571726', 8, 0, 0, 63, '2023-11-28'),
+('202311287816', 'I89489943973588', 'E26724557571726', 0, 3, 0, 60, '2023-11-28');
 
 -- --------------------------------------------------------
 
