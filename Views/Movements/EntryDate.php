@@ -38,9 +38,9 @@ include_once "./Core/config.php"
                             <input type="date" name="inicial" class="col-md-3 form-control" id="inicial">
                             <input type="date" name="final" class="col-md-3 form-control" id="final">
                             <input type="submit" title="Buscar" id="search" name="search" value="Buscar"
-                                onclick="searchDate()" class="col-md-1 btn btn-outline-danger">
+                                onclick="searchDate()" class="col-md-2 btn btn-outline-danger">
                             <input type="button" id="clean" title="Limpiar" value="Limpiar" onclick="cleanData()"
-                                class="col-md-1 btn btn-outline-danger">
+                                class="col-md-2 btn btn-outline-danger">
                         </div>
                     </div>
                 </form>

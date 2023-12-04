@@ -237,7 +237,29 @@ class MovementsModel extends ConnectionModel{
         }
     }**/
 
-    public function getWithdrawalByDate($id='')
+    public function getWithdrawalByDate($initialDate = '', $finalDate ='')
+    {
+        $query='';
+        $currentDate = date('Y-m-d');
+        if($initialDate == '' && $finalDate == '')
+        {
+            $query = "SELECT F_Movimiento, articulos.NombreA, Salida, SaldoResultante
+            FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            WHERE F_Movimiento BETWEEN '' AND '".$currentDate."' AND Salida > 0;";
+            return $this->get_query($query);
+        }
+        else{
+            $query = "SELECT F_Movimiento, articulos.NombreA, Salida, SaldoResultante
+            FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            WHERE F_Movimiento BETWEEN '" . $initialDate . "' AND '" . $finalDate . "'
+            AND Salida > 0;";
+
+            return $this->get_query($query);
+        }
+        
+    }
+
+    /*public function getWithdrawalByDate($id='')
     {
         //Creamos una variable en donde almacenaremos la consulta que haremos
         $query='';
@@ -257,7 +279,7 @@ class MovementsModel extends ConnectionModel{
             //Utilizamos el método get_query de la clase padre, la cual permite ejecutar consultas de selección
             return $this->get_query($query,[":Id_Area"=>$id]);
         }
-    }
+    }*/
 
     public function getTemporaryWithDrawalData($id = ''){
         if($id!='')

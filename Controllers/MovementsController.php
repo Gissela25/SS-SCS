@@ -67,8 +67,22 @@ class MovementsController extends Controller{
 
     public function WithdrawalByDate(){
         $viewBag = [];
-        $viewBag["productos"] = $this->modelo->getWithdrawalByDate($_SESSION['area']);
-        $this->render("WithdrawalDate.php",$viewBag);
+        $errores = array();
+        $initialDate = isset($_REQUEST['inicial']) ? $_REQUEST['inicial'] : '';
+        $finalDate = isset($_REQUEST['final']) ? $_REQUEST['final'] : '';
+        if (empty($initialDate) || empty($finalDate)) {
+            array_push($errores,"Debes seleccionar un rango de fechas.");
+            $viewBag['errores']=$errores;
+          } else {
+              $viewBag["productos"] = $this->modelo->getWithdrawalByDate($initialDate, $finalDate);
+        }
+        if (isset($_REQUEST['ajax'])) {
+            header('Content-Type: application/json');
+            echo json_encode($viewBag["productos"]);
+            exit;
+        } else {
+            $this->render("WithdrawalDate.php", $viewBag);
+        }
     }
 
     public function SeeSpecificKardex($id){
