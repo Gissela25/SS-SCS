@@ -8,19 +8,12 @@ include_once "./Core/config.php"
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Salidas por rango de fecha - Cruz Roja</title>
     <link rel="stylesheet" href="styles/style.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <?php
+    include_once "./Views/NavDataTables.php";
     include_once "./Views/charts.php";
     ?>
 
@@ -70,7 +63,9 @@ include_once "./Core/config.php"
                         <thead class="Te" style="background-color: #FF8B8B">
                             <tr>
                                 <th class="text-center">Fecha</th>
+                                <th class="text-center">Correlativo</th>
                                 <th class="text-center">Artículo</th>
+                                <th class="text-center">Presentacion</th>
                                 <th class="text-center">Salida</th>
                                 <th class="text-center">Saldo resultante</th>
                             </tr>
@@ -82,7 +77,9 @@ include_once "./Core/config.php"
                         ?>
                             <tr id="id_<?=$producto['Id_Correlativo']?>">
                                 <td class="text-center"><?=$producto['F_Movimiento']?></td>
+                                <td class="text-center"><?=$producto['Id_Correlativo']?></td>
                                 <td class="text-center"><?=$producto['NombreA']?></td>
+                                <td class="text-center"><?=$producto['NombreP']?></td>
                                 <td class="text-center"><?=$producto['Salida']?></td>
                                 <td class="text-center"><?=$producto['SaldoResultante']?></td>
                             </tr>
@@ -98,11 +95,10 @@ include_once "./Core/config.php"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-    <script>
-    $(document).ready(function() {
-        $('#datatable').DataTable();
-    });
-    </script>
+    <?php
+    include_once "./Views/DataTableFiveScript.php";
+    ?>
+
 
     <script>
     function searchDate() {
@@ -127,7 +123,9 @@ include_once "./Core/config.php"
                 for (var i = 0; i < data.length; i++) {
                     var row = '<tr id="id_' + data[i]['Id_Correlativo'] + '">';
                     row += '<td class="text-center">' + data[i]['F_Movimiento'] + '</td>';
+                    row += '<td class="text-center">' + data[i]['Id_Correlativo'] + '</td>';
                     row += '<td class="text-center">' + data[i]['NombreA'] + '</td>';
+                    row += '<td class="text-center">' + data[i]['NombreP'] + '</td>';
                     row += '<td class="text-center">' + data[i]['Salida'] + '</td>';
                     row += '<td class="text-center">' + data[i]['SaldoResultante'] + '</td>';
                     row += '</tr>';

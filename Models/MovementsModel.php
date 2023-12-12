@@ -207,14 +207,17 @@ class MovementsModel extends ConnectionModel{
         $currentDate = date('Y-m-d');
         if($initialDate == '' && $finalDate == '')
         {
-            $query = "SELECT F_Movimiento, articulos.NombreA, Entrada, SaldoResultante
+            $query = "SELECT F_Movimiento, articulos.NombreA, Entrada, SaldoResultante, presentaciones.NombreP
             FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            JOIN presentaciones ON movimientos.Id_Presentacion = presentaciones.Id_Presentacion
             WHERE F_Movimiento BETWEEN '' AND '".$currentDate."' AND Entrada > 0;";
             return $this->get_query($query);
         }
         else{
-            $query = "SELECT F_Movimiento, articulos.NombreA, Entrada, SaldoResultante
-            FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            $query = "SELECT Id_Correlativo, F_Movimiento, articulos.NombreA, Entrada, SaldoResultante, presentaciones.NombreP
+            FROM movimientos 
+            JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion    
             WHERE F_Movimiento BETWEEN '" . $initialDate . "' AND '" . $finalDate . "'
             AND Entrada > 0;";
 
@@ -249,8 +252,10 @@ class MovementsModel extends ConnectionModel{
             return $this->get_query($query);
         }
         else{
-            $query = "SELECT F_Movimiento, articulos.NombreA, Salida, SaldoResultante
-            FROM movimientos JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            $query = "SELECT Id_Correlativo, F_Movimiento, articulos.NombreA, Salida, SaldoResultante
+            FROM movimientos 
+            JOIN articulos ON movimientos.Id_Articulo = articulos.Id_Articulo
+            JOIN presentaciones ON articulos.Id_Presentacion = presentaciones.Id_Presentacion    
             WHERE F_Movimiento BETWEEN '" . $initialDate . "' AND '" . $finalDate . "'
             AND Salida > 0;";
 
